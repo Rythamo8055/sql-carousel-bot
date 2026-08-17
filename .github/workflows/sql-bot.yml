@@ -22,9 +22,9 @@ jobs:
         with:
           node-version: '20'
       - name: Install npm
-        run: npm install
+        run: npm install 2>&1 | tee /tmp/npm.log
       - name: Install Chrome
-        run: npx puppeteer browsers install chrome
+        run: npx puppeteer browsers install chrome 2>&1 | tee /tmp/chrome.log
       - name: Install ImageMagick
         run: |
           sudo apt-get update
@@ -43,4 +43,13 @@ jobs:
           fi
       - name: Post to Instagram
         if: steps.day.outputs.day != ''
-        run: node post-day.js ${{ steps.day.outputs.day }}
+        run: node post-day.js ${{ steps.day.outputs.day }} 2>&1 | tee /tmp/post.log || true
+      - name: Upload debug info
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-info
+          path: |
+            /tmp/npm.log
+            /tmp/chrome.log
+            /tmp/post.log
