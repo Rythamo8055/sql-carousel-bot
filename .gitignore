@@ -6,3 +6,7 @@ output/
 *.png
 carousel-viewer/
 package-lock.json
+.next/
+.vercel/
+dist/
+build/
