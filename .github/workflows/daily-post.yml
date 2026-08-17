@@ -54,3 +54,4 @@ jobs:
         run: |
           echo "Posting Day ${{ steps.day.outputs.day }}..."
           node post-day.js ${{ steps.day.outputs.day }}
+# Trigger
