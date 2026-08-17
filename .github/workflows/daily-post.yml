@@ -1,0 +1,56 @@
+name: Daily SQL Post
+
+on:
+  schedule:
+    # Runs at 7:00 PM IST (13:30 UTC) every day
+    - cron: '30 13 * * *'
+  workflow_dispatch:
+    inputs:
+      day:
+        description: 'Day number to post (1-30)'
+        required: true
+        default: '1'
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Determine day number
+        id: day
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "day=${{ github.event.inputs.day }}" >> $GITHUB_OUTPUT
+          else
+            # Calculate day based on start date (Aug 17, 2026)
+            START_DATE="2026-08-17"
+            TODAY=$(date +%Y-%m-%d)
+            START_EPOCH=$(date -d "$START_DATE" +%s)
+            TODAY_EPOCH=$(date -d "$TODAY" +%s)
+            DIFF=$(( (TODAY_EPOCH - START_EPOCH) / 86400 ))
+            DAY=$(( DIFF + 1 ))
+            if [ $DAY -gt 30 ]; then
+              echo "Series complete! No more posts."
+              exit 0
+            fi
+            echo "day=$DAY" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Post to Instagram
+        if: steps.day.outputs.day != ''
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: |
+          echo "Posting Day ${{ steps.day.outputs.day }}..."
+          node post-day.js ${{ steps.day.outputs.day }}
