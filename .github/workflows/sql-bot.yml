@@ -13,16 +13,24 @@ on:
 jobs:
   post:
     runs-on: ubuntu-latest
+    env:
+      IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: npm install
-      - run: npx puppeteer browsers install chrome
-      - run: sudo apt-get update && sudo apt-get install -y imagemagick
-      - run: |
-          echo "PUPPETEER_EXECUTABLE_PATH=$(find /home -name 'chrome' -type f 2>/dev/null | head -1)" >> $GITHUB_ENV
+      - name: Install npm
+        run: npm install
+      - name: Install Chrome
+        run: npx puppeteer browsers install chrome
+      - name: Install ImageMagick
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick curl
+      - name: Set Chrome path
+        run: echo "PUPPETEER_EXECUTABLE_PATH=$(find /home -name 'chrome' -type f 2>/dev/null | head -1)" >> $GITHUB_ENV
       - name: Get day
         id: day
         run: |
@@ -33,11 +41,19 @@ jobs:
             if [ $DAY -gt 30 ]; then echo "Done!" && exit 0; fi
             echo "day=$DAY" >> $GITHUB_OUTPUT
           fi
-      - name: Post
+      - name: Run poster
+        id: poster
         if: steps.day.outputs.day != ''
-        env:
-          IG_USER_ID: ${{ secrets.IG_USER_ID }}
-          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
         run: |
-          echo "Posting Day ${{ steps.day.outputs.day }}"
+          set -x
           node post-day.js ${{ steps.day.outputs.day }}
+          set +x
+        continue-on-error: true
+      - name: Capture logs
+        if: always()
+        run: |
+          echo "Workflow failed at some step"
+          echo "Checking files..."
+          ls -la output/day12/jpeg/ 2>/dev/null || echo "No output/day12/jpeg"
+          ls -la content/sql-series/sql-day12-grid.html 2>/dev/null || echo "No HTML"
+          which chromium-browser || which chromium || find /home -name 'chrome' -type f 2>/dev/null || echo "No Chrome found"
