@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid System</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#d4cfc7;padding:40px;display:flex;justify-content:center}
+.container{display:flex;gap:0;overflow-x:auto;padding:20px}
+.slide{width:1080px;height:1350px;flex-shrink:0;background:#d4cfc7;padding:80px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+
+.grid-overlay{position:absolute;top:0;left:0;right:0;bottom:0;z-index:1;pointer-events:none}
+.grid-overlay svg{width:100%;height:100%}
+
+.accent-block{position:absolute;background:#2563eb;z-index:1}
+
+.logo{position:absolute;top:40px;right:80px;font-size:14px;font-weight:600;color:#1a1a1a;z-index:3}
+
+.heading{font-size:120px;font-weight:900;line-height:0.92;color:#1a1a1a;z-index:2;position:relative}
+
+.subtext{font-size:28px;color:#1a1a1a;line-height:1.4;z-index:2;position:relative;margin-top:32px;font-weight:400}
+
+.side-text{position:absolute;right:40px;bottom:240px;writing-mode:vertical-rl;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#1a1a1a;z-index:2}
+
+.bookmark{position:absolute;bottom:40px;right:80px;z-index:2}
+.bookmark svg{width:24px;height:24px;fill:#1a1a1a}
+
+.slide-num{position:absolute;bottom:40px;left:80px;font-size:12px;font-weight:600;color:#1a1a1a;letter-spacing:2px;z-index:2}
+
+.label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#2563eb;z-index:2;position:relative;margin-bottom:20px}
+
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px 60px;z-index:2;position:relative;margin-top:40px}
+.stat-item{display:flex;flex-direction:column}
+.stat-value{font-size:72px;font-weight:900;color:#2563eb;line-height:1}
+.stat-label{font-size:13px;font-weight:500;color:#1a1a1a;margin-top:8px;letter-spacing:0.5px}
+
+.trending-item{display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-bottom:1px solid rgba(26,26,26,0.15);z-index:2;position:relative}
+.trending-item:last-child{border-bottom:none}
+.trending-num{font-size:48px;font-weight:900;color:#2563eb;line-height:1;min-width:60px}
+.trending-text{font-size:18px;font-weight:600;color:#1a1a1a;line-height:1.4;padding-top:6px}
+.trending-sub{font-size:13px;color:#1a1a1a;opacity:0.6;margin-top:4px;font-weight:400}
+
+.cta-heading{font-size:110px;font-weight:900;line-height:0.92;color:#fff;z-index:2;position:relative}
+.cta-sub{font-size:24px;color:rgba(255,255,255,0.8);z-index:2;position:relative;margin-top:24px;font-weight:400}
+.cta-divider{width:120px;height:4px;background:rgba(255,255,255,0.4);z-index:2;position:relative;margin-top:40px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Slide 1: Cover -->
+<div class="slide">
+    <div class="grid-overlay">
+        <svg viewBox="0 0 1080 1350" fill="none">
+            <line x1="270" y1="0" x2="270" y2="1350" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="540" y1="0" x2="540" y2="1350" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="810" y1="0" x2="810" y2="1350" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="270" x2="1080" y2="270" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="540" x2="1080" y2="540" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="810" x2="1080" y2="810" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="1080" x2="1080" y2="1080" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+        </svg>
+    </div>
+    <div class="accent-block" style="top:0;right:0;width:320px;height:160px"></div>
+    <div class="accent-block" style="bottom:0;left:0;width:160px;height:320px"></div>
+    <span class="logo">@yourusername</span>
+    <h1 class="heading">Grid<br>Systems</h1>
+    <p class="subtext">every developer<br>should know</p>
+    <span class="side-text">GRIDSYSTEMS</span>
+    <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M5 2h14a1 1 0 0 1 1 1v19.143a.5.5 0 0 1-.766.424L12 18.03l-7.234 4.536A.5.5 0 0 1 4 22.143V3a1 1 0 0 1 1-1z"/></svg></div>
+    <span class="slide-num">01 / 06</span>
+</div>
+
+<!-- Slide 2: News #1 -->
+<div class="slide">
+    <div class="grid-overlay">
+        <svg viewBox="0 0 1080 1350" fill="none">
+            <line x1="270" y1="0" x2="270" y2="1350" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="540" y1="0" x2="540" y2="1350" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="810" y1="0" x2="810" y2="1350" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="270" x2="1080" y2="270" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="540" x2="1080" y2="540" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="810" x2="1080" y2="810" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="1080" x2="1080" y2="1080" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+        </svg>
+    </div>
+    <div class="accent-block" style="top:0;left:0;width:540px;height:270px"></div>
+    <span class="logo">@yourusername</span>
+    <span class="label">Top Story</span>
+    <h1 class="heading" style="font-size:96px">React<br><span style="color:#2563eb">20</span></h1>
+    <p class="subtext">Revolutionary server components and improved performance.</p>
+    <span class="side-text">BREAKING</span>
+    <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M5 2h14a1 1 0 0 1 1 1v19.143a.5.5 0 0 1-.766.424L12 18.03l-7.234 4.536A.5.5 0 0 1 4 22.143V3a1 1 0 0 1 1-1z"/></svg></div>
+    <span class="slide-num">02 / 06</span>
+</div>
+
+<!-- Slide 3: News #2 -->
+<div class="slide">
+    <div class="grid-overlay">
+        <svg viewBox="0 0 1080 1350" fill="none">
+            <line x1="270" y1="0" x2="270" y2="1350" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="540" y1="0" x2="540" y2="1350" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="810" y1="0" x2="810" y2="1350" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="270" x2="1080" y2="270" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="540" x2="1080" y2="540" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="810" x2="1080" y2="810" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="1080" x2="1080" y2="1080" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+        </svg>
+    </div>
+    <div class="accent-block" style="bottom:0;right:0;width:320px;height:320px"></div>
+    <span class="logo">@yourusername</span>
+    <span class="label">Industry News</span>
+    <h1 class="heading" style="font-size:96px">GitHub<br><span style="color:#2563eb">Copilot X</span></h1>
+    <p class="subtext">Multi-file editing and a free tier for open source.</p>
+    <span class="side-text">INDUSTRY NEWS</span>
+    <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M5 2h14a1 1 0 0 1 1 1v19.143a.5.5 0 0 1-.766.424L12 18.03l-7.234 4.536A.5.5 0 0 1 4 22.143V3a1 1 0 0 1 1-1z"/></svg></div>
+    <span class="slide-num">03 / 06</span>
+</div>
+
+<!-- Slide 4: Trending -->
+<div class="slide">
+    <div class="grid-overlay">
+        <svg viewBox="0 0 1080 1350" fill="none">
+            <line x1="270" y1="0" x2="270" y2="1350" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="540" y1="0" x2="540" y2="1350" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="810" y1="0" x2="810" y2="1350" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="270" x2="1080" y2="270" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="540" x2="1080" y2="540" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="810" x2="1080" y2="810" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="1080" x2="1080" y2="1080" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+        </svg>
+    </div>
+    <div class="accent-block" style="top:270px;left:0;width:270px;height:270px"></div>
+    <div class="accent-block" style="top:0;right:0;width:160px;height:160px"></div>
+    <span class="logo">@yourusername</span>
+    <span class="label">Trending</span>
+    <h1 class="heading" style="font-size:84px">Bun<br><span style="color:#2563eb">2.0</span></h1>
+    <div class="trending-item">
+        <span class="trending-num">01</span>
+        <div>
+            <span class="trending-text">Bun 2.0 runtime release</span>
+            <div class="trending-sub">3x faster performance</div>
+        </div>
+    </div>
+    <div class="trending-item">
+        <span class="trending-num">02</span>
+        <div>
+            <span class="trending-text">Rust overtakes Go</span>
+            <div class="trending-sub">In developer adoption</div>
+        </div>
+    </div>
+    <div class="trending-item">
+        <span class="trending-num">03</span>
+        <div>
+            <span class="trending-text">Cloudflare Workers v4</span>
+            <div class="trending-sub">Edge computing upgrade</div>
+        </div>
+    </div>
+    <span class="side-text">TRENDING REPO</span>
+    <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M5 2h14a1 1 0 0 1 1 1v19.143a.5.5 0 0 1-.766.424L12 18.03l-7.234 4.536A.5.5 0 0 1 4 22.143V3a1 1 0 0 1 1-1z"/></svg></div>
+    <span class="slide-num">04 / 06</span>
+</div>
+
+<!-- Slide 5: Stats -->
+<div class="slide">
+    <div class="grid-overlay">
+        <svg viewBox="0 0 1080 1350" fill="none">
+            <line x1="270" y1="0" x2="270" y2="1350" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="540" y1="0" x2="540" y2="1350" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="810" y1="0" x2="810" y2="1350" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="270" x2="1080" y2="270" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="540" x2="1080" y2="540" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="810" x2="1080" y2="810" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+            <line x1="0" y1="1080" x2="1080" y2="1080" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+        </svg>
+    </div>
+    <div class="accent-block" style="top:0;left:270px;width:270px;height:270px"></div>
+    <div class="accent-block" style="bottom:270px;right:0;width:270px;height:270px"></div>
+    <span class="logo">@yourusername</span>
+    <span class="label">By The Numbers</span>
+    <h1 class="heading" style="font-size:72px"><span style="color:#2563eb">100M+</span><br>DEVELOPERS</h1>
+    <div class="stat-grid">
+        <div class="stat-item">
+            <span class="stat-value">200x</span>
+            <span class="stat-label">Deployment Speed</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value">3x</span>
+            <span class="stat-label">Faster Recovery</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value">99.9%</span>
+            <span class="stat-label">Uptime SLA</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value">50B+</span>
+            <span class="stat-label">API Calls Daily</span>
+        </div>
+    </div>
+    <span class="side-text">STATISTICS</span>
+    <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M5 2h14a1 1 0 0 1 1 1v19.143a.5.5 0 0 1-.766.424L12 18.03l-7.234 4.536A.5.5 0 0 1 4 22.143V3a1 1 0 0 1 1-1z"/></svg></div>
+    <span class="slide-num">05 / 06</span>
+</div>
+
+<!-- Slide 6: CTA -->
+<div class="slide" style="background:#2563eb">
+    <div class="grid-overlay">
+        <svg viewBox="0 0 1080 1350" fill="none">
+            <line x1="270" y1="0" x2="270" y2="1350" stroke="#fff" stroke-width="1" opacity="0.2"/>
+            <line x1="540" y1="0" x2="540" y2="1350" stroke="#fff" stroke-width="1" opacity="0.2"/>
+            <line x1="810" y1="0" x2="810" y2="1350" stroke="#fff" stroke-width="1" opacity="0.2"/>
+            <line x1="0" y1="270" x2="1080" y2="270" stroke="#fff" stroke-width="1" opacity="0.2"/>
+            <line x1="0" y1="540" x2="1080" y2="540" stroke="#fff" stroke-width="1" opacity="0.2"/>
+            <line x1="0" y1="810" x2="1080" y2="810" stroke="#fff" stroke-width="1" opacity="0.2"/>
+            <line x1="0" y1="1080" x2="1080" y2="1080" stroke="#fff" stroke-width="1" opacity="0.2"/>
+        </svg>
+    </div>
+    <div class="accent-block" style="top:0;left:0;width:270px;height:270px;background:rgba(255,255,255,0.15)"></div>
+    <div class="accent-block" style="bottom:0;right:270px;width:270px;height:160px;background:rgba(255,255,255,0.15)"></div>
+    <span class="logo" style="color:#fff">@yourusername</span>
+    <h1 class="cta-heading">Follow<br>for Updates</h1>
+    <p class="cta-sub">Join 10K+ developers getting weekly insights.</p>
+    <div class="cta-divider"></div>
+    <span class="side-text" style="color:#fff">FOLLOW</span>
+    <div class="bookmark"><svg viewBox="0 0 24 24" fill="#fff"><path d="M5 2h14a1 1 0 0 1 1 1v19.143a.5.5 0 0 1-.766.424L12 18.03l-7.234 4.536A.5.5 0 0 1 4 22.143V3a1 1 0 0 1 1-1z"/></svg></div>
+    <span class="slide-num" style="color:rgba(255,255,255,0.5)">06 / 06</span>
+</div>
+
+</div>
+</body>
+</html>

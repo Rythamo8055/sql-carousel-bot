@@ -1,0 +1,53 @@
+{
+  "account": {
+    "username": "@sql.mastery",
+    "niche": "SQL & Database Education",
+    "target": "Students, Developers, Data Analysts",
+    "postsPerDay": 3
+  },
+  "schedule": {
+    "morning": {
+      "time": "11:00",
+      "type": "Tech News",
+      "style": "zigzag",
+      "hashtags": "#TechNews #CodingNews #DeveloperLife"
+    },
+    "afternoon": {
+      "time": "13:00",
+      "type": "DSA Problems",
+      "style": "circular",
+      "hashtags": "#DSA #ProblemSolving #LeetCode"
+    },
+    "evening": {
+      "time": "19:00",
+      "type": "SQL Series",
+      "style": "grid",
+      "hashtags": "#SQL #SQLTutorial #Database"
+    }
+  },
+  "sqlSeries": {
+    "totalDays": 30,
+    "startDate": "2026-08-18",
+    "style": "grid",
+    "hashtags": [
+      "#SQL", "#SQLTutorial", "#Database", "#LearnSQL",
+      "#30DayChallenge", "#Coding", "#TechEducation",
+      "#Developer", "#Programming", "#DataScience"
+    ]
+  },
+  "captions": {
+    "template": "🗄️ SQL Day {day}: {topic}\n\n{description}\n\n{callToAction}\n\n{hashtags}",
+    "day1": "🗄️ SQL Day 1: What is SQL?\n\nSQL = Structured Query Language\n\nThe language that powers every database in the world.\n\nWhy learn SQL?\n✅ Universal skill\n✅ High demand\n✅ Foundation for everything\n\nTomorrow: SELECT Basics\n\nSave this for later! 🔖\n\n#SQL #SQLTutorial #Database #LearnSQL #30DayChallenge #Coding #TechEducation #Developer #Programming #DataScience"
+  },
+  "comments": {
+    "immediate": "📌 Day {day} - {topic}",
+    "oneHour": "💡 Pro tip: Save this post for quick reference!",
+    "threeHours": "🔄 Share this with someone learning SQL!",
+    "nextDay": "➡️ Day {day+1} is live! Check our latest post."
+  },
+  "automation": {
+    "tools": ["Meta Business Suite", "Buffer", "Later"],
+    "conversion": "HTML to PNG via Puppeteer",
+    "uploadFolder": "./output/png/"
+  }
+}

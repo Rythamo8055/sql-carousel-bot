@@ -1,0 +1,174 @@
+/* ============================================
+   THEME VARIABLES
+   ============================================ */
+
+/* Morning Theme (News) */
+:root.morning {
+    --gradient-bg: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    --accent-1: #00d2ff;
+    --accent-2: #3a7bd5;
+    --gradient-accent: linear-gradient(90deg, #00d2ff, #3a7bd5);
+    --glow-color: rgba(0, 210, 255, 0.15);
+    --border-color: rgba(0, 210, 255, 0.3);
+}
+
+/* Afternoon Theme (Problems) */
+:root.afternoon {
+    --gradient-bg: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    --accent-1: #4facfe;
+    --accent-2: #00f2fe;
+    --gradient-accent: linear-gradient(90deg, #4facfe, #00f2fe);
+    --glow-color: rgba(79, 172, 254, 0.15);
+    --border-color: rgba(79, 172, 254, 0.3);
+}
+
+/* Evening Theme (Series) */
+:root.evening {
+    --gradient-bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    --accent-1: #f093fb;
+    --accent-2: #f5576c;
+    --gradient-accent: linear-gradient(90deg, #f093fb, #f5576c);
+    --glow-color: rgba(240, 147, 251, 0.15);
+    --border-color: rgba(240, 147, 251, 0.3);
+}
+
+/* ============================================
+   THEME-SPECIFIC OVERRIDES
+   ============================================ */
+
+/* Morning Overrides */
+body.morning {
+    background: #0f0c29;
+}
+
+body.morning h1 span {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.morning .badge-primary,
+body.morning .tag {
+    background: var(--gradient-accent);
+}
+
+body.morning .content-list li {
+    border-left-color: var(--accent-1);
+}
+
+body.morning .content-list li .number {
+    color: var(--accent-1);
+}
+
+body.morning .content-list li .text strong {
+    color: var(--accent-1);
+}
+
+body.morning .highlight-box {
+    background: linear-gradient(135deg, var(--glow-color), rgba(58, 123, 213, 0.15));
+    border-color: var(--border-color);
+}
+
+body.morning .highlight-box h3,
+body.morning .content-box h3 {
+    color: var(--accent-1);
+}
+
+body.morning .cta-button,
+body.morning .progress-fill {
+    background: var(--gradient-accent);
+}
+
+/* Afternoon Overrides */
+body.afternoon {
+    background: #1e3c72;
+}
+
+body.afternoon h1 span {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.afternoon .content-list li,
+body.afternoon .solution-steps li {
+    border-left-color: var(--accent-1);
+}
+
+body.afternoon .content-list li .number,
+body.afternoon .solution-steps li .step {
+    color: var(--accent-1);
+}
+
+body.afternoon .content-list li .text strong,
+body.afternoon .solution-steps li .text strong {
+    color: var(--accent-1);
+}
+
+body.afternoon .highlight-box {
+    background: linear-gradient(135deg, var(--glow-color), rgba(0, 242, 254, 0.15));
+    border-color: var(--border-color);
+}
+
+body.afternoon .highlight-box h3,
+body.afternoon .content-box h3 {
+    color: var(--accent-1);
+}
+
+body.afternoon .cta-button,
+body.afternoon .progress-fill {
+    background: var(--gradient-accent);
+}
+
+body.afternoon .difficulty.easy {
+    background: linear-gradient(90deg, #11998e, #38ef7d);
+}
+
+body.afternoon .difficulty.medium {
+    background: linear-gradient(90deg, #f093fb, #f5576c);
+}
+
+/* Evening Overrides */
+body.evening {
+    background: #0f2027;
+}
+
+body.evening h1 span {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.evening .badge-series {
+    background: var(--gradient-accent);
+}
+
+body.evening .content-list li {
+    border-left-color: var(--accent-1);
+}
+
+body.evening .content-list li .number {
+    color: var(--accent-1);
+}
+
+body.evening .content-list li .text strong {
+    color: var(--accent-1);
+}
+
+body.evening .highlight-box {
+    background: linear-gradient(135deg, var(--glow-color), rgba(245, 87, 108, 0.15));
+    border-color: var(--border-color);
+}
+
+body.evening .highlight-box h3,
+body.evening .content-box h3 {
+    color: var(--accent-1);
+}
+
+body.evening .cta-button,
+body.evening .progress-fill {
+    background: var(--gradient-accent);
+}

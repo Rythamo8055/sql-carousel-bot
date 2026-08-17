@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "carousel": {
+      "source": "kostja94/marketing-skills",
+      "sourceType": "github",
+      "skillPath": "skills/components/layout/carousel/SKILL.md",
+      "computedHash": "2306283e22578cd8b019f0c122c76ae6ef17d56187e91c7d3785274abe8e117d"
+    },
+    "carousel-writer-sms": {
+      "source": "blacktwist/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/carousel-writer-sms/SKILL.md",
+      "computedHash": "58cbcf94dfeb6bbb899388fd2ccdb388b1742ce8783e1422a48ec97bb95a88fa"
+    }
+  }
+}

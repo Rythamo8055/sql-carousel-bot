@@ -1,0 +1,85 @@
+{
+  "01": {
+    "tag": "Real-World Example", "label": "Where SQL lives", "heading": "SQL in the<br>real world",
+    "headers": ["App", "Table", "SQL powers"],
+    "rows": [
+      ["Instagram", "users", "Login & profiles"],
+      ["Amazon", "products", "Search & cart"],
+      ["Swiggy", "orders", "Track deliveries"],
+      ["YouTube", "videos", "Watch history"]
+    ],
+    "caption": "Every app you use daily is powered by SQL databases."
+  },
+  "02": {
+    "tag": "Real-World Example", "label": "Read from the DB", "heading": "The users<br>table",
+    "headers": ["id", "name", "email", "role"],
+    "rows": [
+      ["1", "Alice", "alice@mail.com", "admin"],
+      ["2", "Bob", "bob@mail.com", "user"],
+      ["3", "Charlie", "charlie@mail.com", "user"]
+    ],
+    "caption": "SELECT reads rows like these — every screen loads data this way."
+  },
+  "03": {
+    "tag": "Real-World Example", "label": "Filter the data", "heading": "Users you<br>need",
+    "headers": ["name", "age", "country", "plan"],
+    "rows": [
+      ["Alice", "24", "IN", "premium"],
+      ["Bob", "16", "US", "free"],
+      ["Carol", "30", "IN", "premium"],
+      ["Dan", "19", "UK", "free"]
+    ],
+    "caption": "WHERE plan = 'premium' → only Alice & Carol. Filters power dashboards."
+  },
+  "04": {
+    "tag": "Real-World Example", "label": "Sorted output", "heading": "Leaderboard<br>sorted",
+    "headers": ["player", "score", "rank"],
+    "rows": [
+      ["Zara", "980", "1"],
+      ["Kai", "950", "2"],
+      ["Mia", "920", "3"],
+      ["Leo", "900", "4"]
+    ],
+    "caption": "ORDER BY score DESC — the same query behind every leaderboard."
+  },
+  "05": {
+    "tag": "Real-World Example", "label": "Paged results", "heading": "Feed<br>pagination",
+    "headers": ["page", "LIMIT", "OFFSET"],
+    "rows": [
+      ["Page 1", "10", "0"],
+      ["Page 2", "10", "10"],
+      ["Page 3", "10", "20"]
+    ],
+    "caption": "LIMIT 10 OFFSET 10 — how apps load feeds one page at a time."
+  },
+  "06": {
+    "tag": "Real-World Example", "label": "New rows", "heading": "Signing up a<br>new user",
+    "headers": ["id", "name", "email", "joined"],
+    "rows": [
+      ["1", "Alice", "alice@mail.com", "2026-01-05"],
+      ["2", "Bob", "bob@mail.com", "2026-02-14"],
+      ["3", "New", "new@mail.com", "2026-08-17"]
+    ],
+    "caption": "INSERT INTO adds row 3 — every signup form runs this query."
+  },
+  "07": {
+    "tag": "Real-World Example", "label": "Edit rows", "heading": "Updating a<br>profile",
+    "headers": ["id", "name", "plan", "plan after"],
+    "rows": [
+      ["1", "Alice", "free", "premium"],
+      ["2", "Bob", "free", "free"],
+      ["3", "Carol", "free", "premium"]
+    ],
+    "caption": "UPDATE users SET plan='premium' WHERE id=1 — upgrading a plan."
+  },
+  "08": {
+    "tag": "Real-World Example", "label": "Remove rows", "heading": "Deleting a<br>user",
+    "headers": ["id", "name", "status", "action"],
+    "rows": [
+      ["1", "Alice", "active", "keep"],
+      ["2", "Bob", "active", "keep"],
+      ["3", "Spam", "inactive", "DELETE"]
+    ],
+    "caption": "DELETE FROM users WHERE id=3 — removing spam accounts safely."
+  }
+}

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API Carousel - Pink Flowing Style</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#09090b;font-family:'Inter',sans-serif;padding:40px 20px;min-height:100vh}
+.header{text-align:center;margin-bottom:50px}
+.header h1{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;background:linear-gradient(135deg,#FFE8E0 0%,#DC2626 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px}
+.header p{color:#71717a;font-size:18px}
+.header .badge{display:inline-block;background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.3);color:#FCA5A5;padding:8px 20px;border-radius:100px;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-top:20px}
+.slides-wrapper{display:flex;flex-direction:column;align-items:center;gap:60px}
+.slide-section{text-align:center}
+.slide-label{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px}
+.slide-label .num{width:32px;height:32px;background:#DC2626;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:white}
+.slide-label .text{color:#a1a1aa;font-size:15px;font-weight:500;letter-spacing:1px;text-transform:uppercase}
+.slide-scale{transform:scale(0.42);transform-origin:top center;margin-bottom:-650px}
+.slide{width:1080px;height:1350px;overflow:hidden;border-radius:18px;position:relative}
+.download-btn{margin-top:24px;background:#18181b;border:1px solid #27272a;color:#fafafa;padding:14px 32px;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px}
+.download-btn:hover{background:#27272a;border-color:#3f3f46}
+.status{margin-top:12px;font-size:13px;color:#22c55e;min-height:20px}
+.download-all-section{text-align:center;margin:60px 0;padding:50px;background:#18181b;border-radius:20px;border:1px solid #27272a}
+.download-all-section h2{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:#fafafa;margin-bottom:8px}
+.download-all-section p{color:#71717a;margin-bottom:30px}
+.download-all-btn{background:linear-gradient(135deg,#DC2626,#F87171);color:white;border:none;padding:18px 44px;border-radius:14px;font-size:17px;font-weight:700;cursor:pointer;transition:all 0.3s}
+.download-all-btn:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(220,38,38,0.3)}
+.slide-num{position:absolute;bottom:40px;right:50px;font-family:'JetBrains Mono',monospace;font-size:16px;color:#DC2626;font-weight:500}
+
+/* PINK FLOWING STYLE - ALL SLIDES */
+.slide{background:#FFE8E0;padding:100px 90px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.slide .wave{position:absolute;pointer-events:none}
+.slide .wave svg{width:100%;height:100%}
+.slide .w1{top:-50px;left:-100px;width:1200px;height:400px;transform:rotate(-5deg)}
+.slide .w2{bottom:-50px;right:-100px;width:1200px;height:400px;transform:rotate(5deg)}
+.slide .w3{top:50%;left:-100px;width:1200px;height:300px;transform:rotate(-3deg)}
+.slide .ey{font-family:'DM Sans',sans-serif;font-size:18px;font-weight:500;color:#DC2626;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;position:relative;z-index:2}
+.slide h2{font-family:'Playfair Display',serif;font-size:72px;font-weight:900;color:#1a1a1a;line-height:1.05;margin-bottom:16px;letter-spacing:-1px;position:relative;z-index:2}
+.slide h2 em{font-style:italic;color:#DC2626;font-weight:700}
+.slide h2 .gr{color:#DC2626}
+.slide .sub{font-family:'Playfair Display',serif;font-size:28px;font-style:italic;color:#4a4a4a;margin-bottom:50px;position:relative;z-index:2}
+.slide .body{font-family:'DM Sans',sans-serif;font-size:26px;color:#1a1a1a;line-height:1.6;position:relative;z-index:2}
+.slide .body strong{color:#DC2626;font-weight:700}
+.slide .body em{font-style:italic}
+.slide .pts{position:relative;z-index:2}
+.slide .pt{margin-bottom:36px;position:relative}
+.slide .pt .tx{font-family:'DM Sans',sans-serif;font-size:26px;color:#1a1a1a;line-height:1.5}
+.slide .pt .tx strong{color:#DC2626;font-weight:700}
+.slide .pt .tx em{font-style:italic}
+.slide .stat-box{background:rgba(220,38,38,0.08);border-left:4px solid #DC2626;padding:30px 40px;border-radius:0 16px 16px 0;margin-top:40px;position:relative;z-index:2}
+.slide .stat-box .num{font-family:'Playfair Display',serif;font-size:72px;font-weight:900;color:#DC2626}
+.slide .stat-box .lb{font-family:'DM Sans',sans-serif;font-size:22px;color:#4a4a4a;margin-top:8px}
+.slide .fn{margin-top:40px;font-family:'DM Sans',sans-serif;font-size:18px;color:#888;font-style:italic;position:relative;z-index:2}
+.slide .dots{position:absolute;bottom:80px;left:90px;display:flex;gap:8px;z-index:2}
+.slide .dots span{width:10px;height:10px;border-radius:50%;background:#DC2626}
+.slide .dots span:nth-child(n+2){background:#1a1a1a}
+.slide .card{background:white;border-radius:20px;padding:36px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,0.05);position:relative;z-index:2}
+.slide .card h3{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#1a1a1a;margin-bottom:10px}
+.slide .card p{font-family:'DM Sans',sans-serif;font-size:20px;color:#666;line-height:1.5}
+.slide .card .price{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#DC2626}
+.slide .row{display:flex;gap:20px;position:relative;z-index:2}
+.slide .row .col{flex:1}
+.slide .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;position:relative;z-index:2}
+.slide .tool{display:flex;align-items:center;gap:16px;padding:20px 0;border-bottom:1px solid rgba(0,0,0,0.08);position:relative;z-index:2}
+.slide .tool:last-child{border-bottom:none}
+.slide .tool .icon{width:48px;height:48px;background:rgba(220,38,38,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.slide .tool .info{flex:1}
+.slide .tool .name{font-family:'DM Sans',sans-serif;font-size:22px;font-weight:700;color:#1a1a1a}
+.slide .tool .desc{font-family:'DM Sans',sans-serif;font-size:16px;color:#888}
+.slide .tool .tag{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;color:#DC2626;background:rgba(220,38,38,0.1);padding:6px 12px;border-radius:6px}
+.slide .cta-btn{display:inline-flex;align-items:center;gap:12px;background:#DC2626;color:white;font-family:'DM Sans',sans-serif;font-size:22px;font-weight:700;padding:20px 48px;border-radius:100px;position:relative;z-index:2}
+.slide .handle{margin-top:30px;font-family:'DM Sans',sans-serif;font-size:18px;color:#888;position:relative;z-index:2}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>Pink Flowing Carousel</h1>
+<p>1080×1350px • Gentle Reminders Style • Download as PNG</p>
+<div class="badge">Set 1 - Pink Flowing Design</div>
+</div>
+<div class="slides-wrapper">
+
+<!-- SLIDE 1 - Cover -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">1</div><div class="text">Cover — Hook</div></div>
+<div class="slide-scale">
+<div class="slide" id="slide-1">
+<div class="wave w1"><svg viewBox="0 0 1200 400"><path d="M0,200 C200,50 400,350 600,200 C800,50 1000,350 1200,200" stroke="#DC2626" stroke-width="4" fill="none" opacity="0.3"/><path d="M0,250 C200,100 400,400 600,250 C800,100 1000,400 1200,250" stroke="#DC2626" stroke-width="3" fill="none" opacity="0.2"/></svg></div>
+<div class="wave w2"><svg viewBox="0 0 1200 400"><path d="M0,150 C300,50 500,300 700,150 C900,0 1100,250 1200,150" stroke="#DC2626" stroke-width="4" fill="none" opacity="0.25"/></svg></div>
+<div class="ey">2026 Playbook</div>
+<h2>APIs Are the<br><span class="gr">New Gold Rush</span></h2>
+<p class="sub">How developers are building $10K-$50K/month businesses selling data through simple REST APIs</p>
+<p class="fn">Swipe to learn the framework →</p>
+<div class="dots"><span></span><span></span><span></span></div>
+<div class="slide-num">01 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(1)">⬇ Download Slide</button>
+<div class="status" id="status-1"></div>
+</div>
+
+<!-- SLIDE 2 - Market Size -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">2</div><div class="text">Market — Why Now</div></div>
+<div class="slide-scale">
+<div class="slide" id="slide-2">
+<div class="wave w1"><svg viewBox="0 0 1200 400"><path d="M0,200 C200,50 400,350 600,200 C800,50 1000,350 1200,200" stroke="#DC2626" stroke-width="4" fill="none" opacity="0.3"/></svg></div>
+<div class="wave w3"><svg viewBox="0 0 1200 300"><path d="M0,150 C400,50 800,250 1200,150" stroke="#DC2626" stroke-width="3" fill="none" opacity="0.2"/></svg></div>
+<div class="ey">market validation</div>
+<h2>The market is<br><em>exploding</em> right now</h2>
+<p class="body">The sports data API market hit <strong>$5.7 billion in 2025</strong>. By 2034, it'll cross <strong>$9 billion</strong>.</p>
+<div class="stat-box"><div class="num">25%</div><div class="lb">Compound annual growth rate through 2033</div></div>
+<div class="dots"><span></span><span></span><span></span></div>
+<div class="slide-num">02 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(2)">⬇ Download Slide</button>
+<div class="status" id="status-2"></div>
+</div>
+
+<!-- SLIDE 3 - Real Examples -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">3</div><div class="text">Proof — Real Numbers</div></div>
+<div class="slide-scale">
+<div class="slide" id="slide-3">
+<div class="wave w2"><svg viewBox="0 0 1200 400"><path d="M0,200 C300,100 900,300 1200,200" stroke="#DC2626" stroke-width="4" fill="none" opacity="0.25"/></svg></div>
+<div class="ey">verified revenue</div>
+<h2>Real people.<br><em>Real money.</em></h2>
+<div class="card"><h3>TheStatsAPI</h3><p>Founded March 2026 • 4 months old</p><div class="price">$31K/mo</div></div>
+<div class="card"><h3>SportsDataIO</h3><p>Bootstrapped • 17 years • Debt-free</p><div class="price">$7M/yr</div></div>
+<p class="fn">Revenue verified via Stripe on TrustMRR & VibeCrowd</p>
+<div class="dots"><span></span><span></span><span></span></div>
+<div class="slide-num">03 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(3)">⬇ Download Slide</button>
+<div class="status" id="status-3"></div>
+</div>
+
+<!-- SLIDE 4 - Framework -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">4</div><div class="text">Framework — How</div></div>
+<div class="slide-scale">
+<div class="slide" id="slide-4">
+<div class="wave w1"><svg viewBox="0 0 1200 400"><path d="M0,200 C200,50 400,350 600,200 C800,50 1000,350 1200,200" stroke="#DC2626" stroke-width="4" fill="none" opacity="0.3"/></svg></div>
+<div class="ey">the framework</div>
+<h2>The 4-step<br><em>framework</em></h2>
+<div class="pts">
+<div class="pt"><div class="tx"><strong>01.</strong> Collect free data — SportScore, football.db, ESPN</div></div>
+<div class="pt"><div class="tx"><strong>02.</strong> Build your API — Cloudflare Workers + Supabase</div></div>
+<div class="pt"><div class="tx"><strong>03.</strong> Add authentication — API keys, rate limiting</div></div>
+<div class="pt"><div class="tx"><strong>04.</strong> Monetize — Free tier → $19/mo → $49/mo → Enterprise</div></div>
+</div>
+<p class="fn">It's okay to start simple. Here's what actually matters.</p>
+<div class="dots"><span></span><span></span><span></span></div>
+<div class="slide-num">04 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(4)">⬇ Download Slide</button>
+<div class="status" id="status-4"></div>
+</div>
+
+<!-- SLIDE 5 - Pricing -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">5</div><div class="text">Pricing — Revenue</div></div>
+<div class="slide-scale">
+<div class="slide" id="slide-5">
+<div class="wave w2"><svg viewBox="0 0 1200 400"><path d="M0,200 C300,100 900,300 1200,200" stroke="#DC2626" stroke-width="4" fill="none" opacity="0.25"/></svg></div>
+<div class="ey">pricing that works</h2>
+<h2>Pricing Your API<br><em>without</em> the stress</h2>
+<div class="grid">
+<div class="card"><h3>Free</h3><div class="price">$0</div><p>1,000 requests/day</p></div>
+<div class="card"><h3>Starter</h3><div class="price">$19</div><p>10,000 requests/day</p></div>
+<div class="card"><h3>Pro</h3><div class="price">$49</div><p>50,000 requests/day</p></div>
+<div class="card"><h3>Enterprise</h3><div class="price">$199</div><p>Unlimited requests</p></div>
+</div>
+<p class="fn">Don't undercharge. If your data saves developers hours, price accordingly.</p>
+<div class="dots"><span></span><span></span><span></span></div>
+<div class="slide-num">05 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(5)">⬇ Download Slide</button>
+<div class="status" id="status-5"></div>
+</div>
+
+<!-- SLIDE 6 - Tech Stack -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">6</div><div class="text">Tech Stack — Tools</div></div>
+<div class="slide-scale">
+<div class="slide" id="slide-6">
+<div class="wave w1"><svg viewBox="0 0 1200 400"><path d="M0,200 C200,50 400,350 600,200 C800,50 1000,350 1200,200" stroke="#DC2626" stroke-width="4" fill="none" opacity="0.3"/></svg></div>
+<div class="ey">your tech stack</div>
+<h2>Under <em>$50/mo</em></h2>
+<div class="tool"><div class="icon">☁️</div><div class="info"><div class="name">Cloudflare Workers</div><div class="desc">Serverless edge compute</div></div><div class="tag">FREE</div></div>
+<div class="tool"><div class="icon">🗄️</div><div class="info"><div class="name">Supabase</div><div class="desc">PostgreSQL + Auth</div></div><div class="tag">FREE</div></div>
+<div class="tool"><div class="icon">🔐</div><div class="info"><div class="name">API Key Auth</div><div class="desc">Custom middleware</div></div><div class="tag">FREE</div></div>
+<div class="tool"><div class="icon">💳</div><div class="info"><div class="name">Stripe</div><div class="desc">Payment processing</div></div><div class="tag">2.9%</div></div>
+<p class="fn">Free tier is marketing, not charity. It's how developers discover you.</p>
+<div class="dots"><span></span><span></span><span></span></div>
+<div class="slide-num">06 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(6)">⬇ Download Slide</button>
+<div class="status" id="status-6"></div>
+</div>
+
+<!-- SLIDE 7 - Revenue Math -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">7</div><div class="text">Math — Revenue</div></div>
+<div class="slide-scale">
+<div class="slide" id="slide-7">
+<div class="wave w3"><svg viewBox="0 0 1200 300"><path d="M0,150 C400,50 800,250 1200,150" stroke="#DC2626" stroke-width="3" fill="none" opacity="0.2"/></svg></div>
+<div class="ey">the math</div>
+<h2>The math is<br><em>simple</em></h2>
+<div class="pts">
+<div class="pt"><div class="tx"><strong>Free users:</strong> 1,000</div></div>
+<div class="pt"><div class="tx"><strong>Conversion rate:</strong> 5%</div></div>
+<div class="pt"><div class="tx"><strong>Paying users:</strong> 50</div></div>
+<div class="pt"><div class="tx"><strong>Average price:</strong> $35/mo</div></div>
+</div>
+<div class="stat-box"><div class="num">$1,750/mo</div><div class="lb">That's $21,000/year from a side project</div></div>
+<div class="dots"><span></span><span></span><span></span></div>
+<div class="slide-num">07 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(7)">⬇ Download Slide</button>
+<div class="status" id="status-7"></div>
+</div>
+
+<!-- SLIDE 8 - CTA -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">8</div><div class="text">CTA — Action</div></div>
+<div class="slide-scale">
+<div class="slide" id="slide-8">
+<div class="wave w1"><svg viewBox="0 0 1200 400"><path d="M0,200 C200,50 400,350 600,200 C800,50 1000,350 1200,200" stroke="#DC2626" stroke-width="4" fill="none" opacity="0.3"/></svg></div>
+<div class="wave w2"><svg viewBox="0 0 1200 400"><path d="M0,250 C200,100 400,400 600,250 C800,100 1000,400 1200,250" stroke="#DC2626" stroke-width="3" fill="none" opacity="0.2"/></svg></div>
+<div class="ey">start today</div>
+<h2>Start building<br><em>today</em></h2>
+<p class="body">You don't need permission. You don't need funding. You need a free tier, a good API, and <strong>100 developers who trust you.</strong></p>
+<div class="cta-btn">Save this post 🔖</div>
+<p class="handle">Follow for more API business strategies</p>
+<div class="dots"><span></span><span></span><span></span></div>
+<div class="slide-num">08 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(8)">⬇ Download Slide</button>
+<div class="status" id="status-8"></div>
+</div>
+
+</div>
+
+<div class="download-all-section">
+<h2>Download All 8 Slides</h2>
+<p>Each slide is 1080×1350px — Pink Flowing Style</p>
+<button class="download-all-btn" onclick="downloadAll()">Download All as PNG</button>
+<div class="status" id="status-all" style="margin-top:20px"></div>
+</div>
+
+<script>
+const names=['hook','market-size','real-examples','framework','pricing','tech-stack','revenue-math','call-to-action'];
+async function downloadSlide(n){
+const s=document.getElementById('status-'+n);
+s.textContent='Generating...';s.style.color='#f59e0b';
+try{const el=document.getElementById('slide-'+n);const w=el.closest('.slide-scale');const ot=w.style.transform;w.style.transform='none';
+const c=await html2canvas(el,{width:1080,height:1350,scale:1,useCORS:true,backgroundColor:null,logging:false});
+w.style.transform=ot;const l=document.createElement('a');l.download='pink-slide-'+n+'-'+names[n-1]+'.png';l.href=c.toDataURL('image/png');l.click();
+s.textContent='Downloaded!';s.style.color='#22c55e';}catch(e){console.error(e);s.textContent='Error - right-click > Save as image';s.style.color='#ef4444';}
+}
+async function downloadAll(){const s=document.getElementById('status-all');s.textContent='Downloading all slides...';s.style.color='#f59e0b';
+for(let i=1;i<=8;i++){await new Promise(r=>setTimeout(r,800));await downloadSlide(i);}
+s.textContent='All 8 slides downloaded!';s.style.color='#22c55e';}
+</script>
+</body>
+</html>

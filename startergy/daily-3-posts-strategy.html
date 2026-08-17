@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram & Threads Strategy - 3 Posts/Day</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #fff;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: #00d2ff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title .icon {
+            font-size: 2.2rem;
+        }
+
+        .time-slot {
+            background: linear-gradient(135deg, rgba(0, 210, 255, 0.2), rgba(58, 123, 213, 0.2));
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 4px solid #00d2ff;
+        }
+
+        .time-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .content-title {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .content-desc {
+            color: #aaa;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+        }
+
+        th {
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .day-label {
+            font-weight: 700;
+            color: #00d2ff;
+            font-size: 1.1rem;
+        }
+
+        .content-type {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .carousel {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .series {
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+        }
+
+        .problem {
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            color: #000;
+        }
+
+        .content-details {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .content-details strong {
+            color: #00d2ff;
+        }
+
+        .slide-count {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            margin-left: 5px;
+        }
+
+        .series-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .summary-card {
+            background: rgba(0, 210, 255, 0.15);
+            border: 1px solid #00d2ff;
+            border-radius: 14px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .summary-card h3 {
+            font-size: 2.5rem;
+            color: #00d2ff;
+            margin-bottom: 10px;
+        }
+
+        .summary-card p {
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        .note {
+            background: rgba(255, 193, 7, 0.15);
+            border-left: 4px solid #ffc107;
+            padding: 18px 22px;
+            border-radius: 0 10px 10px 0;
+            margin-top: 20px;
+        }
+
+        .note strong {
+            color: #ffc107;
+        }
+
+        .market-data {
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .market-data h4 {
+            color: #00d2ff;
+            margin-bottom: 15px;
+        }
+
+        .checkmark {
+            color: #4ade80;
+            font-weight: bold;
+        }
+
+        .warning {
+            color: #fbbf24;
+            font-weight: bold;
+        }
+
+        .series-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .series-list li {
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid #f093fb;
+        }
+
+        .series-list li strong {
+            color: #f093fb;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            background: rgba(0, 210, 255, 0.15);
+            border-radius: 14px;
+        }
+
+        .footer p {
+            color: #888;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📸 Instagram & Threads Strategy</h1>
+        <p class="subtitle">3 Posts Per Day | Content-First Approach | Market-Optimized Timing</p>
+
+        <!-- Market Analysis -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">📊</span> Market Analysis & Timing</h2>
+
+            <div class="market-data">
+                <h4>📈 What the Data Says (2026)</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Source</th>
+                            <th>Best Times</th>
+                            <th>Best Days</th>
+                            <th>Key Insight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Buffer</strong> (9.6M posts)</td>
+                            <td>6-11 PM</td>
+                            <td>Wed, Thu, Tue</td>
+                            <td>Evenings dominate for engagement</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sprout Social</strong> (2B engagements)</td>
+                            <td>12-9 PM</td>
+                            <td>Tue, Wed, Thu</td>
+                            <td>Midweek afternoons peak</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Metricool</strong> (24M posts)</td>
+                            <td>6-9 PM</td>
+                            <td>All weekdays</td>
+                            <td>8 PM is the golden hour</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tech Industry</strong></td>
+                            <td>11 AM - 3 PM</td>
+                            <td>Tue, Wed, Thu</td>
+                            <td>Professionals check during work</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note">
+                <strong>🎯 Your Timing Strategy:</strong> Based on data, we're using <strong>11 AM, 1 PM, and 7 PM</strong> to catch morning scrollers, lunch break learners, and evening deep-divers.
+            </div>
+        </div>
+
+        <!-- Daily Schedule Overview -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">⏰</span> Daily Posting Schedule (3 Posts/Day)</h2>
+
+            <div class="time-slot">
+                <span class="time-badge">☀️ 11:00 AM</span>
+                <h3 class="content-title">Morning Digest: News & Best Repositories</h3>
+                <p class="content-desc">Start the day with curated tech news, trending repositories, and developer resources. Quick, scannable content that provides immediate value.</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Topic</th>
+                            <th>Slides</th>
+                            <th>Content Breakdown</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="day-label">Monday</span></td>
+                            <td><span class="content-type carousel">Weekly Tech News</span></td>
+                            <td>6 slides <span class="slide-count">1080x1350</span></td>
+                            <td class="content-details">
+                                <strong>Slide 1:</strong> "This Week in Tech" hook<br>
+                                <strong>Slide 2:</strong> Top news story #1<br>
+                                <strong>Slide 3:</strong> Top news story #2<br>
+                                <strong>Slide 4:</strong> Top news story #3<br>
+                                <strong>Slide 5:</strong> Trending repository<br>
+                                <strong>Slide 6:</strong> CTA - "Follow for daily updates"
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Tuesday</span></td>
+                            <td><span class="content-type carousel">GitHub Trending</span></td>
+                            <td>6 slides <span class="slide-count">1080x1350</span></td>
+                            <td class="content-details">
+                                <strong>Slide 1:</strong> "GitHub Repos You Need to Know"<br>
+                                <strong>Slide 2:</strong> Repo #1 + what it does<br>
+                                <strong>Slide 3:</strong> Repo #2 + what it does<br>
+                                <strong>Slide 4:</strong> Repo #3 + what it does<br>
+                                <strong>Slide 5:</strong> Repo #4 + what it does<br>
+                                <strong>Slide 6:</strong> CTA - "Star these repos!"
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Wednesday</span></td>
+                            <td><span class="content-type carousel">Developer Tools</span></td>
+                            <td>6 slides <span class="slide-count">1080x1350</span></td>
+                            <td class="content-details">
+                                <strong>Slide 1:</strong> "5 Tools Every Dev Needs"<br>
+                                <strong>Slide 2:</strong> Tool #1 + use case<br>
+                                <strong>Slide 3:</strong> Tool #2 + use case<br>
+                                <strong>Slide 4:</strong> Tool #3 + use case<br>
+                                <strong>Slide 5:</strong> Tool #4 + use case<br>
+                                <strong>Slide 6:</strong> CTA - "Save this list!"
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Thursday</span></td>
+                            <td><span class="content-type carousel">Tech Updates</span></td>
+                            <td>6 slides <span class="slide-count">1080x1350</span></td>
+                            <td class="content-details">
+                                <strong>Slide 1:</strong> "What's New in Tech"<br>
+                                <strong>Slide 2:</strong> Framework update<br>
+                                <strong>Slide 3:</strong> Language update<br>
+                                <strong>Slide 4:</strong> Tool release<br>
+                                <strong>Slide 5:</strong> Industry news<br>
+                                <strong>Slide 6:</strong> CTA - "Stay updated!"
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Friday</span></td>
+                            <td><span class="content-type carousel">Weekly Recap</span></td>
+                            <td>6 slides <span class="slide-count">1080x1350</span></td>
+                            <td class="content-details">
+                                <strong>Slide 1:</strong> "Week in Review"<br>
+                                <strong>Slide 2:</strong> Top story recap<br>
+                                <strong>Slide 3:</strong> Most popular repo<br>
+                                <strong>Slide 4:</strong> Community highlight<br>
+                                <strong>Slide 5:</strong> What to watch next week<br>
+                                <strong>Slide 6:</strong> CTA - "See you Monday!"
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Saturday</span></td>
+                            <td><span class="content-type carousel">Weekend Read</span></td>
+                            <td>5 slides <span class="slide-count">1080x1350</span></td>
+                            <td class="content-details">
+                                <strong>Slide 1:</strong> "Weekend Reading List"<br>
+                                <strong>Slide 2:</strong> Article #1<br>
+                                <strong>Slide 3:</strong> Article #2<br>
+                                <strong>Slide 4:</strong> Article #3<br>
+                                <strong>Slide 5:</strong> CTA - "Enjoy your weekend!"
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Sunday</span></td>
+                            <td><span class="content-type carousel">Next Week Preview</span></td>
+                            <td>5 slides <span class="slide-count">1080x1350</span></td>
+                            <td class="content-details">
+                                <strong>Slide 1:</strong> "Coming Next Week"<br>
+                                <strong>Slide 2:</strong> Series preview<br>
+                                <strong>Slide 3:</strong> Topics to cover<br>
+                                <strong>Slide 4:</strong> Community goals<br>
+                                <strong>Slide 5:</strong> CTA - "Get ready!"
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="time-slot">
+                <span class="time-badge">🍽️ 1:00 PM</span>
+                <h3 class="content-title">Lunch Break: Problem Solving</h3>
+                <p class="content-desc">Engage developers during their lunch break with coding challenges. 1 easy + 2 medium problems per day. Perfect for quick learning and engagement.</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Topic</th>
+                            <th>Problems</th>
+                            <th>Content Breakdown</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="day-label">Monday</span></td>
+                            <td><span class="content-type problem">Arrays & Strings</span></td>
+                            <td>1 Easy + 2 Medium</td>
+                            <td class="content-details">
+                                <strong>Easy:</strong> Find the duplicate number<br>
+                                <strong>Medium #1:</strong> Two Sum variation<br>
+                                <strong>Medium #2:</strong> Longest substring without repeat<br>
+                                <strong>Slides:</strong> Problem → Code → Solution → Explanation
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Tuesday</span></td>
+                            <td><span class="content-type problem">Linked Lists</span></td>
+                            <td>1 Easy + 2 Medium</td>
+                            <td class="content-details">
+                                <strong>Easy:</strong> Reverse a linked list<br>
+                                <strong>Medium #1:</strong> Detect cycle<br>
+                                <strong>Medium #2:</strong> Merge two sorted lists<br>
+                                <strong>Slides:</strong> Visual → Code → Walkthrough
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Wednesday</span></td>
+                            <td><span class="content-type problem">Trees & BST</span></td>
+                            <td>1 Easy + 2 Medium</td>
+                            <td class="content-details">
+                                <strong>Easy:</strong> Tree height<br>
+                                <strong>Medium #1:</strong> Invert binary tree<br>
+                                <strong>Medium #2:</strong> Validate BST<br>
+                                <strong>Slides:</strong> Diagram → Code → Complexity
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Thursday</span></td>
+                            <td><span class="content-type problem">Sorting & Search</span></td>
+                            <td>1 Easy + 2 Medium</td>
+                            <td class="content-details">
+                                <strong>Easy:</strong> Binary search<br>
+                                <strong>Medium #1:</strong> Search in rotated array<br>
+                                <strong>Medium #2:</strong> Kth largest element<br>
+                                <strong>Slides:</strong> Algorithm → Code → Analysis
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Friday</span></td>
+                            <td><span class="content-type problem">Dynamic Programming</span></td>
+                            <td>1 Easy + 2 Medium</td>
+                            <td class="content-details">
+                                <strong>Easy:</strong> Climbing stairs<br>
+                                <strong>Medium #1:</strong> Coin change<br>
+                                <strong>Medium #2:</strong> Longest increasing subsequence<br>
+                                <strong>Slides:</strong> State → Transition → Code
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Saturday</span></td>
+                            <td><span class="content-type problem">Graphs</span></td>
+                            <td>1 Easy + 2 Medium</td>
+                            <td class="content-details">
+                                <strong>Easy:</strong> Count islands<br>
+                                <strong>Medium #1:</strong> Clone graph<br>
+                                <strong>Medium #2:</strong> Course schedule<br>
+                                <strong>Slides:</strong> Graph → Traversal → Solution
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Sunday</span></td>
+                            <td><span class="content-type problem">Mixed Practice</span></td>
+                            <td>1 Easy + 2 Medium</td>
+                            <td class="content-details">
+                                <strong>Easy:</strong> Palindrome check<br>
+                                <strong>Medium #1:</strong> LRU Cache<br>
+                                <strong>Medium #2:</strong> Merge intervals<br>
+                                <strong>Slides:</strong> Problem → Approach → Code
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="time-slot">
+                <span class="time-badge">🌙 7:00 PM</span>
+                <h3 class="content-title">Evening Series: Technology Deep Dive</h3>
+                <p class="content-desc">Prime time for learning! Run 30-day series covering complete technologies. Deep, educational content when developers have time to absorb.</p>
+
+                <span class="series-badge">🔥 Current Series: DevOps in 30 Days</span>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Week</th>
+                            <th>Day</th>
+                            <th>Topic</th>
+                            <th>Slides</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="7"><strong>Week 1</strong><br>DevOps Basics</td>
+                            <td><span class="day-label">Mon</span></td>
+                            <td>What is DevOps?</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Tue</span></td>
+                            <td>DevOps vs Traditional</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Wed</span></td>
+                            <td>CI/CD Explained</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Thu</span></td>
+                            <td>Version Control with Git</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Fri</span></td>
+                            <td>Introduction to Docker</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Sat</span></td>
+                            <td>Docker Compose</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Sun</span></td>
+                            <td>Week 1 Recap</td>
+                            <td>6 slides</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="7"><strong>Week 2</strong><br>Containers & Orchestration</td>
+                            <td><span class="day-label">Mon</span></td>
+                            <td>Kubernetes Basics</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Tue</span></td>
+                            <td>Pods & Deployments</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Wed</span></td>
+                            <td>Services & Networking</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Thu</span></td>
+                            <td>ConfigMaps & Secrets</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Fri</span></td>
+                            <td>Helm Charts</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Sat</span></td>
+                            <td>K8s Best Practices</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Sun</span></td>
+                            <td>Week 2 Recap</td>
+                            <td>6 slides</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="7"><strong>Week 3</strong><br>Infrastructure as Code</td>
+                            <td><span class="day-label">Mon</span></td>
+                            <td>What is IaC?</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Tue</span></td>
+                            <td>Terraform Basics</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Wed</span></td>
+                            <td>Terraform Resources</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Thu</span></td>
+                            <td>Ansible Introduction</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Fri</span></td>
+                            <td>Playbooks & Roles</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Sat</span></td>
+                            <td>IaC Best Practices</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Sun</span></td>
+                            <td>Week 3 Recap</td>
+                            <td>6 slides</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="7"><strong>Week 4</strong><br>Monitoring & Security</td>
+                            <td><span class="day-label">Mon</span></td>
+                            <td>Monitoring Basics</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Tue</span></td>
+                            <td>Prometheus & Grafana</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Wed</span></td>
+                            <td>Log Management</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Thu</span></td>
+                            <td>DevSecOps Introduction</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Fri</span></td>
+                            <td>Security Best Practices</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Sat</span></td>
+                            <td>Complete Pipeline</td>
+                            <td>8 slides</td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-label">Sun</span></td>
+                            <td>Series Finale & Recap</td>
+                            <td>10 slides</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="note">
+                    <strong>🔄 Next Series Options:</strong> After DevOps, rotate to: "AWS for Beginners (30 Days)", "Docker Mastery (30 Days)", "Kubernetes Deep Dive (30 Days)", "System Design (30 Days)", "API Design (30 Days)"
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Summary -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">📊</span> Weekly Content Summary</h2>
+
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <h3>21</h3>
+                    <p>Instagram Posts<br>(7 News + 7 Problems + 7 Series)</p>
+                </div>
+                <div class="summary-card">
+                    <h3>150+</h3>
+                    <p>Total PNG Slides<br>(Creating the content)</p>
+                </div>
+                <div class="summary-card">
+                    <h3>14</h3>
+                    <p>Threads Posts<br>(2 per day - text + images)</p>
+                </div>
+                <div class="summary-card">
+                    <h3>35+</h3>
+                    <p>X/Twitter Tweets<br>(5 per day - text + threads)</p>
+                </div>
+            </div>
+
+            <table style="margin-top: 30px;">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>11 AM (News)</th>
+                        <th>1 PM (Problems)</th>
+                        <th>7 PM (Series)</th>
+                        <th>Total PNGs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="day-label">Monday</span></td>
+                        <td>Weekly Tech News (6)</td>
+                        <td>Arrays & Strings (12)</td>
+                        <td>DevOps Day 1 (8)</td>
+                        <td><strong>26 PNGs</strong></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-label">Tuesday</span></td>
+                        <td>GitHub Trending (6)</td>
+                        <td>Linked Lists (12)</td>
+                        <td>DevOps Day 2 (8)</td>
+                        <td><strong>26 PNGs</strong></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-label">Wednesday</span></td>
+                        <td>Developer Tools (6)</td>
+                        <td>Trees & BST (12)</td>
+                        <td>DevOps Day 3 (8)</td>
+                        <td><strong>26 PNGs</strong></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-label">Thursday</span></td>
+                        <td>Tech Updates (6)</td>
+                        <td>Sorting & Search (12)</td>
+                        <td>DevOps Day 4 (8)</td>
+                        <td><strong>26 PNGs</strong></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-label">Friday</span></td>
+                        <td>Weekly Recap (6)</td>
+                        <td>Dynamic Programming (12)</td>
+                        <td>DevOps Day 5 (8)</td>
+                        <td><strong>26 PNGs</strong></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-label">Saturday</span></td>
+                        <td>Weekend Read (5)</td>
+                        <td>Graphs (12)</td>
+                        <td>DevOps Day 6 (8)</td>
+                        <td><strong>25 PNGs</strong></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-label">Sunday</span></td>
+                        <td>Next Week Preview (5)</td>
+                        <td>Mixed Practice (12)</td>
+                        <td>DevOps Recap (6)</td>
+                        <td><strong>23 PNGs</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Threads Strategy -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">💬</span> Threads Daily Strategy</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Morning Post (11 AM)</th>
+                        <th>Afternoon Post (2 PM)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="day-label">Monday</span></td>
+                        <td>"What tech news caught your eye this week?"</td>
+                        <td>Quick tip from today's carousel</td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-label">Tuesday</span></td>
+                        <td>"What's your favorite GitHub repo right now?"</td>
+                        <td>Poll: "Best language for beginners?"</td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-label">Wednesday</span></td>
+                        <td>"What tool can you not live without?"</td>
+                        <td>Quick tip from today's carousel</td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-label">Thursday</span></td>
+                        <td>"What update are you most excited about?"</td>
+                        <td>Poll: "Cloud provider you use?"</td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-label">Friday</span></td>
+                        <td>"What was your biggest win this week?"</td>
+                        <td>Week recap discussion</td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-label">Saturday</span></td>
+                        <td>"What are you reading this weekend?"</td>
+                        <td>Casual tech chat</td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-label">Sunday</span></td>
+                        <td>"What are you building next week?"</td>
+                        <td>Week reflection</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Series Rotation -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">🔄</span> 30-Day Series Rotation</h2>
+
+            <div class="two-column">
+                <div>
+                    <h3 style="color: #00d2ff; margin-bottom: 20px;">📚 Recommended Series Order</h3>
+                    <ul class="series-list">
+                        <li><strong>Month 1:</strong> DevOps in 30 Days</li>
+                        <li><strong>Month 2:</strong> AWS Cloud Practitioner</li>
+                        <li><strong>Month 3:</strong> Docker Mastery</li>
+                        <li><strong>Month 4:</strong> Kubernetes Deep Dive</li>
+                        <li><strong>Month 5:</strong> System Design Fundamentals</li>
+                        <li><strong>Month 6:</strong> API Design Best Practices</li>
+                        <li><strong>Month 7:</strong> Database Design</li>
+                        <li><strong>Month 8:</strong> Security Fundamentals</li>
+                        <li><strong>Month 9:</strong> Microservices Architecture</li>
+                        <li><strong>Month 10:</strong> Monitoring & Observability</li>
+                        <li><strong>Month 11:</strong> Performance Optimization</li>
+                        <li><strong>Month 12:</strong> Career Growth for Devs</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 style="color: #f093fb; margin-bottom: 20px;">🎯 Why This Works</h3>
+                    <div class="content-details">
+                        <p><strong>✅ Build Authority:</strong> Deep expertise in one topic</p>
+                        <p><strong>✅ Create FOMO:</strong> "Don't miss Day 15!"</p>
+                        <p><strong>✅ Encourage Follows:</strong> Daily value = daily follows</p>
+                        <p><strong>✅ Save-Worthy:</strong> People save entire series</p>
+                        <p><strong>✅ Community Building:</strong> Shared learning journey</p>
+                        <p><strong>✅ Content Library:</strong> 365 days of content ready</p>
+                        <p><strong>✅ Cross-Platform:</strong> Same content works everywhere</p>
+                    </div>
+
+                    <div class="note" style="margin-top: 20px;">
+                        <strong>💡 Pro Tip:</strong> Create a "Series" highlight on Instagram. Each day, add the carousel to the highlight. This creates a binge-worthy content library!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h2 style="color: #00d2ff; margin-bottom: 15px;">📸 3-Post Daily Strategy</h2>
+            <p><strong>11 AM:</strong> News & Repositories | <strong>1 PM:</strong> Problem Solving | <strong>7 PM:</strong> Technology Deep Dive</p>
+            <p style="margin-top: 15px;">Last Updated: August 17, 2026 | All content is image-based (PNG) | Market-optimized timing</p>
+        </div>
+    </div>
+</body>
+</html>

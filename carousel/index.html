@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Money Carousel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            font-family: 'Inter', sans-serif;
+            gap: 40px;
+        }
+
+        .slide-container {
+            position: relative;
+        }
+
+        .slide-label {
+            position: absolute;
+            top: -30px;
+            left: 0;
+            color: #666;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ============ SLIDE 1: HOOK ============ */
+        .slide-1 {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px;
+        }
+
+        .slide-1 .glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .slide-1 .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .slide-1 .tag {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.5);
+            color: #818cf8;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+
+        .slide-1 h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 96px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 40px;
+        }
+
+        .slide-1 h1 span {
+            background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide-1 .subtitle {
+            font-size: 36px;
+            color: #94a3b8;
+            line-height: 1.5;
+            max-width: 800px;
+        }
+
+        .slide-1 .arrow {
+            position: absolute;
+            bottom: 80px;
+            right: 80px;
+            font-size: 48px;
+            color: #6366f1;
+            animation: bounce 1.5s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(15px); }
+        }
+
+        /* ============ SLIDE 2: MARKET SIZE ============ */
+        .slide-2 {
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide-2 .section-tag {
+            color: #6366f1;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .slide-2 h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 72px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 60px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card .number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 80px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #22d3ee, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-card .label {
+            font-size: 28px;
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+
+        .stat-card .growth {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        /* ============ SLIDE 3: REAL EXAMPLES ============ */
+        .slide-3 {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide-3 h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 68px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 50px;
+        }
+
+        .example-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 35px 40px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .example-card .icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            flex-shrink: 0;
+        }
+
+        .example-card .info h3 {
+            font-size: 30px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .example-card .info p {
+            font-size: 24px;
+            color: #94a3b8;
+        }
+
+        .example-card .revenue {
+            margin-left: auto;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #22c55e;
+        }
+
+        /* ============ SLIDE 4: HOW IT WORKS ============ */
+        .slide-4 {
+            background: linear-gradient(180deg, #0c0c1d 0%, #1a1a2e 100%);
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide-4 h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 68px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 60px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 35px;
+            margin-bottom: 45px;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 34px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .step-content p {
+            font-size: 26px;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        /* ============ SLIDE 5: PRICING MODELS ============ */
+        .slide-5 {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide-5 h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 68px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 50px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .pricing-card.featured {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .pricing-card .model-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 15px;
+        }
+
+        .pricing-card .price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .pricing-card .desc {
+            font-size: 24px;
+            color: #94a3b8;
+        }
+
+        /* ============ SLIDE 6: TECH STACK ============ */
+        .slide-6 {
+            background: linear-gradient(180deg, #18181b 0%, #27272a 100%);
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide-6 h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 68px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 50px;
+        }
+
+        .tech-item {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tech-item:last-child {
+            border-bottom: none;
+        }
+
+        .tech-item .tech-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(99, 102, 241, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .tech-item .tech-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            flex: 1;
+        }
+
+        .tech-item .tech-cost {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: #22c55e;
+        }
+
+        /* ============ SLIDE 7: MATH ============ */
+        .slide-7 {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-7 h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 68px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .math-block {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 50px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .math-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .math-row:last-child {
+            border-bottom: none;
+        }
+
+        .math-row .label {
+            font-size: 30px;
+            color: #94a3b8;
+        }
+
+        .math-row .value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .math-row.total {
+            margin-top: 20px;
+            padding-top: 30px;
+            border-top: 2px solid #6366f1;
+        }
+
+        .math-row.total .label {
+            font-size: 36px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .math-row.total .value {
+            font-size: 48px;
+            background: linear-gradient(90deg, #22c55e, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ============ SLIDE 8: CTA ============ */
+        .slide-8 {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px;
+            text-align: center;
+        }
+
+        .slide-8 .emoji {
+            font-size: 100px;
+            margin-bottom: 40px;
+        }
+
+        .slide-8 h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 80px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 30px;
+        }
+
+        .slide-8 p {
+            font-size: 32px;
+            color: #c4b5fd;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-bottom: 50px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, #6366f1, #a855f7);
+            color: #ffffff;
+            font-size: 32px;
+            font-weight: 700;
+            padding: 25px 60px;
+            border-radius: 60px;
+            text-decoration: none;
+        }
+
+        .slide-8 .handle {
+            margin-top: 40px;
+            font-size: 28px;
+            color: #818cf8;
+            font-weight: 600;
+        }
+
+        /* ============ CONTROLS ============ */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .controls button {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .controls button:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+        }
+
+        /* ============ DOWNLOAD HELPER ============ */
+        .download-info {
+            background: #27272a;
+            border: 1px solid #3f3f46;
+            border-radius: 16px;
+            padding: 30px 40px;
+            color: #a1a1aa;
+            font-size: 18px;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .download-info strong {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1: HOOK -->
+    <div class="slide-container">
+        <div class="slide-label">Slide 1 — Hook</div>
+        <div class="slide slide-1" id="slide-1">
+            <div class="glow"></div>
+            <div class="content">
+                <div class="tag">2026 Guide</div>
+                <h1>APIs Are the <span>New Gold Rush</span></h1>
+                <p class="subtitle">How developers are making $10K-$50K/month selling data through simple REST APIs</p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="slide-number">1 / 8</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: MARKET SIZE -->
+    <div class="slide-container">
+        <div class="slide-label">Slide 2 — Market Data</div>
+        <div class="slide slide-2" id="slide-2">
+            <div class="section-tag">The Opportunity</div>
+            <h2>The Market is <br>Massive</h2>
+            <div class="stat-card">
+                <div class="number">$5.7B</div>
+                <div class="label">Sports Data API Market (2025)</div>
+                <div class="growth">↑ 25% CAGR through 2033</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">$2.92B</div>
+                <div class="label">API Service Market by 2034</div>
+                <div class="growth">↑ 11.5% annual growth</div>
+            </div>
+            <div class="slide-number">2 / 8</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: REAL EXAMPLES -->
+    <div class="slide-container">
+        <div class="slide-label">Slide 3 — Proof</div>
+        <div class="slide slide-3" id="slide-3">
+            <h2>Real People. <br>Real Money.</h2>
+            <div class="example-card">
+                <div class="icon">🚀</div>
+                <div class="info">
+                    <h3>TheStatsAPI</h3>
+                    <p>Founded March 2026</p>
+                </div>
+                <div class="revenue">$31K/mo</div>
+            </div>
+            <div class="example-card">
+                <div class="icon">⚡</div>
+                <div class="info">
+                    <h3>SportsDataIO</h3>
+                    <p>Bootstrapped, 17 years</p>
+                </div>
+                <div class="revenue">$7M/yr</div>
+            </div>
+            <div class="example-card">
+                <div class="icon">💰</div>
+                <div class="info">
+                    <h3>SportsAPIPro</h3>
+                    <p>8 months old, selling for $39K</p>
+                </div>
+                <div class="revenue">$3K/mo</div>
+            </div>
+            <div class="slide-number">3 / 8</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: HOW IT WORKS -->
+    <div class="slide-container">
+        <div class="slide-label">Slide 4 — Process</div>
+        <div class="slide slide-4" id="slide-4">
+            <h2>How It Works</h2>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Collect Free Data</h3>
+                    <p>SportScore, football.db, ESPN — all free sources</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Build Your API</h3>
+                    <p>Cloudflare Workers + Supabase = $0 to start</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Add Authentication</h3>
+                    <p>API keys, rate limiting, usage tracking</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Monetize</h3>
+                    <p>Free tier → $19/mo → $49/mo → Enterprise</p>
+                </div>
+            </div>
+            <div class="slide-number">4 / 8</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: PRICING MODELS -->
+    <div class="slide-container">
+        <div class="slide-label">Slide 5 — Pricing</div>
+        <div class="slide slide-5" id="slide-5">
+            <h2>Pricing That <br>Actually Works</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="model-name">Free Tier</div>
+                    <div class="price">$0</div>
+                    <div class="desc">1,000 requests/day<br>Build trust, get users</div>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="model-name">Starter</div>
+                    <div class="price">$19</div>
+                    <div class="desc">10,000 requests/day<br>Most popular tier</div>
+                </div>
+                <div class="pricing-card">
+                    <div class="model-name">Pro</div>
+                    <div class="price">$49</div>
+                    <div class="desc">50,000 requests/day<br>For serious apps</div>
+                </div>
+                <div class="pricing-card">
+                    <div class="model-name">Enterprise</div>
+                    <div class="price">$199</div>
+                    <div class="desc">Unlimited + SLA<br>Custom support</div>
+                </div>
+            </div>
+            <div class="slide-number">5 / 8</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: TECH STACK -->
+    <div class="slide-container">
+        <div class="slide-label">Slide 6 — Tech Stack</div>
+        <div class="slide slide-6" id="slide-6">
+            <h2>Tech Stack <br>(Under $50/mo)</h2>
+            <div class="tech-item">
+                <div class="tech-icon">☁️</div>
+                <div class="tech-name">Cloudflare Workers</div>
+                <div class="tech-cost">Free tier</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">🗄️</div>
+                <div class="tech-name">Supabase</div>
+                <div class="tech-cost">Free tier</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">🔐</div>
+                <div class="tech-name">API Key Auth</div>
+                <div class="tech-cost">Free</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">💳</div>
+                <div class="tech-name">Stripe</div>
+                <div class="tech-cost">2.9% per txn</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">📊</div>
+                <div class="tech-name">Redis Cache</div>
+                <div class="tech-cost">Free tier</div>
+            </div>
+            <div class="slide-number">6 / 8</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: THE MATH -->
+    <div class="slide-container">
+        <div class="slide-label">Slide 7 — Revenue Math</div>
+        <div class="slide slide-7" id="slide-7">
+            <h2>The Math Is <br>Simple</h2>
+            <div class="math-block">
+                <div class="math-row">
+                    <div class="label">Free users</div>
+                    <div class="value">1,000</div>
+                </div>
+                <div class="math-row">
+                    <div class="label">Conversion rate</div>
+                    <div class="value">5%</div>
+                </div>
+                <div class="math-row">
+                    <div class="label">Paying users</div>
+                    <div class="value">50</div>
+                </div>
+                <div class="math-row">
+                    <div class="label">Avg. price</div>
+                    <div class="value">$35/mo</div>
+                </div>
+                <div class="math-row total">
+                    <div class="label">Monthly Revenue</div>
+                    <div class="value">$1,750/mo</div>
+                </div>
+            </div>
+            <div class="slide-number">7 / 8</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: CTA -->
+    <div class="slide-container">
+        <div class="slide-label">Slide 8 — CTA</div>
+        <div class="slide slide-8" id="slide-8">
+            <div class="emoji">🚀</div>
+            <h2>Start Building <br>Today</h2>
+            <p>You don't need permission. You don't need funding. You need a free tier, a good API, and 100 developers who trust you.</p>
+            <div class="cta-button">Save This Post 🔖</div>
+            <div class="handle">Follow for more API business strategies</div>
+            <div class="slide-number">8 / 8</div>
+        </div>
+    </div>
+
+    <div class="download-info">
+        <strong>📸 How to download:</strong> Right-click each slide → "Save as image" or use a screenshot tool (1080×1350px — perfect Instagram ratio)
+    </div>
+
+    <script>
+        // Smooth scroll behavior
+        document.querySelectorAll('.slide-container').forEach(container => {
+            container.style.scrollMarginTop = '20px';
+        });
+
+        // Add subtle entrance animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.slide-container').forEach(container => {
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(30px)';
+            container.style.transition = 'all 0.6s ease-out';
+            observer.observe(container);
+        });
+
+        // Keyboard navigation
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-container');
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                e.preventDefault();
+                currentSlide = Math.min(currentSlide + 1, slides.length - 1);
+                slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+            }
+            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                currentSlide = Math.max(currentSlide - 1, 0);
+                slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>

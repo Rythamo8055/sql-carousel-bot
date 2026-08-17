@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Circular Soft</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#f8b4b4;--secondary:#fef3e2;--dark:#1a1a1a;--accent:#dc2626}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#f5e6e0;padding:40px;display:flex;justify-content:center}
+.container{display:flex;gap:0;overflow-x:auto;padding:20px}
+.slide{width:1080px;height:1350px;flex-shrink:0;padding:80px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.bg-pink{background:var(--primary)}.bg-cream{background:var(--secondary)}.bg-dark{background:var(--dark)}
+
+/* Circular connector */
+.circular{position:absolute;right:-60px;top:50%;transform:translateY(-50%);z-index:3}
+.circular svg{width:200px;height:300px}
+.circular-in{position:absolute;left:-60px;top:50%;transform:translateY(-50%);z-index:3}
+
+.number{font-family:'Playfair Display',serif;font-size:200px;font-weight:900;position:absolute;top:40px;right:60px;opacity:0.06}
+.bg-pink .number{color:var(--dark)}.bg-cream .number{color:var(--accent)}
+.label{font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;position:relative;z-index:2}
+.bg-pink .label{color:#991b1b}.bg-cream .label{color:var(--accent)}.bg-dark .label{color:var(--primary)}
+h2{font-family:'Playfair Display',serif;font-size:56px;font-weight:700;line-height:1.1;margin-bottom:25px;position:relative;z-index:2}
+.bg-pink h2,.bg-cream h2{color:var(--dark)}.bg-dark h2{color:#fff}
+p{font-size:22px;line-height:1.7;max-width:700px;position:relative;z-index:2}
+.bg-pink p,.bg-cream p{color:#555}.bg-dark p{color:#ccc}
+.cta{background:var(--dark);padding:80px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.cta h2{font-size:72px;color:#fff;text-align:center}
+.cta p{color:#999;text-align:center;margin-bottom:40px}
+.btn{background:var(--primary);color:var(--dark);padding:18px 40px;border-radius:30px;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;cursor:pointer;border:none}
+.slide-num{position:absolute;bottom:40px;left:80px;font-size:13px;letter-spacing:2px;z-index:2}
+.bg-pink .slide-num,.bg-cream .slide-num{color:rgba(0,0,0,0.3)}.bg-dark .slide-num{color:rgba(255,255,255,0.3)}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="slide bg-pink">
+    <span class="label">Weekly Digest</span>
+    <h1 style="font-family:'Playfair Display',serif;font-size:84px;font-weight:900;color:var(--dark);line-height:1">Gentle<br>Reminders</h1>
+    <p style="margin-top:20px">When you feel behind in tech. You're not behind. You're unfolding.</p>
+    <span class="slide-num">01 / 06</span>
+    <div class="circular"><svg viewBox="0 0 200 300" fill="none"><circle cx="100" cy="150" r="80" stroke="var(--dark)" stroke-width="2" fill="none" opacity="0.2"/><circle cx="100" cy="150" r="60" stroke="var(--accent)" stroke-width="1.5" fill="none" opacity="0.15"/><path d="M180,150 L200,150" stroke="var(--accent)" stroke-width="2"/><path d="M190,140 L200,150 L190,160" stroke="var(--accent)" stroke-width="2" fill="none"/></svg></div>
+</div>
+
+<div class="slide bg-cream">
+    <div class="circular-in"><svg width="200" height="300" viewBox="0 0 200 300" fill="none"><circle cx="100" cy="150" r="80" stroke="var(--accent)" stroke-width="2" fill="none" opacity="0.3"/><path d="M20,150 L0,150" stroke="var(--accent)" stroke-width="2"/><path d="M10,140 L0,150 L10,160" stroke="var(--accent)" stroke-width="2" fill="none"/></svg></div>
+    <span class="number">01</span>
+    <span class="label">Top Story</span>
+    <h2>React 20<br>Released</h2>
+    <p>Revolutionary server components and improved performance.</p>
+    <span class="slide-num">02 / 06</span>
+    <div class="circular"><svg viewBox="0 0 200 300" fill="none"><circle cx="100" cy="150" r="80" stroke="var(--accent)" stroke-width="2" fill="none" opacity="0.3"/><path d="M180,150 L200,150" stroke="var(--accent)" stroke-width="2"/><path d="M190,140 L200,150 L190,160" stroke="var(--accent)" stroke-width="2" fill="none"/></svg></div>
+</div>
+
+<div class="slide bg-pink">
+    <div class="circular-in"><svg width="200" height="300" viewBox="0 0 200 300" fill="none"><circle cx="100" cy="150" r="80" stroke="var(--dark)" stroke-width="2" fill="none" opacity="0.2"/><path d="M20,150 L0,150" stroke="var(--dark)" stroke-width="2"/></svg></div>
+    <span class="number">02</span>
+    <span class="label">Industry News</span>
+    <h2>GitHub<br>Copilot X</h2>
+    <p>Multi-file editing, code review suggestions, and a free tier.</p>
+    <span class="slide-num">03 / 06</span>
+    <div class="circular"><svg viewBox="0 0 200 300" fill="none"><circle cx="100" cy="150" r="80" stroke="var(--dark)" stroke-width="2" fill="none" opacity="0.2"/><path d="M180,150 L200,150" stroke="var(--dark)" stroke-width="2"/></svg></div>
+</div>
+
+<div class="slide bg-cream">
+    <div class="circular-in"><svg width="200" height="300" viewBox="0 0 200 300" fill="none"><circle cx="100" cy="150" r="80" stroke="var(--accent)" stroke-width="2" fill="none" opacity="0.3"/><path d="M20,150 L0,150" stroke="var(--accent)" stroke-width="2"/></svg></div>
+    <span class="number">03</span>
+    <span class="label">Trending Repo</span>
+    <h2>Bun 2.0<br>Launch</h2>
+    <p>3x faster performance and built-in bundler.</p>
+    <span class="slide-num">04 / 06</span>
+    <div class="circular"><svg viewBox="0 0 200 300" fill="none"><circle cx="100" cy="150" r="80" stroke="var(--accent)" stroke-width="2" fill="none" opacity="0.3"/><path d="M180,150 L200,150" stroke="var(--accent)" stroke-width="2"/></svg></div>
+</div>
+
+<div class="slide bg-dark">
+    <div class="circular-in"><svg width="200" height="300" viewBox="0 0 200 300" fill="none"><circle cx="100" cy="150" r="80" stroke="var(--primary)" stroke-width="2" fill="none" opacity="0.4"/><path d="M20,150 L0,150" stroke="var(--primary)" stroke-width="2"/></svg></div>
+    <span class="number">04</span>
+    <span class="label">By The Numbers</span>
+    <h2>This Week<br>in Stats</h2>
+    <p>100M+ developers. 200x deployments. 3x faster recovery.</p>
+    <span class="slide-num">05 / 06</span>
+</div>
+
+<div class="slide cta">
+    <h2>Save This<br>For Later</h2>
+    <p>Follow for daily reminders that you're exactly where you need to be.</p>
+    <button class="btn">Follow @yourusername</button>
+</div>
+
+</div>
+</body>
+</html>

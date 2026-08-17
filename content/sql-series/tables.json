@@ -1,0 +1,222 @@
+{
+  "09": {
+    "tag": "Data In Action", "label": "See the types", "heading": "Types in a<br>real table",
+    "headers": ["Column", "Type", "Example value"],
+    "rows": [
+      ["id", "INT", "42"],
+      ["name", "VARCHAR(100)", "Alice"],
+      ["price", "DECIMAL(10,2)", "19.99"],
+      ["created_at", "TIMESTAMP", "2026-08-17 14:30:00"],
+      ["is_active", "BOOLEAN", "TRUE"]
+    ],
+    "caption": "Every column declares its type — the database enforces it."
+  },
+  "10": {
+    "tag": "NULL In Action", "label": "Missing data", "heading": "NULL in a<br>users table",
+    "headers": ["id", "name", "phone", "email"],
+    "rows": [
+      ["1", "Alice", "9876543210", "alice@mail.com"],
+      ["2", "Bob", "NULL", "bob@mail.com"],
+      ["3", "Charlie", "NULL", "NULL"]
+    ],
+    "caption": "Bob has no phone. Charlie has neither — both are NULL, not empty strings."
+  },
+  "11": {
+    "tag": "Logic In Action", "label": "Conditions", "heading": "Filters with<br>AND / OR / NOT",
+    "headers": ["name", "age", "country", "role"],
+    "rows": [
+      ["Alice", "24", "IN", "admin"],
+      ["Bob", "16", "US", "user"],
+      ["Carol", "30", "IN", "user"],
+      ["Dan", "19", "IN", "user"]
+    ],
+    "caption": "WHERE age >= 18 AND country = 'IN' → returns Alice, Carol, Dan."
+  },
+  "12": {
+    "tag": "Ranges In Action", "label": "Filter lists", "heading": "IN & BETWEEN<br>on orders",
+    "headers": ["id", "region", "amount"],
+    "rows": [
+      ["101", "APAC", "250"],
+      ["102", "EU", "4800"],
+      ["103", "US", "120"],
+      ["104", "APAC", "7500"]
+    ],
+    "caption": "WHERE region IN ('APAC','EU') AND amount BETWEEN 1000 AND 10000 → rows 102, 104."
+  },
+  "13": {
+    "tag": "Patterns In Action", "label": "Search data", "heading": "LIKE on<br>user names",
+    "headers": ["id", "name", "email"],
+    "rows": [
+      ["1", "Rahul", "rahul@gmail.com"],
+      ["2", "Raj", "raj@yahoo.com"],
+      ["3", "Rahul Kumar", "rk@gmail.com"],
+      ["4", "Dan", "dan@outlook.com"]
+    ],
+    "caption": "WHERE name LIKE '%rahul%' → rows 1 & 3. WHERE name LIKE '_a_' → rows 2 & 4."
+  },
+  "14": {
+    "tag": "Aggregates In Action", "label": "Summarize", "heading": "Orders to<br>summarize",
+    "headers": ["id", "status", "total"],
+    "rows": [
+      ["1", "completed", "120.50"],
+      ["2", "completed", "89.00"],
+      ["3", "pending", "45.25"],
+      ["4", "completed", "210.75"]
+    ],
+    "caption": "COUNT(*) = 4 · SUM(total) for completed = 420.25 · AVG = 140.08"
+  },
+  "15": {
+    "tag": "Groups In Action", "label": "Group data", "heading": "Users per<br>country",
+    "headers": ["country", "COUNT(*)"],
+    "rows": [
+      ["IN", "150"],
+      ["US", "89"],
+      ["UK", "42"]
+    ],
+    "caption": "GROUP BY country → one row per country. HAVING COUNT(*) > 50 → IN, US only."
+  },
+  "16": {
+    "tag": "JOIN In Action", "label": "Related tables", "heading": "Orders +<br>customers",
+    "headers": ["order_id", "customer", "total"],
+    "rows": [
+      ["101", "Alice", "250.00"],
+      ["102", "Bob", "480.00"],
+      ["103", "Alice", "120.00"]
+    ],
+    "caption": "INNER JOIN links orders.customer_id → customers.id. Only matching rows appear."
+  },
+  "17": {
+    "tag": "LEFT JOIN In Action", "label": "Keep left rows", "heading": "Users with<br>or without orders",
+    "headers": ["user", "order_id", "total"],
+    "rows": [
+      ["Alice", "101", "250.00"],
+      ["Bob", "NULL", "NULL"],
+      ["Carol", "102", "480.00"]
+    ],
+    "caption": "LEFT JOIN keeps Bob even with no orders — his order columns are NULL."
+  },
+  "18": {
+    "tag": "Multi-JOIN In Action", "label": "Three tables", "heading": "Orders + customer<br>+ product",
+    "headers": ["order_id", "customer", "product", "qty"],
+    "rows": [
+      ["101", "Alice", "Laptop", "1"],
+      ["102", "Bob", "Mouse", "2"],
+      ["103", "Carol", "Keyboard", "1"]
+    ],
+    "caption": "Two JOINs chain three tables. Aliases (o, c, p) keep it readable."
+  },
+  "19": {
+    "tag": "Subquery In Action", "label": "Nested queries", "heading": "Find users<br>who ordered",
+    "headers": ["id", "name"],
+    "rows": [
+      ["1", "Alice"],
+      ["2", "Bob"]
+    ],
+    "caption": "WHERE id IN (SELECT user_id FROM orders) — only users with orders appear."
+  },
+  "20": {
+    "tag": "UNION In Action", "label": "Stack results", "heading": "Customers +<br>employees",
+    "headers": ["name", "source"],
+    "rows": [
+      ["Alice", "customers"],
+      ["Bob", "customers"],
+      ["Carol", "employees"]
+    ],
+    "caption": "UNION merges both lists and removes duplicates. UNION ALL keeps every row."
+  },
+  "21": {
+    "tag": "Aliases In Action", "label": "Clean output", "heading": "Before vs<br>after aliases",
+    "headers": ["u.name", "u.name AS username"],
+    "rows": [
+      ["Alice", "Alice"],
+      ["Bob", "Bob"]
+    ],
+    "caption": "Aliases rename output columns — reports read like plain English."
+  },
+  "22": {
+    "tag": "CASE In Action", "label": "Conditional labels", "heading": "Scores to<br>grades",
+    "headers": ["student", "score", "grade"],
+    "rows": [
+      ["Alice", "92", "A"],
+      ["Bob", "78", "B"],
+      ["Carol", "55", "F"]
+    ],
+    "caption": "CASE WHEN score >= 90 THEN 'A' … ELSE 'F' END — labels computed in SQL."
+  },
+  "23": {
+    "tag": "Dates In Action", "label": "Time data", "heading": "Orders with<br>dates",
+    "headers": ["id", "created_at", "month"],
+    "rows": [
+      ["1", "2026-08-01 10:00:00", "2026-08"],
+      ["2", "2026-07-15 09:30:00", "2026-07"],
+      ["3", "2026-08-10 14:00:00", "2026-08"]
+    ],
+    "caption": "DATE_FORMAT(created_at, '%Y-%m') → group orders by month for reports."
+  },
+  "24": {
+    "tag": "Strings In Action", "label": "Text data", "heading": "Names to<br>clean",
+    "headers": ["first", "last", "full_name"],
+    "rows": [
+      ["Alice", "Smith", "Alice Smith"],
+      ["Bob", "Lee", "Bob Lee"]
+    ],
+    "caption": "CONCAT(first, ' ', last) AS full_name — clean display names from parts."
+  },
+  "25": {
+    "tag": "Window In Action", "label": "Rankings", "heading": "Students<br>ranked",
+    "headers": ["name", "score", "rank"],
+    "rows": [
+      ["Alice", "92", "1"],
+      ["Bob", "78", "2"],
+      ["Carol", "78", "3"]
+    ],
+    "caption": "ROW_NUMBER() keeps every row and adds a rank — no data collapsed."
+  },
+  "26": {
+    "tag": "CTE In Action", "label": "Named steps", "heading": "Top users<br>defined",
+    "headers": ["name", "points", "tier"],
+    "rows": [
+      ["Alice", "1500", "top"],
+      ["Bob", "900", "regular"]
+    ],
+    "caption": "WITH top_users AS (…points > 1000) → the main query reads it like a table."
+  },
+  "27": {
+    "tag": "Views In Action", "label": "Reusable query", "heading": "Active users<br>view",
+    "headers": ["id", "name", "email"],
+    "rows": [
+      ["1", "Alice", "alice@mail.com"],
+      ["2", "Bob", "bob@mail.com"]
+    ],
+    "caption": "CREATE VIEW active_users AS SELECT … WHERE active = TRUE — query it anytime."
+  },
+  "28": {
+    "tag": "Indexes In Action", "label": "Lookup speed", "heading": "Searching by<br>email",
+    "headers": ["email", "lookup"],
+    "rows": [
+      ["a@mail.com", "instant"],
+      ["b@mail.com", "instant"]
+    ],
+    "caption": "CREATE INDEX on email → WHERE email = '…' finds rows instantly, no full scan."
+  },
+  "29": {
+    "tag": "Transactions In Action", "label": "Money movement", "heading": "Bank<br>transfer",
+    "headers": ["account", "before", "after"],
+    "rows": [
+      ["Alice", "1000", "900"],
+      ["Bob", "500", "600"]
+    ],
+    "caption": "BEGIN → two UPDATEs → COMMIT. Both happen or neither — data stays consistent."
+  },
+  "30": {
+    "tag": "Project Schema", "label": "Final build", "heading": "E-commerce<br>tables",
+    "headers": ["table", "purpose", "key"],
+    "rows": [
+      ["users", "Customers & admins", "id PRIMARY KEY"],
+      ["products", "Items for sale", "id PRIMARY KEY"],
+      ["orders", "Purchases", "user_id FOREIGN KEY"],
+      ["reviews", "Product feedback", "product_id FK"]
+    ],
+    "caption": "Four tables, real relationships — everything you learned in 30 days."
+  }
+}

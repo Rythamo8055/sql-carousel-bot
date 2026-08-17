@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium API Carousel</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#09090b;font-family:'Inter',sans-serif;padding:40px 20px;min-height:100vh}
+.header{text-align:center;margin-bottom:50px}
+.header h1{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;background:linear-gradient(135deg,#fff 0%,#a1a1aa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px}
+.header p{color:#71717a;font-size:18px}
+.header .badge{display:inline-block;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.3);color:#818cf8;padding:8px 20px;border-radius:100px;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-top:20px}
+.slides-wrapper{display:flex;flex-direction:column;align-items:center;gap:60px}
+.slide-section{text-align:center}
+.slide-label{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px}
+.slide-label .num{width:32px;height:32px;background:#6366f1;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:white}
+.slide-label .text{color:#a1a1aa;font-size:15px;font-weight:500;letter-spacing:1px;text-transform:uppercase}
+.slide-scale{transform:scale(0.42);transform-origin:top center;margin-bottom:-650px}
+.slide{width:1080px;height:1350px;overflow:hidden;border-radius:18px;position:relative}
+.download-btn{margin-top:24px;background:#18181b;border:1px solid #27272a;color:#fafafa;padding:14px 32px;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px}
+.download-btn:hover{background:#27272a;border-color:#3f3f46}
+.status{margin-top:12px;font-size:13px;color:#22c55e;min-height:20px}
+.download-all-section{text-align:center;margin:60px 0;padding:50px;background:#18181b;border-radius:20px;border:1px solid #27272a}
+.download-all-section h2{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:#fafafa;margin-bottom:8px}
+.download-all-section p{color:#71717a;margin-bottom:30px}
+.download-all-btn{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;border:none;padding:18px 44px;border-radius:14px;font-size:17px;font-weight:700;cursor:pointer;transition:all 0.3s}
+.download-all-btn:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(99,102,241,0.3)}
+.slide-num{position:absolute;bottom:40px;right:50px;font-family:'JetBrains Mono',monospace;font-size:16px;color:#27272a;font-weight:500}
+
+/* SLIDE 1 */
+.s1{background:#09090b;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:100px 90px;text-align:center}
+.s1 .orb{position:absolute;width:700px;height:700px;border-radius:50%;filter:blur(120px);opacity:0.4}
+.s1 .o1{background:#6366f1;top:-200px;right:-200px}
+.s1 .o2{background:#a855f7;bottom:-200px;left:-200px}
+.s1 .ct{position:relative;z-index:2}
+.s1 .ey{display:inline-flex;align-items:center;gap:10px;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);color:#a5b4fc;padding:10px 24px;border-radius:100px;font-size:15px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:60px}
+.s1 .ey .dot{width:8px;height:8px;background:#6366f1;border-radius:50%}
+.s1 h1{font-family:'Space Grotesk',sans-serif;font-size:88px;font-weight:700;color:#fafafa;line-height:1.05;margin-bottom:36px;letter-spacing:-2px}
+.s1 h1 .gr{background:linear-gradient(135deg,#818cf8 0%,#c084fc 50%,#f472b6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.s1 .sub{font-size:28px;color:#71717a;line-height:1.6;max-width:700px}
+.s1 .sw{position:absolute;bottom:70px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:#52525b;font-size:13px;font-weight:500;letter-spacing:2px;text-transform:uppercase}
+.s1 .sw .arr{width:40px;height:40px;border:1px solid #27272a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+
+/* SLIDE 2 */
+.s2{background:#09090b;padding:100px 90px;display:flex;flex-direction:column;justify-content:center}
+.s2 .al{width:60px;height:4px;background:linear-gradient(90deg,#6366f1,#a855f7);border-radius:2px;margin-bottom:50px}
+.s2 h2{font-family:'Space Grotesk',sans-serif;font-size:64px;font-weight:700;color:#fafafa;line-height:1.1;margin-bottom:50px;letter-spacing:-1.5px}
+.s2 .bt{font-size:30px;color:#a1a1aa;line-height:1.7;max-width:850px}
+.s2 .bt strong{color:#fafafa;font-weight:600}
+.s2 .sh{margin-top:60px;padding:40px 50px;background:rgba(99,102,241,0.06);border-left:3px solid #6366f1;border-radius:0 16px 16px 0}
+.s2 .sh .num{font-family:'Space Grotesk',sans-serif;font-size:72px;font-weight:700;background:linear-gradient(90deg,#818cf8,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.s2 .sh .lb{font-size:24px;color:#71717a;margin-top:8px}
+
+/* SLIDE 3 */
+.s3{background:#09090b;padding:100px 90px;display:flex;flex-direction:column;justify-content:center}
+.s3 .sl{font-size:14px;font-weight:700;color:#6366f1;letter-spacing:3px;text-transform:uppercase;margin-bottom:30px}
+.s3 h2{font-family:'Space Grotesk',sans-serif;font-size:60px;font-weight:700;color:#fafafa;line-height:1.1;margin-bottom:50px;letter-spacing:-1.5px}
+.pc{background:#18181b;border:1px solid #27272a;border-radius:20px;padding:36px 40px;margin-bottom:20px;display:flex;align-items:center;gap:28px}
+.pc .av{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.pc:nth-child(2) .av{background:linear-gradient(135deg,#6366f1,#818cf8)}
+.pc:nth-child(3) .av{background:linear-gradient(135deg,#22c55e,#4ade80)}
+.pc:nth-child(4) .av{background:linear-gradient(135deg,#f59e0b,#fbbf24)}
+.pc .inf{flex:1}
+.pc .inf h3{font-size:26px;font-weight:700;color:#fafafa;margin-bottom:6px}
+.pc .inf p{font-size:20px;color:#71717a}
+.pc .rev{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;color:#22c55e}
+.s3 .fn{margin-top:40px;font-size:20px;color:#52525b;font-style:italic}
+
+/* SLIDE 4 */
+.s4{background:#09090b;padding:100px 90px;display:flex;flex-direction:column;justify-content:center}
+.s4 h2{font-family:'Space Grotesk',sans-serif;font-size:60px;font-weight:700;color:#fafafa;line-height:1.1;margin-bottom:60px;letter-spacing:-1.5px}
+.fs{display:flex;gap:30px;margin-bottom:40px;align-items:flex-start}
+.fs .sn{width:56px;height:56px;background:#18181b;border:2px solid #27272a;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;color:#6366f1;flex-shrink:0}
+.fs .sc h3{font-size:28px;font-weight:700;color:#fafafa;margin-bottom:8px}
+.fs .sc p{font-size:22px;color:#71717a;line-height:1.5}
+.fs .sc .hl{color:#a5b4fc;font-weight:500}
+
+/* SLIDE 5 - Pink Flowing / Gentle Reminders Style */
+.s5{background:#FFE8E0;padding:100px 90px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.s5 .wave{position:absolute;pointer-events:none}
+.s5 .wave svg{width:100%;height:100%}
+.s5 .w1{top:-50px;left:-100px;width:1200px;height:400px;transform:rotate(-5deg)}
+.s5 .w2{bottom:-50px;right:-100px;width:1200px;height:400px;transform:rotate(5deg)}
+.s5 .ey2{font-family:'DM Sans',sans-serif;font-size:18px;font-weight:500;color:#DC2626;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;position:relative;z-index:2}
+.s5 h2{font-family:'Playfair Display',serif;font-size:72px;font-weight:900;color:#1a1a1a;line-height:1.05;margin-bottom:16px;letter-spacing:-1px;position:relative;z-index:2}
+.s5 h2 em{font-style:italic;color:#DC2626;font-weight:700}
+.s5 .sub5{font-family:'Playfair Display',serif;font-size:28px;font-style:italic;color:#4a4a4a;margin-bottom:50px;position:relative;z-index:2}
+.s5 .pts{position:relative;z-index:2}
+.s5 .pt{margin-bottom:36px;position:relative}
+.s5 .pt .tx{font-family:'DM Sans',sans-serif;font-size:26px;color:#1a1a1a;line-height:1.5}
+.s5 .pt .tx strong{color:#DC2626;font-weight:700}
+.s5 .pt .tx em{font-style:italic}
+.s5 .squiggle{position:absolute;right:-20px;top:50%;transform:translateY(-50%);width:80px;height:80px;opacity:0.6}
+.s5 .squiggle svg{fill:none;stroke:#DC2626;stroke-width:3;stroke-linecap:round}
+.s5 .fn5{margin-top:40px;font-family:'DM Sans',sans-serif;font-size:18px;color:#888;font-style:italic;position:relative;z-index:2}
+.s5 .dots5{position:absolute;bottom:80px;left:90px;display:flex;gap:8px;z-index:2}
+.s5 .dots5 span{width:10px;height:10px;border-radius:50%;background:#DC2626}
+.s5 .dots5 span:nth-child(2){background:#1a1a1a}
+.s5 .dots5 span:nth-child(3){background:#1a1a1a}
+
+/* SLIDE 6 - Editorial / Marketing Highlight Style */
+.s6{background:#FAF7F2;padding:100px 90px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.s6 .topline{position:absolute;top:60px;left:90px;right:90px;display:flex;justify-content:space-between;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;color:#999;letter-spacing:2px;text-transform:uppercase}
+.s6 h2{font-family:'Space Grotesk',sans-serif;font-size:68px;font-weight:700;color:#1a1a1a;line-height:1.05;margin-bottom:60px;letter-spacing:-2px}
+.s6 h2 .hl{background:#DC2626;color:white;padding:4px 16px;display:inline;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.s6 .tips{position:relative}
+.s6 .tip{display:flex;align-items:flex-start;gap:20px;margin-bottom:44px;position:relative}
+.s6 .tip .num6{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#DC2626;min-width:30px;padding-top:4px}
+.s6 .tip .content{flex:1}
+.s6 .tip .content h3{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;color:#1a1a1a;line-height:1.2;margin-bottom:8px}
+.s6 .tip .content h3 .hl{background:#DC2626;color:white;padding:2px 10px;display:inline;box-decoration-break:clone;-webkit-box-decoration-break:clone;font-size:26px}
+.s6 .tip .content p{font-family:'DM Sans',sans-serif;font-size:20px;color:#666;line-height:1.5}
+.s6 .arrow6{position:absolute;right:-30px;top:50%;width:60px;height:30px;opacity:0.4}
+.s6 .arrow6 svg{fill:none;stroke:#DC2626;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.s6 .bottom6{position:absolute;bottom:60px;left:90px;right:90px;display:flex;justify-content:space-between;align-items:center}
+.s6 .bottom6 .save{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#1a1a1a}
+.s6 .bottom6 .save .hl{background:#DC2626;color:white;padding:4px 12px;display:inline}
+.s6 .bottom6 .handle{font-family:'DM Sans',sans-serif;font-size:16px;color:#999}
+.s6 .dots6{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);display:flex;gap:6px}
+.s6 .dots6 span{width:8px;height:8px;border-radius:50%;background:#ddd}
+.s6 .dots6 span:nth-child(1){background:#DC2626}
+
+/* SLIDE 7 */
+.s7{background:#09090b;padding:100px 90px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.s7 h2{font-family:'Space Grotesk',sans-serif;font-size:60px;font-weight:700;color:#fafafa;line-height:1.1;margin-bottom:60px;letter-spacing:-1.5px;text-align:center}
+.mc{width:100%;max-width:860px}
+.mr{display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-bottom:1px solid #18181b}
+.mr .lb{font-size:26px;color:#71717a}
+.mr .vl{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:600;color:#fafafa}
+.mr.tl{margin-top:20px;padding-top:36px;border-top:2px solid #27272a;border-bottom:none}
+.mr.tl .lb{font-size:32px;color:#fafafa;font-weight:600}
+.mr.tl .vl{font-family:'Space Grotesk',sans-serif;font-size:56px;font-weight:700;background:linear-gradient(90deg,#22c55e,#4ade80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.s7 .fn{margin-top:40px;font-size:20px;color:#52525b;text-align:center}
+
+/* SLIDE 8 */
+.s8{background:#09090b;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:100px 90px;text-align:center;position:relative}
+.s8 .orb{position:absolute;width:600px;height:600px;border-radius:50%;filter:blur(150px);opacity:0.3}
+.s8 .o1{background:#6366f1;top:-150px;left:-150px}
+.s8 .o2{background:#ec4899;bottom:-150px;right:-150px}
+.s8 .ct{position:relative;z-index:2}
+.s8 .ic{width:100px;height:100px;background:linear-gradient(135deg,#6366f1,#a855f7);border-radius:28px;display:flex;align-items:center;justify-content:center;font-size:48px;margin:0 auto 50px}
+.s8 h2{font-family:'Space Grotesk',sans-serif;font-size:76px;font-weight:700;color:#fafafa;line-height:1.1;margin-bottom:30px;letter-spacing:-2px}
+.s8 .bt{font-size:28px;color:#71717a;line-height:1.7;max-width:700px;margin:0 auto 50px}
+.s8 .cp{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;font-size:22px;font-weight:700;padding:20px 48px;border-radius:100px}
+.s8 .hd{margin-top:40px;font-size:18px;color:#52525b;font-weight:500}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>Premium Carousel</h1>
+<p>1080×1350px • Instagram Optimized • Download as PNG</p>
+<div class="badge">Premium Design System</div>
+</div>
+<div class="slides-wrapper">
+
+<!-- S1 -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">1</div><div class="text">Cover — Hook</div></div>
+<div class="slide-scale">
+<div class="slide s1" id="slide-1">
+<div class="orb o1"></div><div class="orb o2"></div>
+<div class="ct">
+<div class="ey"><span class="dot"></span>2026 Playbook</div>
+<h1>APIs Are the<br><span class="gr">New Gold Rush</span></h1>
+<p class="sub">How developers are building $10K-$50K/month businesses selling data through simple REST APIs</p>
+</div>
+<div class="sw"><span>Swipe to learn</span><div class="arr">→</div></div>
+<div class="slide-num">01 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(1)">⬇ Download Slide</button>
+<div class="status" id="status-1"></div>
+</div>
+
+<!-- S2 -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">2</div><div class="text">Context — Why Now</div></div>
+<div class="slide-scale">
+<div class="slide s2" id="slide-2">
+<div class="al"></div>
+<h2>The market is<br>exploding right now</h2>
+<p class="bt">The sports data API market hit <strong>$5.7 billion in 2025</strong>. By 2034, it'll cross <strong>$9 billion</strong>. And the barrier to entry? It's never been lower.</p>
+<div class="sh"><div class="num">25%</div><div class="lb">Compound annual growth rate through 2033</div></div>
+<div class="slide-num">02 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(2)">⬇ Download Slide</button>
+<div class="status" id="status-2"></div>
+</div>
+
+<!-- S3 -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">3</div><div class="text">Proof — Real Numbers</div></div>
+<div class="slide-scale">
+<div class="slide s3" id="slide-3">
+<div class="sl">Verified Revenue</div>
+<h2>Real people.<br>Real money.</h2>
+<div class="pc"><div class="av">🚀</div><div class="inf"><h3>TheStatsAPI</h3><p>Founded March 2026 • 4 months old</p></div><div class="rev">$31K/mo</div></div>
+<div class="pc"><div class="av">⚡</div><div class="inf"><h3>SportsDataIO</h3><p>Bootstrapped • 17 years • Debt-free</p></div><div class="rev">$7M/yr</div></div>
+<div class="pc"><div class="av">💰</div><div class="inf"><h3>SportsAPIPro</h3><p>8 months old • Listed for sale</p></div><div class="rev">$39K</div></div>
+<p class="fn">Revenue verified via Stripe on TrustMRR & VibeCrowd</p>
+<div class="slide-num">03 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(3)">⬇ Download Slide</button>
+<div class="status" id="status-3"></div>
+</div>
+
+<!-- S4 -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">4</div><div class="text">Framework — How</div></div>
+<div class="slide-scale">
+<div class="slide s4" id="slide-4">
+<h2>The 4-step<br>framework</h2>
+<div class="fs"><div class="sn">01</div><div class="sc"><h3>Collect free data</h3><p>SportScore, football.db, ESPN — <span class="hl">100% free sources</span></p></div></div>
+<div class="fs"><div class="sn">02</div><div class="sc"><h3>Build your API</h3><p>Cloudflare Workers + Supabase = <span class="hl">$0 to start</span></p></div></div>
+<div class="fs"><div class="sn">03</div><div class="sc"><h3>Add authentication</h3><p>API keys, rate limiting, usage tracking — <span class="hl">all free</span></p></div></div>
+<div class="fs"><div class="sn">04</div><div class="sc"><h3>Monetize</h3><p>Free tier → $19/mo → $49/mo → <span class="hl">Enterprise</span></p></div></div>
+<div class="slide-num">04 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(4)">⬇ Download Slide</button>
+<div class="status" id="status-4"></div>
+</div>
+
+<!-- S5 - Pink Flowing Style -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">5</div><div class="text">Pricing — Gentle Reminders</div></div>
+<div class="slide-scale">
+<div class="slide s5" id="slide-5">
+<div class="wave w1"><svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg"><path d="M0,200 C200,50 400,350 600,200 C800,50 1000,350 1200,200" stroke="#DC2626" stroke-width="4" fill="none" opacity="0.3"/><path d="M0,250 C200,100 400,400 600,250 C800,100 1000,400 1200,250" stroke="#DC2626" stroke-width="3" fill="none" opacity="0.2"/></svg></div>
+<div class="wave w2"><svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg"><path d="M0,150 C300,50 500,300 700,150 C900,0 1100,250 1200,150" stroke="#DC2626" stroke-width="4" fill="none" opacity="0.25"/></svg></div>
+<div class="ey2">gentle reminders</div>
+<h2>Pricing Your API<br><em>without</em> the stress</h2>
+<p class="sub5">It's okay to start simple. Here's what actually matters.</p>
+<div class="pts">
+<div class="pt"><div class="tx"><strong>Don't undercharge.</strong> If your data saves developers hours of work, <em>price accordingly.</em></div></div>
+<div class="pt"><div class="tx"><strong>Free tier is marketing,</strong> not charity. It's how developers <em>discover</em> you.</div></div>
+<div class="pt"><div class="tx"><strong>Per-request pricing feels safe</strong> but subscriptions build <em>predictable revenue.</em></div></div>
+<div class="pt"><div class="tx"><strong>You're not behind.</strong> TheStatsAPI hit $31K MRR in <em>4 months.</em></div></div>
+</div>
+<p class="fn5">Progress isn't always linear — and that's okay.</p>
+<div class="dots5"><span></span><span></span><span></span></div>
+<div class="slide-num">05 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(5)">⬇ Download Slide</button>
+<div class="status" id="status-5"></div>
+</div>
+
+<!-- S6 - Editorial Highlight Style -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">6</div><div class="text">Marketing — Editorial</div></div>
+<div class="slide-scale">
+<div class="slide s6" id="slide-6">
+<div class="topline"><span>Your API Playbook</span><span>Strategy Session</span></div>
+<h2>Cool <span class="hl">Marketing</span><br>That Actually Works</h2>
+<div class="tips">
+<div class="tip">
+<div class="num6">→</div>
+<div class="content">
+<h3><span class="hl">Prioritize</span> Developers Over Features</h3>
+<p>Developers choose APIs based on trust, docs quality, and how fast they can prototype. Lead with DX, not features.</p>
+</div>
+</div>
+<div class="tip">
+<div class="num6">→</div>
+<div class="content">
+<h3>Share <span class="hl">Stories</span>, Not Sales Pitches</h3>
+<p>"We built this because our football app needed live data and nothing existed." That's a story. "Buy our API" is noise.</p>
+</div>
+</div>
+<div class="tip">
+<div class="num6">→</div>
+<div class="content">
+<h3><span class="hl">Build Trust</span> Prior to Making a Sale</h3>
+<p>Offer a generous free tier. Publish transparent status pages. Respond to support tickets in under 2 hours.</p>
+</div>
+</div>
+<div class="tip">
+<div class="num6">→</div>
+<div class="content">
+<h3>Assess What <span class="hl">Truly Counts</span></h3>
+<p>1,000 free users and 50 paying customers beats 10,000 followers. Focus on conversion, not vanity metrics.</p>
+</div>
+</div>
+</div>
+<div class="bottom6">
+<div class="save">Save this for your upcoming <span class="hl">strategy session.</span></div>
+</div>
+<div class="dots6"><span></span><span></span><span></span><span></span><span></span></div>
+<div class="slide-num">06 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(6)">⬇ Download Slide</button>
+<div class="status" id="status-6"></div>
+</div>
+
+<!-- S7 -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">7</div><div class="text">Math — Revenue</div></div>
+<div class="slide-scale">
+<div class="slide s7" id="slide-7">
+<h2>The math is<br>simple</h2>
+<div class="mc">
+<div class="mr"><div class="lb">Free users</div><div class="vl">1,000</div></div>
+<div class="mr"><div class="lb">Conversion rate</div><div class="vl">5%</div></div>
+<div class="mr"><div class="lb">Paying users</div><div class="vl">50</div></div>
+<div class="mr"><div class="lb">Average price</div><div class="vl">$35/mo</div></div>
+<div class="mr tl"><div class="lb">Monthly Revenue</div><div class="vl">$1,750</div></div>
+</div>
+<p class="fn">That's $21,000/year from a side project</p>
+<div class="slide-num">07 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(7)">⬇ Download Slide</button>
+<div class="status" id="status-7"></div>
+</div>
+
+<!-- S8 -->
+<div class="slide-section">
+<div class="slide-label"><div class="num">8</div><div class="text">CTA — Action</div></div>
+<div class="slide-scale">
+<div class="slide s8" id="slide-8">
+<div class="orb o1"></div><div class="orb o2"></div>
+<div class="ct">
+<div class="ic">🚀</div>
+<h2>Start building<br>today</h2>
+<p class="bt">You don't need permission. You don't need funding. You need a free tier, a good API, and 100 developers who trust you.</p>
+<div class="cp">Save this post 🔖</div>
+<p class="hd">Follow for more API business strategies</p>
+</div>
+<div class="slide-num">08 / 08</div>
+</div>
+</div>
+<button class="download-btn" onclick="downloadSlide(8)">⬇ Download Slide</button>
+<div class="status" id="status-8"></div>
+</div>
+
+</div>
+
+<div class="download-all-section">
+<h2>Download All 8 Slides</h2>
+<p>Each slide is 1080×1350px — perfect Instagram ratio</p>
+<button class="download-all-btn" onclick="downloadAll()">Download All as PNG</button>
+<div class="status" id="status-all" style="margin-top:20px"></div>
+</div>
+
+<script>
+const names=['hook','market-size','real-examples','how-it-works','pricing','tech-stack','revenue-math','call-to-action'];
+async function downloadSlide(n){
+const s=document.getElementById('status-'+n);
+s.textContent='Generating...';s.style.color='#f59e0b';
+try{const el=document.getElementById('slide-'+n);const w=el.closest('.slide-scale');const ot=w.style.transform;w.style.transform='none';
+const c=await html2canvas(el,{width:1080,height:1350,scale:1,useCORS:true,backgroundColor:null,logging:false});
+w.style.transform=ot;const l=document.createElement('a');l.download='slide-'+n+'-'+names[n-1]+'.png';l.href=c.toDataURL('image/png');l.click();
+s.textContent='Downloaded!';s.style.color='#22c55e';}catch(e){console.error(e);s.textContent='Error - right-click > Save as image';s.style.color='#ef4444';}
+}
+async function downloadAll(){const s=document.getElementById('status-all');s.textContent='Downloading all slides...';s.style.color='#f59e0b';
+for(let i=1;i<=8;i++){await new Promise(r=>setTimeout(r,800));await downloadSlide(i);}
+s.textContent='All 8 slides downloaded! Post in order on Instagram.';s.style.color='#22c55e';}
+</script>
+</body>
+</html>
