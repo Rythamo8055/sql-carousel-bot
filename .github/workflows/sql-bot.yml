@@ -1,0 +1,43 @@
+name: SQL Bot
+
+on:
+  schedule:
+    - cron: '30 13 * * *'
+  workflow_dispatch:
+    inputs:
+      day:
+        description: 'Day number to post (1-30)'
+        required: true
+        default: '12'
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npx puppeteer browsers install chrome
+      - run: sudo apt-get update && sudo apt-get install -y imagemagick
+      - run: |
+          echo "PUPPETEER_EXECUTABLE_PATH=$(find /home -name 'chrome' -type f 2>/dev/null | head -1)" >> $GITHUB_ENV
+      - name: Get day
+        id: day
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "day=${{ github.event.inputs.day }}" >> $GITHUB_OUTPUT
+          else
+            DAY=$(( ( $(date +%s) - $(date -d "2026-08-17" +%s) ) / 86400 + 1 ))
+            if [ $DAY -gt 30 ]; then echo "Done!" && exit 0; fi
+            echo "day=$DAY" >> $GITHUB_OUTPUT
+          fi
+      - name: Post
+        if: steps.day.outputs.day != ''
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: |
+          echo "Posting Day ${{ steps.day.outputs.day }}"
+          node post-day.js ${{ steps.day.outputs.day }}
