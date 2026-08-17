@@ -21,16 +21,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Install npm
-        run: npm install 2>&1 | tee /tmp/npm.log
-      - name: Install Chrome
-        run: npx puppeteer browsers install chrome 2>&1 | tee /tmp/chrome.log
-      - name: Install ImageMagick
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y imagemagick curl
-      - name: Set Chrome path
-        run: echo "PUPPETEER_EXECUTABLE_PATH=$(find /home -name 'chrome' -type f 2>/dev/null | head -1)" >> $GITHUB_ENV
+      - run: npm install
+      - run: npx puppeteer browsers install chrome
+      - run: sudo apt-get update && sudo apt-get install -y imagemagick
+      - run: echo "PUPPETEER_EXECUTABLE_PATH=$(find /home -name 'chrome' -type f 2>/dev/null | head -1)" >> $GITHUB_ENV
       - name: Get day
         id: day
         run: |
@@ -43,13 +37,4 @@ jobs:
           fi
       - name: Post to Instagram
         if: steps.day.outputs.day != ''
-        run: node post-day.js ${{ steps.day.outputs.day }} 2>&1 | tee /tmp/post.log || true
-      - name: Upload debug info
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-info
-          path: |
-            /tmp/npm.log
-            /tmp/chrome.log
-            /tmp/post.log
+        run: node post-day.js ${{ steps.day.outputs.day }}

@@ -1,7 +1,5 @@
 #!/usr/bin/env node
-// Instagram Carousel Poster — Reusable for all 30 days
-// Usage: node post-day.js <day-number>
-// Example: node post-day.js 5
+// Instagram Carousel Poster — v2 (using imgur upload)
 
 const https = require('https');
 const fs = require('fs');
@@ -83,29 +81,73 @@ async function postComment(mediaId, text) {
   return res;
 }
 
+function uploadToImgur(filePath) {
+  // Read the image file and encode as base64
+  const imageData = fs.readFileSync(filePath).toString('base64');
+  
+  return new Promise((resolve, reject) => {
+    const boundary = '----WebKitFormBoundary' + Date.now();
+    const postData = [
+      `--${boundary}`,
+      'Content-Disposition: form-data; name="image"',
+      '',
+      imageData,
+      `--${boundary}`,
+      'Content-Disposition: form-data; name="type"',
+      '',
+      'base64',
+      `--${boundary}--`,
+      ''
+    ].join('\r\n');
+    
+    const req = https.request({
+      hostname: 'api.imgur.com',
+      path: '/3/upload',
+      method: 'POST',
+      headers: {
+        'Authorization': 'Client-ID c9a576e6f8e0b6d',
+        'Content-Type': `multipart/form-data; boundary=${boundary}`,
+        'Content-Length': Buffer.byteLength(postData)
+      }
+    }, res => {
+      let d = '';
+      res.on('data', c => d += c);
+      res.on('end', () => {
+        try {
+          const json = JSON.parse(d);
+          if (json.success) {
+            resolve(json.data.link);
+          } else {
+            reject(new Error(json.data?.error_description || json.data?.error || 'Upload failed'));
+          }
+        } catch {
+          reject(new Error('Failed to parse upload response: ' + d));
+        }
+      });
+    });
+    
+    req.on('error', reject);
+    req.write(postData);
+    req.end();
+  });
+}
+
 async function generateImages() {
   console.log('\n=== Generating images from HTML ===');
 
-  // Create directories
   execSync(`mkdir -p "${SLIDES_DIR}" "${JPEG_DIR}"`);
-  
-  // Generate PNGs from HTML using Puppeteer
+
   const puppeteer = require('puppeteer');
-  // Use executablePath from env (set by GitHub Actions) or let puppeteer find it automatically
-  let chromePath = process.env.PUPPETEER_EXECUTABLE_PATH;
   let launchOptions = {
     headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: ['--no-sandbox', '--disable-setui-sandbox'],
   };
-  if (chromePath) {
-    launchOptions.executablePath = chromePath;
-    console.log(`Using Chrome from: ${chromePath}`);
-  } else {
-    console.log('Using default Chrome (puppeteer bundled)');
+  if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+    launchOptions.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
+    console.log(`Using Chrome: ${process.env.PUPPETEER_EXECUTABLE_PATH}`);
   }
 
   const browser = await puppeteer.launch(launchOptions);
-
   const page = await browser.newPage();
   await page.setViewport({ width: 1080, height: 1350, deviceScaleFactor: 2 });
 
@@ -114,7 +156,6 @@ async function generateImages() {
   await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle0' });
   await page.evaluate(() => document.fonts.ready);
 
-  // Find all slide divs (direct children of body with class "slide")
   const slideCount = await page.evaluate(() => {
     return document.querySelectorAll('body > div.slide').length;
   });
@@ -133,7 +174,6 @@ async function generateImages() {
 
   await browser.close();
 
-  // Convert PNGs to JPEGs
   console.log('\nConverting to JPEG...');
   for (let i = 1; i <= slideCount; i++) {
     const pngPath = path.join(SLIDES_DIR, `slide-${i}.png`);
@@ -145,25 +185,35 @@ async function generateImages() {
   }
 }
 
+async function uploadImage(filePath) {
+  console.log(`  Uploading ${path.basename(filePath)}...`);
+  let uploadResult = '';
+  for (let retry = 0; retry < 3; retry++) {
+    try {
+      uploadResult = await uploadToImgur(filePath);
+      if (uploadResult.startsWith('http')) {
+        console.log(`  URL: ${uploadResult}`);
+        return uploadResult;
+      }
+    } catch (e) {
+      console.log(`    Retry ${retry + 1}: ${e.message}`);
+    }
+    await sleep(2000);
+  }
+  throw new Error('Upload failed after 3 retries');
+}
+
 async function main() {
-  // Generate images if not already present
+  // Generate images if not present
   if (!fs.existsSync(JPEG_DIR) || fs.readdirSync(JPEG_DIR).filter(f => f.endsWith('.jpg')).length === 0) {
     await generateImages();
   }
 
-  // Load caption
   let captions = {};
   if (fs.existsSync(CAPTIONS_FILE)) {
     captions = JSON.parse(fs.readFileSync(CAPTIONS_FILE, 'utf8'));
   }
   const caption = captions[`day${dayNum}`] || `SQL Day ${dayNum}/30 — Swipe to learn! Follow @code.ry for daily lessons.`;
-
-  // Find JPEG files
-  if (!fs.existsSync(JPEG_DIR)) {
-    console.error(`No JPEG dir found at ${JPEG_DIR}`);
-    console.error('Run the PNG→JPEG conversion first.');
-    process.exit(1);
-  }
 
   const files = fs.readdirSync(JPEG_DIR).filter(f => f.endsWith('.jpg')).sort();
   if (files.length === 0) {
@@ -173,38 +223,14 @@ async function main() {
 
   console.log(`\n=== Posting SQL Day ${dayNum} (${files.length} slides) ===\n`);
 
-  // Step 1: Create child containers
   console.log('Step 1: Creating child containers...');
   const childIds = [];
   for (let i = 0; i < files.length; i++) {
     const filePath = path.join(JPEG_DIR, files[i]);
-    console.log(`  Uploading ${files[i]}...`);
-
-    // Upload to catbox.moe with retry
-    let uploadResult = '';
-    let uploadSuccess = false;
-    for (let retry = 0; retry < 3; retry++) {
-      try {
-        uploadResult = execSync(`curl -s --max-time 60 -F "reqtype=fileupload" -F "fileToUpload=@${filePath}" https://catbox.moe/user/api.php`).toString().trim();
-        if (uploadResult.startsWith('http')) {
-          uploadSuccess = true;
-          break;
-        }
-        console.log(`    Retry ${retry + 1}: got "${uploadResult}"`);
-      } catch (e) {
-        console.log(`    Retry ${retry + 1}: error - ${e.message}`);
-      }
-      await sleep(2000);
-    }
-
-    if (!uploadSuccess) {
-      console.error('Failed to upload after 3 retries');
-      process.exit(1);
-    }
-    console.log(`  URL: ${uploadResult}`);
+    const imageUrl = await uploadImage(filePath);
 
     const res = await request('POST', `https://graph.facebook.com/v21.0/${IG_USER_ID}/media`, {
-      image_url: uploadResult,
+      image_url: imageUrl,
       is_carousel_item: true,
       access_token: ACCESS_TOKEN,
     });
@@ -213,7 +239,6 @@ async function main() {
     childIds.push(res.id);
   }
 
-  // Step 2: Wait for children
   console.log('\nStep 2: Waiting for children...');
   for (let i = 0; i < childIds.length; i++) {
     console.log(`  Child ${i+1} (${childIds[i]})...`);
@@ -221,7 +246,6 @@ async function main() {
     if (!ok) { console.error('Child failed'); process.exit(1); }
   }
 
-  // Step 3: Create carousel parent
   console.log('\nStep 3: Creating carousel...');
   const parentRes = await request('POST', `https://graph.facebook.com/v21.0/${IG_USER_ID}/media`, {
     media_type: 'CAROUSEL',
@@ -232,12 +256,10 @@ async function main() {
   console.log(`Parent: ${parentRes.id || JSON.stringify(parentRes)}`);
   if (!parentRes.id) { console.error('Failed to create parent'); process.exit(1); }
 
-  // Step 4: Wait for parent
   console.log('\nStep 4: Waiting for parent...');
   const ok = await pollContainer(parentRes.id);
   if (!ok) { console.error('Parent failed'); process.exit(1); }
 
-  // Step 5: Publish
   console.log('\nStep 5: Publishing...');
   const pubRes = await request('POST', `https://graph.facebook.com/v21.0/${IG_USER_ID}/media_publish`, {
     creation_id: parentRes.id,
@@ -245,7 +267,6 @@ async function main() {
   });
   console.log('Published!', JSON.stringify(pubRes));
 
-  // Step 6: Auto-comment
   if (pubRes.id) {
     console.log('\nStep 6: Posting comment...');
     const commentText = `Day ${dayNum}/30 - Complete series at @code.ry | Next: Day ${dayNum+1 <= 30 ? dayNum+1 : '30'} coming tomorrow!`;
