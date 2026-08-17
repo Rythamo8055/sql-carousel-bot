@@ -7,8 +7,23 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-const IG_USER_ID = '17841433829204184';
-const ACCESS_TOKEN = 'EAAV93GHBZAxwBSHpdmK0ZAb0ONMvjXuV6lXZAZCczkqkjMRGH1khFCNh3TZC5hl2kz2pyME4IzY9vUgtCguOnGHPY9lwiWrSvv8SWLhusMz8zgUPdveBTm2biNwalXgFZApjrlTfrm7ZCJCIbwv57UPefVc52gZBYQfKUWqSietH17cnTA9sZBeUU3wtH8On0ZAEugeQZDZD';
+// Load .env file
+const envPath = path.join(__dirname, '.env');
+if (fs.existsSync(envPath)) {
+  const envContent = fs.readFileSync(envPath, 'utf8');
+  envContent.split('\n').forEach(line => {
+    const [key, ...value] = line.split('=');
+    if (key && value.length) process.env[key.trim()] = value.join('=').trim();
+  });
+}
+
+const IG_USER_ID = process.env.IG_USER_ID;
+const ACCESS_TOKEN = process.env.IG_ACCESS_TOKEN;
+
+if (!IG_USER_ID || !ACCESS_TOKEN) {
+  console.error('Missing IG_USER_ID or IG_ACCESS_TOKEN in .env file');
+  process.exit(1);
+}
 
 const dayNum = parseInt(process.argv[2]);
 if (!dayNum || dayNum < 1 || dayNum > 30) {
