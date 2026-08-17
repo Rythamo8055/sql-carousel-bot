@@ -26,21 +26,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install system deps
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y imagemagick
-          # Try to find Chrome/Chromium
-          which chromium-browser || which chromium || which google-chrome || echo "No system Chrome found"
-          
       - name: Install Chrome for Puppeteer
         run: npx puppeteer browsers install chrome
+
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
 
       - name: Find Chrome path
         run: |
           echo "PUPPETEER_EXECUTABLE_PATH=$(find /home -name 'chrome' -type f 2>/dev/null | head -1)" >> $GITHUB_ENV
-          echo "Checking Chrome path..."
-          ls -la $(find /home -name 'chrome' -type f 2>/dev/null | head -1) 2>/dev/null || echo "Chrome not found"
 
       - name: Determine day number
         id: day
@@ -69,4 +63,14 @@ jobs:
         run: |
           echo "Posting Day ${{ steps.day.outputs.day }}..."
           echo "Chrome path: $PUPPETEER_EXECUTABLE_PATH"
-          node post-day.js ${{ steps.day.outputs.day }} 2>&1
+          set -x
+          node post-day.js ${{ steps.day.outputs.day }} 2>&1 | tee /tmp/poster.log
+          echo "Exit code: $?"
+          set +x
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: poster-logs
+          path: /tmp/poster.log
