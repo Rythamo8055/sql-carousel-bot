@@ -26,13 +26,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Chrome for Puppeteer
-        run: npx puppeteer browsers install chrome
+      - name: Install system deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
 
-      - name: Install ImageMagick
-        run: sudo apt-get update && sudo apt-get install -y imagemagick
-
-      - name: Find Chrome path
+      - name: Find Chrome
         run: |
           echo "PUPPETEER_EXECUTABLE_PATH=$(find /home -name 'chrome' -type f 2>/dev/null | head -1)" >> $GITHUB_ENV
 
@@ -62,5 +61,5 @@ jobs:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
         run: |
           echo "Posting Day ${{ steps.day.outputs.day }}..."
-          echo "Chrome path: $PUPPETEER_EXECUTABLE_PATH"
+          echo "Chrome: $PUPPETEER_EXECUTABLE_PATH"
           node post-day.js ${{ steps.day.outputs.day }}
