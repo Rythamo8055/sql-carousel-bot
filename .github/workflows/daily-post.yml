@@ -61,3 +61,4 @@ jobs:
           path: |
             *.log
             output/
+# Daily SQL Post workflow
