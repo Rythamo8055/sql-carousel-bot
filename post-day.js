@@ -177,11 +177,30 @@ async function main() {
   console.log('Step 1: Creating child containers...');
   const childIds = [];
   for (let i = 0; i < files.length; i++) {
-    // Upload to catbox.moe first
     const filePath = path.join(JPEG_DIR, files[i]);
     console.log(`  Uploading ${files[i]}...`);
-    const { execSync } = require('child_process');
-    const uploadResult = execSync(`curl -s -F "reqtype=fileupload" -F "fileToUpload=@${filePath}" https://catbox.moe/user/api.php`).toString().trim();
+
+    // Upload to catbox.moe with retry
+    let uploadResult = '';
+    let uploadSuccess = false;
+    for (let retry = 0; retry < 3; retry++) {
+      try {
+        uploadResult = execSync(`curl -s --max-time 60 -F "reqtype=fileupload" -F "fileToUpload=@${filePath}" https://catbox.moe/user/api.php`).toString().trim();
+        if (uploadResult.startsWith('http')) {
+          uploadSuccess = true;
+          break;
+        }
+        console.log(`    Retry ${retry + 1}: got "${uploadResult}"`);
+      } catch (e) {
+        console.log(`    Retry ${retry + 1}: error - ${e.message}`);
+      }
+      await sleep(2000);
+    }
+
+    if (!uploadSuccess) {
+      console.error('Failed to upload after 3 retries');
+      process.exit(1);
+    }
     console.log(`  URL: ${uploadResult}`);
 
     const res = await request('POST', `https://graph.facebook.com/v21.0/${IG_USER_ID}/media`, {
