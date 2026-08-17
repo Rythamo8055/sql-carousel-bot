@@ -2,64 +2,62 @@ name: Daily SQL Post
 
 on:
   schedule:
-    # Runs at 7:00 PM IST (13:30 UTC) every day
     - cron: '30 13 * * *'
   workflow_dispatch:
     inputs:
       day:
         description: 'Day number to post (1-30)'
         required: true
-        default: '1'
+        default: '7'
 
 jobs:
   post:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
-
+      
+      - name: Debug: list files
+        run: ls -la
+      
       - name: Install dependencies
-        run: npm install
+        run: npm install 2>&1 | tail -5
 
       - name: Install system deps
         run: |
-          sudo apt-get update
-          sudo apt-get install -y imagemagick
+          which curl
+          which convert || which magick
+          which chromium-browser || which chromium || find /opt -name 'chrome' -type f 2>/dev/null | head -1
 
-      - name: Find Chrome
+      - name: Find Chrome for Puppeteer
         run: |
-          echo "PUPPETEER_EXECUTABLE_PATH=$(find /home -name 'chrome' -type f 2>/dev/null | head -1)" >> $GITHUB_ENV
+          CHROME=$(find /home -name 'chrome' -type f 2>/dev/null | head -1)
+          echo "PUPPETEER_EXECUTABLE_PATH=$CHROME" >> $GITHUB_ENV
+          echo "Chrome: $CHROME"
+          ls -la $CHROME
 
-      - name: Determine day number
+      - name: Determine day
         id: day
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "day=${{ github.event.inputs.day }}" >> $GITHUB_OUTPUT
-          else
-            START_DATE="2026-08-17"
-            TODAY=$(date +%Y-%m-%d)
-            START_EPOCH=$(date -d "$START_DATE" +%s)
-            TODAY_EPOCH=$(date -d "$TODAY" +%s)
-            DIFF=$(( (TODAY_EPOCH - START_EPOCH) / 86400 ))
-            DAY=$(( DIFF + 1 ))
-            if [ $DAY -gt 30 ]; then
-              echo "Series complete! No more posts."
-              exit 0
-            fi
-            echo "day=$DAY" >> $GITHUB_OUTPUT
-          fi
+          DAY=${{ github.event.inputs.day }}
+          echo "day=$DAY" >> $GITHUB_OUTPUT
 
       - name: Post to Instagram
-        if: steps.day.outputs.day != ''
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
         run: |
-          echo "Posting Day ${{ steps.day.outputs.day }}..."
-          echo "Chrome: $PUPPETEER_EXECUTABLE_PATH"
-          node post-day.js ${{ steps.day.outputs.day }}
+          echo "=== Starting post-day.js ==="
+          node post-day.js ${{ steps.day.outputs.day }} 2>&1
+        continue-on-error: true
+
+      - name: Upload logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-logs
+          path: |
+            *.log
+            output/
