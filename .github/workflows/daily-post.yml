@@ -26,11 +26,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Chrome for Puppeteer
-        run: npx puppeteer browsers install chrome
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick chromium-browser
 
-      - name: Install ImageMagick
-        run: sudo apt-get update && sudo apt-get install -y imagemagick
+      - name: Find Chrome
+        run: echo "PUPPETEER_EXECUTABLE_PATH=$(which chromium-browser)" >> $GITHUB_ENV
 
       - name: Determine day number
         id: day
@@ -38,7 +40,6 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "day=${{ github.event.inputs.day }}" >> $GITHUB_OUTPUT
           else
-            # Calculate day based on start date (Aug 17, 2026)
             START_DATE="2026-08-17"
             TODAY=$(date +%Y-%m-%d)
             START_EPOCH=$(date -d "$START_DATE" +%s)
@@ -60,4 +61,3 @@ jobs:
         run: |
           echo "Posting Day ${{ steps.day.outputs.day }}..."
           node post-day.js ${{ steps.day.outputs.day }}
-# Trigger

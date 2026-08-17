@@ -88,13 +88,23 @@ async function generateImages() {
 
   // Create directories
   execSync(`mkdir -p "${SLIDES_DIR}" "${JPEG_DIR}"`);
-
+  
   // Generate PNGs from HTML using Puppeteer
   const puppeteer = require('puppeteer');
-  const browser = await puppeteer.launch({
+  // Use executablePath from env (set by GitHub Actions) or let puppeteer find it automatically
+  let chromePath = process.env.PUPPETEER_EXECUTABLE_PATH;
+  let launchOptions = {
     headless: 'new',
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  });
+  };
+  if (chromePath) {
+    launchOptions.executablePath = chromePath;
+    console.log(`Using Chrome from: ${chromePath}`);
+  } else {
+    console.log('Using default Chrome (puppeteer bundled)');
+  }
+
+  const browser = await puppeteer.launch(launchOptions);
 
   const page = await browser.newPage();
   await page.setViewport({ width: 1080, height: 1350, deviceScaleFactor: 2 });
