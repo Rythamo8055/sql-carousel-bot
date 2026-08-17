@@ -6,8 +6,9 @@
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
-// Load .env file
+// Load .env file if it exists (for local dev)
 const envPath = path.join(__dirname, '.env');
 if (fs.existsSync(envPath)) {
   const envContent = fs.readFileSync(envPath, 'utf8');
@@ -21,7 +22,7 @@ const IG_USER_ID = process.env.IG_USER_ID;
 const ACCESS_TOKEN = process.env.IG_ACCESS_TOKEN;
 
 if (!IG_USER_ID || !ACCESS_TOKEN) {
-  console.error('Missing IG_USER_ID or IG_ACCESS_TOKEN in .env file');
+  console.error('Missing IG_USER_ID or IG_ACCESS_TOKEN');
   process.exit(1);
 }
 
@@ -82,7 +83,64 @@ async function postComment(mediaId, text) {
   return res;
 }
 
+async function generateImages() {
+  console.log('\n=== Generating images from HTML ===');
+
+  // Create directories
+  execSync(`mkdir -p "${SLIDES_DIR}" "${JPEG_DIR}"`);
+
+  // Generate PNGs from HTML using Puppeteer
+  const puppeteer = require('puppeteer');
+  const browser = await puppeteer.launch({
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
+
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1080, height: 1350, deviceScaleFactor: 2 });
+
+  const htmlPath = path.join(__dirname, 'content', 'sql-series', `sql-day${String(dayNum).padStart(2, '0')}-grid.html`);
+  console.log(`Loading: ${htmlPath}`);
+  await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle0' });
+  await page.evaluate(() => document.fonts.ready);
+
+  // Find all slide divs (direct children of body with class "slide")
+  const slideCount = await page.evaluate(() => {
+    return document.querySelectorAll('body > div.slide').length;
+  });
+  console.log(`Found ${slideCount} slides`);
+
+  for (let i = 1; i <= slideCount; i++) {
+    const slideElement = await page.$(`body > div.slide:nth-child(${i})`);
+    if (slideElement) {
+      await slideElement.screenshot({
+        path: path.join(SLIDES_DIR, `slide-${i}.png`),
+        type: 'png',
+      });
+      console.log(`  ✅ slide-${i}.png`);
+    }
+  }
+
+  await browser.close();
+
+  // Convert PNGs to JPEGs
+  console.log('\nConverting to JPEG...');
+  for (let i = 1; i <= slideCount; i++) {
+    const pngPath = path.join(SLIDES_DIR, `slide-${i}.png`);
+    const jpgPath = path.join(JPEG_DIR, `slide-${i}.jpg`);
+    if (fs.existsSync(pngPath)) {
+      execSync(`convert "${pngPath}" -quality 95 "${jpgPath}" 2>/dev/null || magick "${pngPath}" -quality 95 "${jpgPath}" 2>/dev/null`);
+      console.log(`  ✅ slide-${i}.jpg`);
+    }
+  }
+}
+
 async function main() {
+  // Generate images if not already present
+  if (!fs.existsSync(JPEG_DIR) || fs.readdirSync(JPEG_DIR).filter(f => f.endsWith('.jpg')).length === 0) {
+    await generateImages();
+  }
+
   // Load caption
   let captions = {};
   if (fs.existsSync(CAPTIONS_FILE)) {
