@@ -41,19 +41,6 @@ jobs:
             if [ $DAY -gt 30 ]; then echo "Done!" && exit 0; fi
             echo "day=$DAY" >> $GITHUB_OUTPUT
           fi
-      - name: Run poster
-        id: poster
+      - name: Post to Instagram
         if: steps.day.outputs.day != ''
-        run: |
-          set -x
-          node post-day.js ${{ steps.day.outputs.day }}
-          set +x
-        continue-on-error: true
-      - name: Capture logs
-        if: always()
-        run: |
-          echo "Workflow failed at some step"
-          echo "Checking files..."
-          ls -la output/day12/jpeg/ 2>/dev/null || echo "No output/day12/jpeg"
-          ls -la content/sql-series/sql-day12-grid.html 2>/dev/null || echo "No HTML"
-          which chromium-browser || which chromium || find /home -name 'chrome' -type f 2>/dev/null || echo "No Chrome found"
+        run: node post-day.js ${{ steps.day.outputs.day }}
