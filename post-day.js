@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-// Instagram Carousel Poster — Reusable for all 30 days
+// Instagram Carousel Poster — v3 (uses GitHub raw URLs, no upload needed)
 // Usage: node post-day.js <day-number>
-// Example: node post-day.js 5
 
 const https = require('https');
 const fs = require('fs');
@@ -20,6 +19,8 @@ if (fs.existsSync(envPath)) {
 
 const IG_USER_ID = process.env.IG_USER_ID;
 const ACCESS_TOKEN = process.env.IG_ACCESS_TOKEN;
+const GITHUB_REPO = 'Rythamo8055/sql-carousel-bot';
+const GITHUB_BRANCH = 'images';
 
 if (!IG_USER_ID || !ACCESS_TOKEN) {
   console.error('Missing IG_USER_ID or IG_ACCESS_TOKEN');
@@ -32,9 +33,9 @@ if (!dayNum || dayNum < 1 || dayNum > 30) {
   process.exit(1);
 }
 
+const CAPTIONS_FILE = path.join(__dirname, 'content', 'sql-series', 'captions.json');
 const SLIDES_DIR = path.join(__dirname, 'output', `day${String(dayNum).padStart(2, '0')}`);
 const JPEG_DIR = path.join(SLIDES_DIR, 'jpeg');
-const CAPTIONS_FILE = path.join(__dirname, 'content', 'sql-series', 'captions.json');
 
 function request(method, url, body) {
   return new Promise((resolve, reject) => {
@@ -83,29 +84,26 @@ async function postComment(mediaId, text) {
   return res;
 }
 
+function getGitHubRawUrl(dayNumber, slideNumber) {
+  const day = String(dayNumber).padStart(2, '0');
+  return `https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/output/day${day}/jpeg/slide-${slideNumber}.jpg`;
+}
+
 async function generateImages() {
   console.log('\n=== Generating images from HTML ===');
-
-  // Create directories
   execSync(`mkdir -p "${SLIDES_DIR}" "${JPEG_DIR}"`);
-  
-  // Generate PNGs from HTML using Puppeteer
+
   const puppeteer = require('puppeteer');
-  // Use executablePath from env (set by GitHub Actions) or let puppeteer find it automatically
-  let chromePath = process.env.PUPPETEER_EXECUTABLE_PATH;
   let launchOptions = {
     headless: 'new',
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   };
-  if (chromePath) {
-    launchOptions.executablePath = chromePath;
-    console.log(`Using Chrome from: ${chromePath}`);
-  } else {
-    console.log('Using default Chrome (puppeteer bundled)');
+  if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+    launchOptions.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
+    console.log(`Using Chrome: ${process.env.PUPPETEER_EXECUTABLE_PATH}`);
   }
 
   const browser = await puppeteer.launch(launchOptions);
-
   const page = await browser.newPage();
   await page.setViewport({ width: 1080, height: 1350, deviceScaleFactor: 2 });
 
@@ -114,7 +112,6 @@ async function generateImages() {
   await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle0' });
   await page.evaluate(() => document.fonts.ready);
 
-  // Find all slide divs (direct children of body with class "slide")
   const slideCount = await page.evaluate(() => {
     return document.querySelectorAll('body > div.slide').length;
   });
@@ -133,7 +130,6 @@ async function generateImages() {
 
   await browser.close();
 
-  // Convert PNGs to JPEGs
   console.log('\nConverting to JPEG...');
   for (let i = 1; i <= slideCount; i++) {
     const pngPath = path.join(SLIDES_DIR, `slide-${i}.png`);
@@ -146,11 +142,6 @@ async function generateImages() {
 }
 
 async function main() {
-  // Generate images if not already present
-  if (!fs.existsSync(JPEG_DIR) || fs.readdirSync(JPEG_DIR).filter(f => f.endsWith('.jpg')).length === 0) {
-    await generateImages();
-  }
-
   // Load caption
   let captions = {};
   if (fs.existsSync(CAPTIONS_FILE)) {
@@ -158,57 +149,46 @@ async function main() {
   }
   const caption = captions[`day${dayNum}`] || `SQL Day ${dayNum}/30 — Swipe to learn! Follow @code.ry for daily lessons.`;
 
-  // Find JPEG files
-  if (!fs.existsSync(JPEG_DIR)) {
-    console.error(`No JPEG dir found at ${JPEG_DIR}`);
-    console.error('Run the PNG→JPEG conversion first.');
-    process.exit(1);
+  // Determine slide count: check local files first, then assume 6 (standard)
+  let slideCount = 6;
+  if (fs.existsSync(JPEG_DIR)) {
+    const localFiles = fs.readdirSync(JPEG_DIR).filter(f => f.endsWith('.jpg'));
+    if (localFiles.length > 0) slideCount = localFiles.length;
   }
 
-  const files = fs.readdirSync(JPEG_DIR).filter(f => f.endsWith('.jpg')).sort();
-  if (files.length === 0) {
-    console.error('No JPEG files found');
-    process.exit(1);
+  // Generate images if not present locally (needed for GitHub Actions)
+  if (!fs.existsSync(JPEG_DIR) || fs.readdirSync(JPEG_DIR).filter(f => f.endsWith('.jpg')).length === 0) {
+    // Check if images exist on GitHub (they should for all 30 days)
+    const testUrl = getGitHubRawUrl(dayNum, 1);
+    console.log(`Checking if images exist on GitHub: ${testUrl}`);
+    try {
+      const checkRes = await request('GET', testUrl.replace('raw.githubusercontent.com', 'api.github.com/repos/' + GITHUB_REPO + '/contents'));
+      if (checkRes && checkRes.size) {
+        console.log('Images found on GitHub branch - using raw URLs directly');
+      } else {
+        throw new Error('Not found');
+      }
+    } catch {
+      console.log('Images not on GitHub - generating locally...');
+      await generateImages();
+    }
   }
 
-  console.log(`\n=== Posting SQL Day ${dayNum} (${files.length} slides) ===\n`);
+  console.log(`\n=== Posting SQL Day ${dayNum} (${slideCount} slides) ===\n`);
 
-  // Step 1: Create child containers
+  // Step 1: Create child containers using GitHub raw URLs
   console.log('Step 1: Creating child containers...');
   const childIds = [];
-  for (let i = 0; i < files.length; i++) {
-    const filePath = path.join(JPEG_DIR, files[i]);
-    console.log(`  Uploading ${files[i]}...`);
-
-    // Upload to catbox.moe with retry
-    let uploadResult = '';
-    let uploadSuccess = false;
-    for (let retry = 0; retry < 3; retry++) {
-      try {
-        uploadResult = execSync(`curl -s --max-time 60 -F "reqtype=fileupload" -F "fileToUpload=@${filePath}" https://catbox.moe/user/api.php`).toString().trim();
-        if (uploadResult.startsWith('http')) {
-          uploadSuccess = true;
-          break;
-        }
-        console.log(`    Retry ${retry + 1}: got "${uploadResult}"`);
-      } catch (e) {
-        console.log(`    Retry ${retry + 1}: error - ${e.message}`);
-      }
-      await sleep(2000);
-    }
-
-    if (!uploadSuccess) {
-      console.error('Failed to upload after 3 retries');
-      process.exit(1);
-    }
-    console.log(`  URL: ${uploadResult}`);
+  for (let i = 1; i <= slideCount; i++) {
+    const imageUrl = getGitHubRawUrl(dayNum, i);
+    console.log(`  Slide ${i}: ${imageUrl}`);
 
     const res = await request('POST', `https://graph.facebook.com/v21.0/${IG_USER_ID}/media`, {
-      image_url: uploadResult,
+      image_url: imageUrl,
       is_carousel_item: true,
       access_token: ACCESS_TOKEN,
     });
-    console.log(`  Child ${i+1}: ${res.id || JSON.stringify(res)}`);
+    console.log(`  Child ${i}: ${res.id || JSON.stringify(res)}`);
     if (!res.id) { console.error('Failed to create child'); process.exit(1); }
     childIds.push(res.id);
   }
@@ -248,7 +228,7 @@ async function main() {
   // Step 6: Auto-comment
   if (pubRes.id) {
     console.log('\nStep 6: Posting comment...');
-    const commentText = `Day ${dayNum}/30 - Complete series at @code.ry | Next: Day ${dayNum+1 <= 30 ? dayNum+1 : '30'} coming tomorrow!`;
+    const commentText = `Day ${dayNum}/30 — Complete series at @code.ry | Next: Day ${dayNum+1 <= 30 ? dayNum+1 : '30'} coming tomorrow!`;
     const commentRes = await postComment(pubRes.id, commentText);
     console.log('Comment:', JSON.stringify(commentRes));
   }
