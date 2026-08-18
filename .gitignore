@@ -1,12 +1,11 @@
 node_modules/
-output/
+output/day*/slide-*.png
 .env
 .env.*
-*.jpg
-*.png
 carousel-viewer/
 package-lock.json
 .next/
 .vercel/
 dist/
 build/
+poster-logs/

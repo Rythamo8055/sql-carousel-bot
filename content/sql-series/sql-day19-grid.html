@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">Sub-<br><span class="accent">queries</span></div>
-    <div class="subtitle">A mini question inside a bigger one</div>
+    <div class="subtitle">Nest queries inside queries</div>
     <div class="day-block">Day 19</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">A query inside<br>another query</span>
     </div>
-    <div class="description">A subquery is a question inside another question — like "show me students who scored above class average." The inner part runs first.</div>
+    <div class="description">A subquery is a full SELECT statement nested inside another query — usually in WHERE, FROM, or SELECT clauses. It runs first.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -568,13 +568,13 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="section-label">How they work</div>
-    <div class="heading">Query inside<br>a query</div>
+    <div class="heading">Query the<br>query</div>
     <div class="reason-list">
       <div class="reason-item">
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>Runs first</h3>
-          <p>The inner query finishes before the outer one starts</p>
+          <p>The inner query executes, then the outer query uses its result</p>
         </div>
       </div>
 
@@ -582,14 +582,14 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>Returns values</h3>
-          <p>A single number, a list, or a mini-table</p>
+          <p>Single value, a list, or an entire table</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">3</div>
         <div class="reason-text">
-          <h3>Three spots</h3>
+          <h3>Three placements</h3>
           <p>WHERE (filter), FROM (source), SELECT (compute)</p>
         </div>
       </div>
@@ -623,7 +623,7 @@
         <tr><td>2</td><td>Bob</td></tr>
       </tbody>
     </table>
-    <div class="caption">WHERE id IN (SELECT user_id FROM orders) — only users who placed orders appear.</div>
+    <div class="caption">WHERE id IN (SELECT user_id FROM orders) — only users with orders appear.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -646,7 +646,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> <span class="table-name">users</span><br><span class="keyword">WHERE</span> id <span class="keyword">IN</span> (<br>&nbsp;&nbsp;<span class="keyword">SELECT</span> user_id <span class="keyword">FROM</span> <span class="table-name">orders</span><br>);</code>
     </div>
-    <div class="annotation">The inner query finds all user_ids with orders. The outer query keeps only those users. <strong>IN</strong> checks the list.</div>
+    <div class="annotation">The inner query returns all user_ids with orders; the outer query filters users. <strong>IN</strong> checks membership.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">INSERT<br><span class="accent">INTO</span></div>
-    <div class="subtitle">Add new rows to any table</div>
+    <div class="subtitle">Adding Data to Your Tables</div>
     <div class="day-block">Day 06</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Add rows<br>to a table</span>
     </div>
-    <div class="description">INSERT adds new rows — like adding a new contact to your phone. Every signup form runs an INSERT.</div>
+    <div class="description">INSERT adds new rows to a table — one row at a time or many at once. Every signup form runs an INSERT.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -568,13 +568,13 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="section-label">Insert styles</div>
-    <div class="heading">Add new<br>data</div>
+    <div class="heading">Add data<br>your way</div>
     <div class="reason-list">
       <div class="reason-item">
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>Single row</h3>
-          <p>INSERT INTO users (name) VALUES ('Alice')</p>
+          <p>INSERT INTO users (name, email) VALUES ('Alice', 'a@mail.com')</p>
         </div>
       </div>
 
@@ -582,15 +582,15 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>Multiple rows</h3>
-          <p>One command, many rows at once</p>
+          <p>One statement, several VALUES groups — bulk insert</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">3</div>
         <div class="reason-text">
-          <h3>Pick columns</h3>
-          <p>Name the columns — you control what gets stored</p>
+          <h3>Column list</h3>
+          <p>Specify columns so you control exactly what is stored</p>
         </div>
       </div>
     </div>
@@ -624,7 +624,7 @@
         <tr><td>3</td><td>New</td><td>new@mail.com</td><td>2026-08-17</td></tr>
       </tbody>
     </table>
-    <div class="caption">INSERT INTO adds row 3 — every signup form runs this exact query.</div>
+    <div class="caption">INSERT INTO adds row 3 — every signup form runs this query.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -647,7 +647,7 @@
     <div class="code-block">
       <code><span class="keyword">INSERT INTO</span> <span class="table-name">users</span> (name, email)<br><span class="keyword">VALUES</span> (<span class="table-name">'Alice'</span>, <span class="table-name">'alice@mail.com'</span>);</code>
     </div>
-    <div class="annotation">Column order matches VALUES order. The database gives id automatically.</div>
+    <div class="annotation">Column names match the VALUES order. The database assigns id automatically.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

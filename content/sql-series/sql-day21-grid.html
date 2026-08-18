@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">Alias<br><span class="accent">es</span></div>
-    <div class="subtitle">Give columns and tables nicknames</div>
+    <div class="subtitle">Rename for cleaner, readable queries</div>
     <div class="day-block">Day 21</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">A temporary<br>name</span>
     </div>
-    <div class="description">An alias is a nickname — like calling your friend "Rah" instead of "Rahul." Tables and columns get short names just for that query.</div>
+    <div class="description">An alias gives a table or column a temporary new name for that query only — making SQL shorter and results more readable.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -574,7 +574,7 @@
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>Table aliases</h3>
-          <p>FROM users u — short name for the whole query</p>
+          <p>FROM users u — shortens the name for the whole query</p>
         </div>
       </div>
 
@@ -582,7 +582,7 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>Column aliases</h3>
-          <p>SELECT name AS username — rename the output</p>
+          <p>SELECT name AS full_name — renames output columns</p>
         </div>
       </div>
 
@@ -590,7 +590,7 @@
         <div class="reason-num">3</div>
         <div class="reason-text">
           <h3>Calculated fields</h3>
-          <p>AS revenue for SUM(total) — name your math</p>
+          <p>AS revenue for SUM(total) — names your computed values</p>
         </div>
       </div>
     </div>
@@ -623,7 +623,7 @@
         <tr><td>Bob</td><td>Bob</td></tr>
       </tbody>
     </table>
-    <div class="caption">Aliases rename columns — reports read like plain English.</div>
+    <div class="caption">Aliases rename output columns — reports read like plain English.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -647,7 +647,6 @@
       <code><span class="keyword">SELECT</span> u.name <span class="keyword">AS</span> username,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o.total <span class="keyword">AS</span> order_total<br><span class="keyword">FROM</span> <span class="table-name">users</span> u<br><span class="keyword">JOIN</span> <span class="table-name">orders</span> o <span class="keyword">ON</span> u.id = o.user_id;</code>
     </div>
     <div class="annotation">Aliases make results readable: <strong>username</strong> and <strong>order_total</strong> instead of u.name and o.total.</div>
-
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

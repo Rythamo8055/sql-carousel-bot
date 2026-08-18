@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">IN &<br><span class="accent">BETWEEN</span></div>
-    <div class="subtitle">Match lists and number ranges</div>
+    <div class="subtitle">Cleaner filters for multiple values & ranges</div>
     <div class="day-block">Day 12</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Match lists<br>and ranges</span>
     </div>
-    <div class="description">IN checks if a value is in a list — like "is your country India, US, or UK?" BETWEEN checks a range — "is your score between 100 and 500?"</div>
+    <div class="description">IN matches a value against a list of options. BETWEEN matches a value inside an inclusive range. Both make queries cleaner and faster to read.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -574,7 +574,7 @@
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>IN</h3>
-          <p>WHERE country IN ('IN','US','UK') — any match works</p>
+          <p>WHERE country IN ('IN', 'US', 'UK') — matches any listed value</p>
         </div>
       </div>
 
@@ -582,7 +582,7 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>NOT IN</h3>
-          <p>Skip any value in the list</p>
+          <p>Excludes rows that match any value in the list</p>
         </div>
       </div>
 
@@ -590,7 +590,7 @@
         <div class="reason-num">3</div>
         <div class="reason-text">
           <h3>BETWEEN</h3>
-          <p>WHERE total BETWEEN 100 AND 500 — both ends included</p>
+          <p>WHERE total BETWEEN 100 AND 500 — inclusive range</p>
         </div>
       </div>
     </div>
@@ -648,7 +648,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="table-name">orders</span><br><span class="keyword">WHERE</span> region <span class="keyword">IN</span> (<span class="table-name">'APAC'</span>, <span class="table-name">'EU'</span>)<br>&nbsp;&nbsp;<span class="keyword">AND</span> amount <span class="keyword">BETWEEN</span> 1000 <span class="keyword">AND</span> 10000;</code>
     </div>
-    <div class="annotation">One clean line instead of many <strong>OR</strong> conditions. BETWEEN includes both end values.</div>
+    <div class="annotation">One clean query instead of a long chain of <strong>OR</strong> conditions. BETWEEN includes both end values.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

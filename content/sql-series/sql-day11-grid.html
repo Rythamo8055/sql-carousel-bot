@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">AND / OR /<br><span class="accent">NOT</span></div>
-    <div class="subtitle">Mix rules to narrow your search</div>
+    <div class="subtitle">Combine conditions like a pro</div>
     <div class="day-block">Day 11</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Combine<br>conditions</span>
     </div>
-    <div class="description">AND, OR, and NOT are logic buttons — combine them to build smart filters. Like searching "class 10B AND age > 15."</div>
+    <div class="description">Logical operators let you combine multiple conditions in a WHERE clause to build precise filters.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -574,7 +574,7 @@
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>AND</h3>
-          <p>All rules must pass — narrows results</p>
+          <p>All conditions must be true — narrows results</p>
         </div>
       </div>
 
@@ -582,7 +582,7 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>OR</h3>
-          <p>One rule passes — widens results</p>
+          <p>At least one condition true — widens results</p>
         </div>
       </div>
 
@@ -590,7 +590,7 @@
         <div class="reason-num">3</div>
         <div class="reason-text">
           <h3>NOT</h3>
-          <p>Flips a rule — show what doesn't match</p>
+          <p>Reverses a condition — excludes matches</p>
         </div>
       </div>
     </div>
@@ -648,7 +648,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="table-name">users</span><br><span class="keyword">WHERE</span> (age >= 18 <span class="keyword">AND</span> country = <span class="table-name">'IN'</span>)<br>&nbsp;&nbsp;<span class="keyword">OR</span> (role = <span class="table-name">'admin'</span> <span class="keyword">AND NOT</span> banned);</code>
     </div>
-    <div class="annotation">Use <strong>parentheses</strong> to group rules — otherwise SQL may mix up your logic.</div>
+    <div class="annotation">Parentheses control priority — <strong>AND</strong> is evaluated before <strong>OR</strong>. Use them to group logic.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

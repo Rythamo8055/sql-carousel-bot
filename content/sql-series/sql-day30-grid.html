@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">Real<br><span class="accent">Project</span></div>
-    <div class="subtitle">Build a mini Instagram database</div>
+    <div class="subtitle">Build a complete database from scratch</div>
     <div class="day-block">Day 30</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -546,9 +546,9 @@
     <div class="big-eq">
       <span class="term">PROJECT</span>
       <span class="eq-sign">=</span>
-      <span class="meaning">Instagram-like<br>database</span>
+      <span class="meaning">E-commerce store<br>database</span>
     </div>
-    <div class="description">Everything you learned comes together — you'll build a mini Instagram: users, posts, likes, and comments, all with proper types and constraints.</div>
+    <div class="description">Everything you learned comes together: design the schema, create tables with proper types and constraints, insert data, and run complex queries.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -574,7 +574,7 @@
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>Schema design</h3>
-          <p>Plan your tables and relationships first</p>
+          <p>Plan tables & relationships before writing code</p>
         </div>
       </div>
 
@@ -582,7 +582,7 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>Types & constraints</h3>
-          <p>Pick the right types, keys and rules</p>
+          <p>Proper data types, keys, and NOT NULL rules</p>
         </div>
       </div>
 
@@ -590,7 +590,7 @@
         <div class="reason-num">3</div>
         <div class="reason-text">
           <h3>Complex queries</h3>
-          <p>JOINs, CTEs, window functions — all in one</p>
+          <p>JOINs, CTEs, and window functions together</p>
         </div>
       </div>
     </div>
@@ -613,19 +613,19 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="section-label">Final build</div>
-    <div class="heading">Instagram<br>tables</div>
+    <div class="heading">E-commerce<br>tables</div>
     <table class="table-visual">
       <thead>
         <tr><th>table</th><th>purpose</th><th>key</th></tr>
       </thead>
       <tbody>
-        <tr><td>users</td><td>Profiles & accounts</td><td>id PRIMARY KEY</td></tr>
-        <tr><td>posts</td><td>Photos & captions</td><td>id PRIMARY KEY</td></tr>
-        <tr><td>likes</td><td>Heart reactions</td><td>user_id FK</td></tr>
-        <tr><td>comments</td><td>Text on posts</td><td>post_id FK</td></tr>
+        <tr><td>users</td><td>Customers & admins</td><td>id PRIMARY KEY</td></tr>
+        <tr><td>products</td><td>Items for sale</td><td>id PRIMARY KEY</td></tr>
+        <tr><td>orders</td><td>Purchases</td><td>user_id FOREIGN KEY</td></tr>
+        <tr><td>reviews</td><td>Product feedback</td><td>product_id FK</td></tr>
       </tbody>
     </table>
-    <div class="caption">Four tables, real relationships — exactly how Instagram stores data.</div>
+    <div class="caption">Four tables, real relationships — everything you learned in 30 days.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -646,9 +646,9 @@
     <div class="section-label">The build</div>
     <div class="heading">Create the<br>users table</div>
     <div class="code-block">
-      <code><span class="keyword">CREATE TABLE</span> <span class="table-name">users</span> (<br>&nbsp;&nbsp;id <span class="table-name">INT PRIMARY KEY</span>,<br>&nbsp;&nbsp;username <span class="table-name">VARCHAR</span>(50) <span class="keyword">NOT NULL</span>,<br>&nbsp;&nbsp;email <span class="table-name">VARCHAR</span>(255) <span class="keyword">UNIQUE</span>,<br>&nbsp;&nbsp;created_at <span class="table-name">TIMESTAMP</span> <span class="keyword">DEFAULT NOW()</span><br>);</code>
+      <code><span class="keyword">CREATE TABLE</span> <span class="table-name">users</span> (<br>&nbsp;&nbsp;id <span class="table-name">INT PRIMARY KEY</span>,<br>&nbsp;&nbsp;name <span class="table-name">VARCHAR</span>(100) <span class="keyword">NOT NULL</span>,<br>&nbsp;&nbsp;email <span class="table-name">VARCHAR</span>(255) <span class="keyword">UNIQUE</span>,<br>&nbsp;&nbsp;created_at <span class="table-name">TIMESTAMP</span> <span class="keyword">DEFAULT NOW()</span><br>);</code>
     </div>
-    <div class="annotation">Primary keys, NOT NULL, UNIQUE, DEFAULT — every constraint you learned, applied to Instagram's schema.</div>
+    <div class="annotation">Primary keys, NOT NULL, UNIQUE, DEFAULT — constraints you learned across the series, applied.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

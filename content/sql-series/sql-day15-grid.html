@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">GROUP<br><span class="accent">BY</span></div>
-    <div class="subtitle">Sort classmates by house, then count</div>
+    <div class="subtitle">Split data into groups, then summarize</div>
     <div class="day-block">Day 15</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Group rows, then<br>aggregate per group</span>
     </div>
-    <div class="description">GROUP BY splits rows by a column — like sorting classmates by house color — then runs COUNT or SUM on each group.</div>
+    <div class="description">GROUP BY splits your data into groups based on a column, then lets you run aggregate functions on each group separately.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -575,23 +575,22 @@
         <div class="reason-text">
           <h3>GROUP BY + COUNT</h3>
           <p>Count users per country — one row per group</p>
-
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">2</div>
         <div class="reason-text">
-          <h3>HAVING</h3>
-          <p>Filter groups AFTER counting — WHERE filters before</p>
+          <h3>HAVING clause</h3>
+          <p>Filter groups AFTER aggregation — WHERE filters before</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">3</div>
         <div class="reason-text">
-          <h3>Multi-column</h3>
-          <p>GROUP BY country, role — deeper breakdowns</p>
+          <h3>Multiple columns</h3>
+          <p>GROUP BY country, role — subgroups for deeper analysis</p>
         </div>
       </div>
     </div>
@@ -625,7 +624,7 @@
         <tr><td>UK</td><td>42</td></tr>
       </tbody>
     </table>
-    <div class="caption">GROUP BY country → one row per country. HAVING COUNT(*) > 50 keeps big groups only.</div>
+    <div class="caption">GROUP BY country → one row per country. HAVING COUNT(*) > 50 → IN, US only.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -648,7 +647,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span> country, <span class="table-name">COUNT</span>(*) <span class="keyword">AS</span> users<br><span class="keyword">FROM</span> <span class="table-name">users</span><br><span class="keyword">GROUP BY</span> country<br><span class="keyword">HAVING</span> <span class="table-name">COUNT</span>(*) > 50;</code>
     </div>
-    <div class="annotation"><strong>GROUP BY</strong> creates groups, <strong>HAVING</strong> filters which groups stay. Only 50+ user countries appear.</div>
+    <div class="annotation"><strong>GROUP BY</strong> groups rows, <strong>HAVING</strong> filters the groups. Only countries with 50+ users appear.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

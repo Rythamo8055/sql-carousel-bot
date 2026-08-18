@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">JOIN<br><span class="accent">Basics</span></div>
-    <div class="subtitle">Merge two tables using roll numbers</div>
+    <div class="subtitle">Combine data from multiple tables</div>
     <div class="day-block">Day 16</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Combine rows from<br>two or more tables</span>
     </div>
-    <div class="description">A JOIN merges two tables using a shared column — like linking your attendance register with your marks sheet using roll numbers.</div>
+    <div class="description">A JOIN combines rows from two tables using a related column — usually a primary key matching a foreign key.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -573,24 +573,24 @@
       <div class="reason-item">
         <div class="reason-num">1</div>
         <div class="reason-text">
-          <h3>Add columns</h3>
-          <p>Pull names from another table — orders + customers</p>
+          <h3>Combine horizontally</h3>
+          <p>Add columns from another table — orders + customer names</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">2</div>
         <div class="reason-text">
-          <h3>Link with keys</h3>
-          <p>ON orders.customer_id = customers.id — the join column</p>
+          <h3>Use key relationships</h3>
+          <p>ON orders.customer_id = customers.id — the linking column</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">3</div>
         <div class="reason-text">
-          <h3>Real apps need them</h3>
-          <p>Every database uses JOINs to connect data</p>
+          <h3>Essential for real apps</h3>
+          <p>Relational databases are built around JOINs</p>
         </div>
       </div>
     </div>
@@ -647,7 +647,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span> orders.id, customers.name<br><span class="keyword">FROM</span> <span class="table-name">orders</span><br><span class="keyword">INNER JOIN</span> <span class="table-name">customers</span><br><span class="keyword">ON</span> orders.customer_id = customers.id;</code>
     </div>
-    <div class="annotation"><strong>INNER JOIN</strong> returns only matching rows. The <strong>ON</strong> clause defines how tables connect.</div>
+    <div class="annotation"><strong>INNER JOIN</strong> returns only matching rows. The <strong>ON</strong> clause defines how the tables relate.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

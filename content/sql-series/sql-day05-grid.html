@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">LIMIT &<br><span class="accent">OFFSET</span></div>
-    <div class="subtitle">Show only first 10 results</div>
+    <div class="subtitle">Control How Many Rows You Get</div>
     <div class="day-block">Day 05</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Cap how many<br>rows return</span>
     </div>
-    <div class="description">LIMIT is like showing only the first 10 results. OFFSET skips rows first — together they power every "load more" button.</div>
+    <div class="description">LIMIT caps the number of rows returned. OFFSET skips rows first — together they power pagination everywhere.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -568,13 +568,13 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="section-label">How they work</div>
-    <div class="heading">Page<br>through data</div>
+    <div class="heading">Page your<br>data</div>
     <div class="reason-list">
       <div class="reason-item">
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>LIMIT n</h3>
-          <p>Only return the first n rows</p>
+          <p>Return only the first n rows</p>
         </div>
       </div>
 
@@ -582,15 +582,15 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>OFFSET n</h3>
-          <p>Skip first n rows, then return</p>
+          <p>Skip the first n rows, then return</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">3</div>
         <div class="reason-text">
-          <h3>Top N</h3>
-          <p>LIMIT 10 + ORDER BY = top 10 list</p>
+          <h3>Top N queries</h3>
+          <p>LIMIT 10 with ORDER BY = top 10 list</p>
         </div>
       </div>
     </div>
@@ -624,7 +624,7 @@
         <tr><td>Page 3</td><td>10</td><td>20</td></tr>
       </tbody>
     </table>
-    <div class="caption">LIMIT 10 OFFSET 10 — how apps load your feed one page at a time.</div>
+    <div class="caption">LIMIT 10 OFFSET 10 — how apps load feeds one page at a time.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -647,7 +647,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="table-name">users</span><br><span class="keyword">ORDER BY</span> id<br><span class="keyword">LIMIT</span> 10 <span class="keyword">OFFSET</span> 10;</code>
     </div>
-    <div class="annotation">Skips 10 rows, returns the next 10 — exactly how <strong>page 2</strong> of Instagram loads.</div>
+    <div class="annotation">Skips 10 rows, returns the next 10 — exactly how <strong>page 2</strong> of a feed loads.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

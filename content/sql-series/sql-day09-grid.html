@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">Data<br><span class="accent">Types</span></div>
-    <div class="subtitle">What kind of data goes where</div>
+    <div class="subtitle">Choosing the right type for every column</div>
     <div class="day-block">Day 09</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Column types<br>that define values</span>
     </div>
-    <div class="description">Every column has a type — like labeling boxes "shoes" or "books." The database uses it to store the right kind of data.</div>
+    <div class="description">Every column in a table has a data type — it tells the database what kind of value it can hold: numbers, text, dates, or booleans.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -568,29 +568,29 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="section-label">Three families</div>
-    <div class="heading">Three big<br>families</div>
+    <div class="heading">Pick the<br>right type</div>
     <div class="reason-list">
       <div class="reason-item">
         <div class="reason-num">1</div>
         <div class="reason-text">
-          <h3>Numbers</h3>
-          <p>INT, FLOAT, DECIMAL — whole numbers & money</p>
+          <h3>Numeric Types</h3>
+          <p>INT, BIGINT, FLOAT, DECIMAL — for whole numbers, decimals & money</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">2</div>
         <div class="reason-text">
-          <h3>Text</h3>
-          <p>VARCHAR, CHAR, TEXT — names, emails, bios</p>
+          <h3>String Types</h3>
+          <p>VARCHAR, CHAR, TEXT — for names, emails, descriptions</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">3</div>
         <div class="reason-text">
-          <h3>Dates & Times</h3>
-          <p>DATE, TIMESTAMP — birthdays, post times, deadlines</p>
+          <h3>Date & Time</h3>
+          <p>DATE, TIME, TIMESTAMP — for birthdays, logs, deadlines</p>
         </div>
       </div>
     </div>
@@ -626,7 +626,7 @@
         <tr><td>is_active</td><td>BOOLEAN</td><td>TRUE</td></tr>
       </tbody>
     </table>
-    <div class="caption">Each column declares its type — the database rejects wrong data.</div>
+    <div class="caption">Every column declares its type — the database enforces it.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -649,7 +649,7 @@
     <div class="code-block">
       <code><span class="keyword">CREATE TABLE</span> <span class="table-name">products</span> (<br>&nbsp;&nbsp;id <span class="table-name">INT</span>,<br>&nbsp;&nbsp;price <span class="table-name">DECIMAL</span>(10, 2),<br>&nbsp;&nbsp;stock <span class="table-name">INT</span><br>);</code>
     </div>
-    <div class="annotation">Each column picks its type: <strong>INT</strong> for id, <strong>DECIMAL</strong> for price, <strong>INT</strong> for stock count.</div>
+    <div class="annotation">Each column declares its type: <strong>INT</strong> for id, <strong>DECIMAL(10,2)</strong> for money, <strong>INT</strong> for stock.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

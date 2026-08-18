@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">String<br><span class="accent">Functions</span></div>
-    <div class="subtitle">Cut, merge, and clean text</div>
+    <div class="subtitle">Transform and manipulate text</div>
     <div class="day-block">Day 24</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Manipulate<br>text data</span>
     </div>
-    <div class="description">String functions let you merge first + last name, trim spaces, and change case — like formatting a contact list.</div>
+    <div class="description">String functions help you merge, extract, clean, and transform text — from building full names to cleaning messy data.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -574,7 +574,7 @@
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>CONCAT()</h3>
-          <p>Join strings — first + last = full name</p>
+          <p>Merge strings — first + last name into full name</p>
         </div>
       </div>
 
@@ -582,7 +582,7 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>SUBSTRING()</h3>
-          <p>Pull out a slice of text</p>
+          <p>Extract a portion of text — a slice of a string</p>
         </div>
       </div>
 
@@ -590,7 +590,7 @@
         <div class="reason-num">3</div>
         <div class="reason-text">
           <h3>UPPER / LOWER / LENGTH</h3>
-          <p>Change case or count letters</p>
+          <p>Change case or count characters</p>
         </div>
       </div>
     </div>
@@ -623,7 +623,7 @@
         <tr><td>Bob</td><td>Lee</td><td>Bob Lee</td></tr>
       </tbody>
     </table>
-    <div class="caption">CONCAT(first, ' ', last) builds full names from separate columns.</div>
+    <div class="caption">CONCAT(first, ' ', last) AS full_name — clean display names from parts.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -646,7 +646,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span><br>&nbsp;&nbsp;<span class="table-name">CONCAT</span>(first_name, <span class="table-name">' '</span>, last_name)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">AS</span> full_name<br><span class="keyword">FROM</span> <span class="table-name">users</span>;</code>
     </div>
-    <div class="annotation"><strong>CONCAT</strong> joins strings with a space. Clean names from two columns in one shot.</div>
+    <div class="annotation"><strong>CONCAT</strong> joins strings with a space. Clean display names from separate columns in one query.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

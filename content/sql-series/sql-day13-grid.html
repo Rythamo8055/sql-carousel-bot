@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">LIKE<br><span class="accent">Pattern</span></div>
-    <div class="subtitle">Search text with wildcards</div>
+    <div class="subtitle">Flexible text matching with wildcards</div>
     <div class="day-block">Day 13</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Pattern<br>matching</span>
     </div>
-    <div class="description">LIKE is your search bar — type part of a name, and it finds matches. Use % and _ as wildcards.</div>
+    <div class="description">LIKE searches text using wildcards — perfect for search bars, filters, and finding partial matches in strings.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -568,29 +568,29 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="section-label">The two wildcards</div>
-    <div class="heading">Search by<br>pattern</div>
+    <div class="heading">Match any<br>text pattern</div>
     <div class="reason-list">
       <div class="reason-item">
         <div class="reason-num">1</div>
         <div class="reason-text">
-          <h3>% wildcard</h3>
-          <p>Matches any text — 'J%' finds all J names</p>
+          <h3>% Wildcard</h3>
+          <p>Matches any number of characters — 'J%' finds names starting with J</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">2</div>
         <div class="reason-text">
-          <h3>_ wildcard</h3>
-          <p>Exactly one character — '_a_' finds 3-letter names with "a" in middle</p>
+          <h3>_ Wildcard</h3>
+          <p>Matches exactly ONE character — '_a_' finds 3-letter names with a in middle</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">3</div>
         <div class="reason-text">
-          <h3>Mix them</h3>
-          <p>'%son' finds anything ending in "son"</p>
+          <h3>Combined</h3>
+          <p>Use both together: '%son' finds anything ending with "son"</p>
         </div>
       </div>
     </div>
@@ -648,7 +648,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="table-name">users</span><br><span class="keyword">WHERE</span> email <span class="keyword">LIKE</span> <span class="table-name">'%@gmail.com'</span>;<br><br><span class="keyword">WHERE</span> name <span class="keyword">LIKE</span> <span class="table-name">'%rahul%'</span>;</code>
     </div>
-    <div class="annotation"><strong>%</strong> = any text. <strong>_</strong> = one character. Like typing in WhatsApp search.</div>
+    <div class="annotation"><strong>%</strong> = any characters. <strong>_</strong> = exactly one. Use LIKE for flexible text searches.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">LEFT<br><span class="accent">JOIN</span></div>
-    <div class="subtitle">Keep everyone, match what you can</div>
+    <div class="subtitle">Keep all rows from the left table</div>
     <div class="day-block">Day 17</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">All left rows +<br>matching right rows</span>
     </div>
-    <div class="description">LEFT JOIN shows every row from the left table, even if there's no match. Unmatched columns show NULL — like a student with no marks yet.</div>
+    <div class="description">LEFT JOIN returns every row from the left table, plus matching rows from the right table. Unmatched right values become NULL.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -574,7 +574,7 @@
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>LEFT JOIN</h3>
-          <p>All left rows + matching right rows</p>
+          <p>All rows from left table, matching rows from right</p>
         </div>
       </div>
 
@@ -582,7 +582,7 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>RIGHT JOIN</h3>
-          <p>All right rows + matching left rows</p>
+          <p>All rows from right table, matching rows from left</p>
         </div>
       </div>
 
@@ -590,7 +590,7 @@
         <div class="reason-num">3</div>
         <div class="reason-text">
           <h3>FULL JOIN</h3>
-          <p>Everything from both sides — NULLs where no match</p>
+          <p>All rows from both tables, NULLs where no match</p>
         </div>
       </div>
     </div>
@@ -624,7 +624,7 @@
         <tr><td>Carol</td><td>102</td><td>480.00</td></tr>
       </tbody>
     </table>
-    <div class="caption">LEFT JOIN keeps Bob even without orders — his order columns show NULL.</div>
+    <div class="caption">LEFT JOIN keeps Bob even with no orders — his order columns are NULL.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -647,7 +647,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span> users.name, orders.total<br><span class="keyword">FROM</span> <span class="table-name">users</span><br><span class="keyword">LEFT JOIN</span> <span class="table-name">orders</span><br><span class="keyword">ON</span> users.id = orders.user_id;</code>
     </div>
-    <div class="annotation">Every user shows up — <strong>order columns are NULL</strong> for users who never ordered.</div>
+    <div class="annotation">Every user appears even without orders — <strong>order columns are NULL</strong> for users with no orders.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">Trans-<br><span class="accent">actions</span></div>
-    <div class="subtitle">Sending pocket money — all or nothing</div>
+    <div class="subtitle">Ensure data integrity</div>
     <div class="day-block">Day 29</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">All-or-nothing<br>operations</span>
     </div>
-    <div class="description">A transaction is like sending pocket money to a friend — either both accounts update or nothing happens. No half money.</div>
+    <div class="description">A transaction groups operations so they ALL succeed or ALL fail. Think bank transfer — money leaves one account AND arrives in another.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -574,7 +574,7 @@
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>Atomicity</h3>
-          <p>All steps pass or all steps undo</p>
+          <p>All operations succeed, or none do</p>
         </div>
       </div>
 
@@ -582,7 +582,7 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>Consistency</h3>
-          <p>Data always stays in a valid state</p>
+          <p>Data moves between valid states only</p>
         </div>
       </div>
 
@@ -590,7 +590,7 @@
         <div class="reason-num">3</div>
         <div class="reason-text">
           <h3>Isolation & Durability</h3>
-          <p>Safe when multiple people use the database</p>
+          <p>Concurrent transactions don't interfere; committed data survives</p>
         </div>
       </div>
     </div>

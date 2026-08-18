@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">Aggregate<br><span class="accent">Functions</span></div>
-    <div class="subtitle">Count, sum, and average your rows</div>
+    <div class="subtitle">Summarize data with powerful built-ins</div>
     <div class="day-block">Day 14</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Summarize many<br>rows into one</span>
     </div>
-    <div class="description">Aggregate functions crunch many rows into one number — like counting classmates, adding scores, or finding the class topper.</div>
+    <div class="description">Aggregate functions take many rows and return a single summary value — counts, totals, averages, and extremes.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -575,7 +575,6 @@
         <div class="reason-text">
           <h3>COUNT()</h3>
           <p>Count rows — COUNT(*), COUNT(email), COUNT(DISTINCT country)</p>
-
         </div>
       </div>
 
@@ -583,7 +582,7 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>SUM() & AVG()</h3>
-          <p>Add values or find the middle score</p>
+          <p>Add values or find the average across rows</p>
         </div>
       </div>
 
@@ -591,7 +590,7 @@
         <div class="reason-num">3</div>
         <div class="reason-text">
           <h3>MIN() & MAX()</h3>
-          <p>Smallest or largest value — cheapest item, highest score</p>
+          <p>Find the smallest or largest value — prices, dates</p>
         </div>
       </div>
     </div>
@@ -626,7 +625,7 @@
         <tr><td>4</td><td>completed</td><td>210.75</td></tr>
       </tbody>
     </table>
-    <div class="caption">COUNT(*) = 4 rows · SUM(completed) = 420.25 · AVG = 140.08</div>
+    <div class="caption">COUNT(*) = 4 · SUM(total) for completed = 420.25 · AVG = 140.08</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -649,7 +648,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span><br>&nbsp;&nbsp;<span class="table-name">SUM</span>(total) <span class="keyword">AS</span> revenue,<br>&nbsp;&nbsp;<span class="table-name">AVG</span>(total) <span class="keyword">AS</span> avg_order<br><span class="keyword">FROM</span> <span class="table-name">orders</span><br><span class="keyword">WHERE</span> status = <span class="table-name">'completed'</span>;</code>
     </div>
-    <div class="annotation"><strong>SUM</strong> adds up numbers, <strong>AVG</strong> finds the average. Aggregates skip NULL values.</div>
+    <div class="annotation"><strong>SUM</strong> adds the total column, <strong>AVG</strong> finds the average order. Aggregates ignore NULL values.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

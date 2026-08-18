@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">SELECT<br><span class="accent">Basics</span></div>
-    <div class="subtitle">Pull data from any table</div>
+    <div class="subtitle">Retrieving Data from Tables</div>
     <div class="day-block">Day 02</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Read data<br>from tables</span>
     </div>
-    <div class="description">SELECT is like opening a contacts app. You pick who shows up — everyone, specific people, or just friends in your class.</div>
+    <div class="description">SELECT is the most-used SQL command. It reads data from a table — all columns, specific columns, or filtered rows.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -574,23 +574,23 @@
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>SELECT *</h3>
-          <p>Grabs everything — quick but heavy</p>
+          <p>Grab every column — quick, but heavy</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">2</div>
         <div class="reason-text">
-          <h3>Pick columns</h3>
-          <p>Only grab what you need — faster</p>
+          <h3>SELECT columns</h3>
+          <p>Pick only what you need — faster queries</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">3</div>
         <div class="reason-text">
-          <h3>Add WHERE</h3>
-          <p>Filter rows — show only what matches</p>
+          <h3>With WHERE</h3>
+          <p>Add conditions to read only matching rows</p>
         </div>
       </div>
     </div>
@@ -624,7 +624,7 @@
         <tr><td>3</td><td>Charlie</td><td>charlie@mail.com</td><td>user</td></tr>
       </tbody>
     </table>
-    <div class="caption">Every screen you see loads data this way — SELECT pulls rows from a table.</div>
+    <div class="caption">SELECT reads rows like these — every screen loads data this way.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -647,7 +647,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span> name, email<br><span class="keyword">FROM</span> <span class="table-name">users</span>;</code>
     </div>
-    <div class="annotation">List columns separated by <strong>commas</strong>. Only those columns come back — faster than <strong>*</strong>.</div>
+    <div class="annotation">List column names separated by <strong>commas</strong>. Only those columns are returned — more efficient than <strong>*</strong>.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

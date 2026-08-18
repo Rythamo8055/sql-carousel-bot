@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">DELETE<br><span class="accent">Statements</span></div>
-    <div class="subtitle">Remove rows the safe way</div>
+    <div class="subtitle">Removing Data Safely</div>
     <div class="day-block">Day 08</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Remove rows<br>from a table</span>
     </div>
-    <div class="description">DELETE removes rows forever. Like UPDATE, always add WHERE — without it, the whole table is gone.</div>
+    <div class="description">DELETE removes rows permanently. Like UPDATE, it needs WHERE — without it, you delete the entire table.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -568,21 +568,21 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="section-label">Delete safely</div>
-    <div class="heading">Remove<br>with care</div>
+    <div class="heading">Remove with<br>care</div>
     <div class="reason-list">
       <div class="reason-item">
         <div class="reason-num">1</div>
         <div class="reason-text">
-          <h3>Always add WHERE</h3>
-          <p>DELETE FROM users WHERE id = 3 — targets one row</p>
+          <h3>Always use WHERE</h3>
+          <p>DELETE FROM users WHERE id = 3 — target one row</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">2</div>
         <div class="reason-text">
-          <h3>Preview first</h3>
-          <p>Run SELECT to see which rows match before deleting</p>
+          <h3>Test with SELECT</h3>
+          <p>Run SELECT first to confirm which rows match</p>
         </div>
       </div>
 
@@ -590,7 +590,7 @@
         <div class="reason-num">3</div>
         <div class="reason-text">
           <h3>TRUNCATE vs DELETE</h3>
-          <p>TRUNCATE wipes all rows instantly; DELETE removes one by one</p>
+          <p>TRUNCATE clears all rows instantly; DELETE is row-by-row</p>
         </div>
       </div>
     </div>
@@ -647,7 +647,7 @@
     <div class="code-block">
       <code><span class="keyword">DELETE FROM</span> <span class="table-name">users</span><br><span class="keyword">WHERE</span> id = 3;</code>
     </div>
-    <div class="annotation">Only <strong>id = 3</strong> is removed. No WHERE = everything deleted. Always double-check!</div>
+    <div class="annotation">Only row <strong>id = 3</strong> is removed. No WHERE = all rows gone. Always double-check!</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

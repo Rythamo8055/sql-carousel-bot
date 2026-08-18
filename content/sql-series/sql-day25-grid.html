@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">Window<br><span class="accent">Functions</span></div>
-    <div class="subtitle">Rank rows without hiding any</div>
+    <div class="subtitle">Advanced analytics across related rows</div>
     <div class="day-block">Day 25</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Calculate across<br>related rows</span>
     </div>
-    <div class="description">Window functions add extra info to every row — like ranking all students by marks while keeping everyone visible.</div>
+    <div class="description">Window functions compute values across a set of related rows WITHOUT collapsing them — keeping every row visible while adding rankings, running totals and more.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -574,7 +574,7 @@
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>ROW_NUMBER()</h3>
-          <p>Give every row a unique rank number</p>
+          <p>Assigns sequential numbers to rows</p>
         </div>
       </div>
 
@@ -582,7 +582,7 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>RANK() / DENSE_RANK()</h3>
-          <p>Rank rows — ties get the same number</p>
+          <p>Rank rows with different tie-breaking behavior</p>
         </div>
       </div>
 
@@ -590,7 +590,7 @@
         <div class="reason-num">3</div>
         <div class="reason-text">
           <h3>OVER() clause</h3>
-          <p>PARTITION BY groups, ORDER BY sorts inside</p>
+          <p>PARTITION BY divides groups, ORDER BY sequences them</p>
         </div>
       </div>
     </div>
@@ -647,7 +647,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span> name, score,<br>&nbsp;&nbsp;<span class="table-name">ROW_NUMBER</span>() <span class="keyword">OVER</span><br>&nbsp;&nbsp;&nbsp;&nbsp;(<span class="keyword">ORDER BY</span> score <span class="keyword">DESC</span>) <span class="keyword">AS</span> rank<br><span class="keyword">FROM</span> <span class="table-name">students</span>;</code>
     </div>
-    <div class="annotation">Each row keeps its data but gets a <strong>rank</strong>. Add PARTITION BY to rank inside groups.</div>
+    <div class="annotation">Each row keeps its data but gets a <strong>rank</strong>. Add PARTITION BY to rank within groups.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">WHERE<br><span class="accent">Clauses</span></div>
-    <div class="subtitle">Show me only what I need</div>
+    <div class="subtitle">Filtering Data Like a Pro</div>
     <div class="day-block">Day 03</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Filter rows<br>by condition</span>
     </div>
-    <div class="description">WHERE is like searching your contacts for "only friends in class 10B." Only matching rows come back.</div>
+    <div class="description">WHERE filters rows before they are returned. Only rows that match the condition appear in the result.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -568,29 +568,29 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="section-label">Comparison operators</div>
-    <div class="heading">Filter<br>your data</div>
+    <div class="heading">Filter like<br>a pro</div>
     <div class="reason-list">
       <div class="reason-item">
         <div class="reason-num">1</div>
         <div class="reason-text">
-          <h3>= Exact match</h3>
-          <p>WHERE role = 'admin' — finds exactly 'admin'</p>
+          <h3>= Equal</h3>
+          <p>WHERE role = 'Admin' — exact match</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">2</div>
         <div class="reason-text">
-          <h3>Bigger / smaller</h3>
-          <p>WHERE age > 25 — compare numbers</p>
+          <h3>> < >= <=</h3>
+          <p>WHERE age > 25 — numeric comparisons</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">3</div>
         <div class="reason-text">
-          <h3>Not equal</h3>
-          <p>WHERE status <> 'banned' — skip these</p>
+          <h3><> Not equal</h3>
+          <p>WHERE status <> 'banned' — exclude values</p>
         </div>
       </div>
     </div>
@@ -625,7 +625,7 @@
         <tr><td>Dan</td><td>19</td><td>UK</td><td>free</td></tr>
       </tbody>
     </table>
-    <div class="caption">WHERE plan = 'premium' shows only Alice & Carol. Filters power every dashboard.</div>
+    <div class="caption">WHERE plan = 'premium' → only Alice & Carol. Filters power dashboards.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -648,7 +648,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span> name, role<br><span class="keyword">FROM</span> <span class="table-name">users</span><br><span class="keyword">WHERE</span> role = <span class="table-name">'admin'</span>;</code>
     </div>
-    <div class="annotation"><strong>WHERE</strong> is a funnel — only rows that match your condition pass through.</div>
+    <div class="annotation"><strong>WHERE</strong> keeps only rows matching the condition. Think of it as a funnel for your data.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

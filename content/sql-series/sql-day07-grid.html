@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">UPDATE<br><span class="accent">Statements</span></div>
-    <div class="subtitle">Change what's already saved</div>
+    <div class="subtitle">Modifying Existing Data</div>
     <div class="day-block">Day 07</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Change rows<br>in a table</span>
     </div>
-    <div class="description">UPDATE changes saved data — like editing your profile bio. Always add WHERE or it changes EVERY row.</div>
+    <div class="description">UPDATE changes values in existing rows. Always pair it with WHERE — without one, it updates EVERY row.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -568,29 +568,29 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="section-label">Update rules</div>
-    <div class="heading">Change<br>saved data</div>
+    <div class="heading">Edit like<br>a pro</div>
     <div class="reason-list">
       <div class="reason-item">
         <div class="reason-num">1</div>
         <div class="reason-text">
-          <h3>SET = new value</h3>
-          <p>Tell SQL what to change</p>
+          <h3>SET column = value</h3>
+          <p>Define what changes and to what</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">2</div>
         <div class="reason-text">
-          <h3>WHERE is key</h3>
-          <p>Without WHERE, every row changes!</p>
+          <h3>WHERE is critical</h3>
+          <p>Without WHERE, every row gets updated!</p>
         </div>
       </div>
 
       <div class="reason-item">
         <div class="reason-num">3</div>
         <div class="reason-text">
-          <h3>Multi-column</h3>
-          <p>SET a = 1, b = 2 — change several at once</p>
+          <h3>Multiple columns</h3>
+          <p>SET a = 1, b = 2 — update several at once</p>
         </div>
       </div>
     </div>
@@ -624,7 +624,7 @@
         <tr><td>3</td><td>Carol</td><td>free</td><td>premium</td></tr>
       </tbody>
     </table>
-    <div class="caption">UPDATE users SET plan='premium' WHERE id=1 — upgrading one user's plan.</div>
+    <div class="caption">UPDATE users SET plan='premium' WHERE id=1 — upgrading a plan.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -647,7 +647,7 @@
     <div class="code-block">
       <code><span class="keyword">UPDATE</span> <span class="table-name">users</span><br><span class="keyword">SET</span> role = <span class="table-name">'admin'</span><br><span class="keyword">WHERE</span> id = 1;</code>
     </div>
-    <div class="annotation">Only <strong>id = 1</strong> changes. WHERE keeps updates targeted and safe.</div>
+    <div class="annotation">Only the row with <strong>id = 1</strong> changes. The WHERE clause makes updates safe.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

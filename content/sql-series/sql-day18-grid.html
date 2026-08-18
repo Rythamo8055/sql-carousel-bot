@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">Multiple<br><span class="accent">JOINs</span></div>
-    <div class="subtitle">Connect three or more tables</div>
+    <div class="subtitle">Chain three or more tables together</div>
     <div class="day-block">Day 18</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Join 3+ tables<br>in one query</span>
     </div>
-    <div class="description">Real apps pull data from many tables. Chain JOINs together — like combining attendance + marks + project scores in one view.</div>
+    <div class="description">Real apps need data from many tables. You chain JOINs one after another to connect three, four, or more tables.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -574,7 +574,7 @@
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>Start with the main table</h3>
-          <p>The core entity — users, orders, products</p>
+          <p>The core entity — orders, users, products</p>
         </div>
       </div>
 
@@ -582,7 +582,7 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>Add JOINs one by one</h3>
-          <p>Each JOIN adds one more table</p>
+          <p>Each JOIN connects one more related table</p>
         </div>
       </div>
 
@@ -590,7 +590,7 @@
         <div class="reason-num">3</div>
         <div class="reason-text">
           <h3>Use aliases</h3>
-          <p>Short names (o, c, p) keep queries readable</p>
+          <p>Short names (o, c, p) keep long queries readable</p>
         </div>
       </div>
     </div>
@@ -624,7 +624,7 @@
         <tr><td>103</td><td>Carol</td><td>Keyboard</td><td>1</td></tr>
       </tbody>
     </table>
-    <div class="caption">Two JOINs merge three tables. Aliases (o, c, p) keep the query clean.</div>
+    <div class="caption">Two JOINs chain three tables. Aliases (o, c, p) keep it readable.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -647,7 +647,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span> o.id, c.name, p.title<br><span class="keyword">FROM</span> <span class="table-name">orders</span> o<br><span class="keyword">JOIN</span> <span class="table-name">customers</span> c <span class="keyword">ON</span> o.customer_id = c.id<br><span class="keyword">JOIN</span> <span class="table-name">products</span> p <span class="keyword">ON</span> o.product_id = p.id;</code>
     </div>
-    <div class="annotation">Two JOINs, three tables. Aliases <strong>o, c, p</strong> make the query short and clean.</div>
+    <div class="annotation">Two JOINs, three tables. Aliases <strong>o, c, p</strong> keep the query clean. Star schemas work this way.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

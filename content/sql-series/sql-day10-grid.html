@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">NULL<br><span class="accent">Values</span></div>
-    <div class="subtitle">Empty slots in your data</div>
+    <div class="subtitle">The missing data mystery in SQL</div>
     <div class="day-block">Day 10</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">No value —<br>unknown data</span>
     </div>
-    <div class="description">NULL means "nothing here" — like an empty phone number slot. It's not zero, not blank — it's just missing.</div>
+    <div class="description">NULL means "no value" or "unknown." It is NOT zero, NOT an empty string — it is the complete absence of data.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -568,13 +568,13 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="section-label">Handle missing data</div>
-    <div class="heading">NULL plays<br>by its rules</div>
+    <div class="heading">NULL is<br>special</div>
     <div class="reason-list">
       <div class="reason-item">
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>IS NULL</h3>
-          <p>Find rows with empty slots</p>
+          <p>Find rows where a column has no value</p>
         </div>
       </div>
 
@@ -582,7 +582,7 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>IS NOT NULL</h3>
-          <p>Find rows that actually have data</p>
+          <p>Find rows that DO have a value</p>
         </div>
       </div>
 
@@ -590,7 +590,7 @@
         <div class="reason-num">3</div>
         <div class="reason-text">
           <h3>COALESCE()</h3>
-          <p>Swap NULL for a fallback value</p>
+          <p>Return the first non-NULL value from a list</p>
         </div>
       </div>
     </div>
@@ -624,7 +624,7 @@
         <tr><td>3</td><td>Charlie</td><td>NULL</td><td>NULL</td></tr>
       </tbody>
     </table>
-    <div class="caption">Bob's phone is empty. Charlie's phone AND email are both NULL.</div>
+    <div class="caption">Bob has no phone. Charlie has neither — both are NULL, not empty strings.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -647,7 +647,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="table-name">users</span><br><span class="keyword">WHERE</span> phone <span class="keyword">IS NULL</span>;</code>
     </div>
-    <div class="annotation">Never use <strong>= NULL</strong> — it won't work. Always use <strong>IS NULL</strong> to find missing data.</div>
+    <div class="annotation">You cannot use <strong>= NULL</strong> — NULL = NULL evaluates to UNKNOWN. Always use <strong>IS NULL</strong>.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

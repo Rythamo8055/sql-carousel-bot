@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">CASE<br><span class="accent">Statements</span></div>
-    <div class="subtitle">If-rainy-take-umbrella logic</div>
+    <div class="subtitle">IF-THEN-ELSE logic in SQL</div>
     <div class="day-block">Day 22</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Conditional logic<br>in queries</span>
     </div>
-    <div class="description">CASE is like deciding "if it's rainy, take umbrella; else wear sunglasses." SQL checks conditions and returns different answers.</div>
+    <div class="description">CASE is SQL's version of if-else. It evaluates conditions and returns different values depending on the result.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -574,7 +574,7 @@
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>Simple CASE</h3>
-          <p>Check a column against specific values</p>
+          <p>Compare a column against specific values</p>
         </div>
       </div>
 
@@ -582,7 +582,7 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>Searched CASE</h3>
-          <p>Check multiple conditions one by one</p>
+          <p>Evaluate multiple conditions in sequence</p>
         </div>
       </div>
 
@@ -590,7 +590,7 @@
         <div class="reason-num">3</div>
         <div class="reason-text">
           <h3>Nested CASE</h3>
-          <p>CASE inside CASE for tricky logic</p>
+          <p>CASE inside CASE for complex logic</p>
         </div>
       </div>
     </div>
@@ -624,7 +624,7 @@
         <tr><td>Carol</td><td>55</td><td>F</td></tr>
       </tbody>
     </table>
-    <div class="caption">CASE WHEN score >= 90 THEN 'A' ... ELSE 'F' END — grades computed in SQL.</div>
+    <div class="caption">CASE WHEN score >= 90 THEN 'A' … ELSE 'F' END — labels computed in SQL.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -647,7 +647,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span> name,<br><span class="keyword">CASE</span><br>&nbsp;&nbsp;<span class="keyword">WHEN</span> score >= 90 <span class="keyword">THEN</span> <span class="table-name">'A'</span><br>&nbsp;&nbsp;<span class="keyword">WHEN</span> score >= 75 <span class="keyword">THEN</span> <span class="table-name">'B'</span><br>&nbsp;&nbsp;<span class="keyword">ELSE</span> <span class="table-name">'F'</span><br><span class="keyword">END</span> <span class="keyword">AS</span> grade<br><span class="keyword">FROM</span> <span class="table-name">students</span>;</code>
     </div>
-    <div class="annotation"><strong>WHEN</strong> checks conditions in order, <strong>ELSE</strong> is the default. Great for labels, tiers & cleaning data.</div>
+    <div class="annotation"><strong>WHEN</strong> checks each condition in order, <strong>ELSE</strong> is the fallback. Use CASE for labels, tiers & cleaning.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>

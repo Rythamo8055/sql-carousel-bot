@@ -522,7 +522,7 @@
       <div class="logo">@code.ry</div>
     </div>
     <div class="main-title">UNION &<br><span class="accent">UNION ALL</span></div>
-    <div class="subtitle">Glue two lists together vertically</div>
+    <div class="subtitle">Combine result sets vertically</div>
     <div class="day-block">Day 20</div>
   </div>
   <div class="grid-accent-block"></div>
@@ -548,7 +548,7 @@
       <span class="eq-sign">=</span>
       <span class="meaning">Stack results<br>from two queries</span>
     </div>
-    <div class="description">UNION stacks two SELECT results into one list — like combining your class list with another class. UNION removes duplicates; UNION ALL keeps everything.</div>
+    <div class="description">UNION stacks the results of two SELECT statements into one list — vertically. UNION removes duplicates, UNION ALL keeps everything.</div>
   </div>
   <div class="blue-block"></div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
@@ -574,7 +574,7 @@
         <div class="reason-num">1</div>
         <div class="reason-text">
           <h3>UNION</h3>
-          <p>Merges results and drops duplicates</p>
+          <p>Combines results and removes duplicate rows</p>
         </div>
       </div>
 
@@ -582,7 +582,7 @@
         <div class="reason-num">2</div>
         <div class="reason-text">
           <h3>UNION ALL</h3>
-          <p>Keeps every row — faster, no dedup</p>
+          <p>Combines results and keeps ALL rows — faster</p>
         </div>
       </div>
 
@@ -590,7 +590,7 @@
         <div class="reason-num">3</div>
         <div class="reason-text">
           <h3>Same columns</h3>
-          <p>Both queries must have the same column count</p>
+          <p>Both queries must have the same number of columns</p>
         </div>
       </div>
     </div>
@@ -624,7 +624,7 @@
         <tr><td>Carol</td><td>employees</td></tr>
       </tbody>
     </table>
-    <div class="caption">UNION merges both lists and drops duplicates. UNION ALL keeps every row.</div>
+    <div class="caption">UNION merges both lists and removes duplicates. UNION ALL keeps every row.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">04 / 6</div>
@@ -647,7 +647,7 @@
     <div class="code-block">
       <code><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> <span class="table-name">customers</span><br><span class="keyword">UNION ALL</span><br><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> <span class="table-name">employees</span>;</code>
     </div>
-    <div class="annotation"><strong>UNION ALL</strong> keeps duplicates and runs faster. Use <strong>UNION</strong> for unique results only.</div>
+    <div class="annotation"><strong>UNION ALL</strong> keeps duplicates and is faster. Use <strong>UNION</strong> when you need unique results only.</div>
   </div>
   <div class="bookmark"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
   <div class="slide-number">05 / 6</div>
