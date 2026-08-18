@@ -8,7 +8,7 @@ on:
       day:
         description: 'Day number to post (1-30)'
         required: true
-        default: '12'
+        default: '2'
 
 jobs:
   post:
@@ -21,10 +21,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: npm install
-      - run: npx puppeteer browsers install chrome
-      - run: sudo apt-get update && sudo apt-get install -y imagemagick
-      - run: echo "PUPPETEER_EXECUTABLE_PATH=$(find /home -name 'chrome' -type f 2>/dev/null | head -1)" >> $GITHUB_ENV
       - name: Get day
         id: day
         run: |
