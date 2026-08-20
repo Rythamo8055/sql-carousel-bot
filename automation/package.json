@@ -1,0 +1,14 @@
+{
+  "name": "rythamo-instagram-automation",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node test-connection.js",
+    "get-token": "node get-token.js",
+    "get-ids": "node get-ids.js",
+    "post": "node publish-carousel.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
